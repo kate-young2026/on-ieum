@@ -1,4 +1,4 @@
-// 다락 Darak — 디자인 초안 인터랙션 (모든 데이터는 예시)
+// 온-이음 On-ieum — 디자인 초안 인터랙션 (모든 데이터는 예시)
 (function () {
   'use strict';
 
@@ -123,7 +123,20 @@
     ['정책', '늘봄학교 프로그램 다양화 방안', '방과 후 AI·코딩 프로그램 확대']
   ];
 
-  var TONE_TEXT = { garden: 'var(--garden)', pool: 'var(--pool)', lock: 'var(--lock)', oak: 'var(--oak)', ember: 'var(--ember)' };
+  // 이음: 방과 방이 어떻게 이어지는가
+  var LINKS = {
+    living: [['news', '아침 브리핑'], ['jf', '가족 메모'], ['camp', '하루 마무리']],
+    news: [['class', '기사 → 읽기 자료'], ['studio', '보고서 인용'], ['library', '스크랩 보관']],
+    jf: [['escape', '수학 게임'], ['library', '앨범 · 카드북'], ['living', '메모판']],
+    class: [['escape', '문제 → 자물쇠'], ['news', '시사 지문'], ['studio', '학습지 문서화']],
+    escape: [['class', '성취기준 순서'], ['jf', '아이들과 놀이']],
+    studio: [['class', '수업 자료 제작'], ['library', '포트폴리오'], ['news', '참고 기사']],
+    library: [['studio', '작품 정리'], ['jf', '가족 여행'], ['camp', '독서 회고']],
+    pool: [['class', '집중할 일 하나'], ['studio', '마감 작업']],
+    camp: [['living', '내일 할 일 3개'], ['library', '한 줄 일기 보관']]
+  };
+
+  var TONE_TEXT ={ garden: 'var(--garden)', pool: 'var(--pool)', lock: 'var(--lock)', oak: 'var(--oak)', ember: 'var(--ember)' };
   var panel = document.getElementById('panel');
   var map = document.getElementById('houseMap');
 
@@ -131,12 +144,18 @@
 
   function openRoom(id, scroll) {
     var r = ROOMS[id]; if (!r) return;
-    map.querySelectorAll('.room').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.room === id ? 'true' : 'false'); });
+    var linked = (LINKS[id] || []).map(function (l) { return l[0]; });
+    map.querySelectorAll('.room').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.room === id ? 'true' : 'false');
+      b.classList.toggle('linked', linked.indexOf(b.dataset.room) > -1);
+    });
     document.querySelectorAll('.cabinet button').forEach(function (b) { b.classList.toggle('on', b.dataset.room === id); });
     var html = '<span class="tag" style="background:var(--' + r.tone + '-soft);color:' + TONE_TEXT[r.tone] + '">' + esc(r.floor) + '</span>' +
       '<h3>' + esc(r.title) + '</h3><p class="desc">' + esc(r.desc) + '</p><ul>' +
       r.items.map(function (it) { return '<li><b>' + esc(it[0]) + '</b><small>' + esc(it[1]) + '</small>' + (it[2] ? '<em>' + esc(it[2]) + '</em>' : '') + '</li>'; }).join('') +
-      '</ul><div class="peek"><b>' + esc(r.peek[0]) + '</b>' + esc(r.peek[1]) + '</div>' +
+      '</ul><div class="links"><b>이어지는 방</b>' +
+      (LINKS[id] || []).map(function (l) { return '<button class="lk" type="button" data-go="' + l[0] + '">' + esc(ROOMS[l[0]].title) + ' <small>' + esc(l[1]) + '</small></button>'; }).join('') +
+      '</div><div class="peek"><b>' + esc(r.peek[0]) + '</b>' + esc(r.peek[1]) + '</div>' +
       '<div class="ai"><i style="background:' + TONE_TEXT[r.tone] + '">' + esc(r.ai[0]) + '</i><span><b style="color:var(--ink)">' + esc(r.ai[1]) + '</b> · ' + esc(r.ai[2]) + '</span></div>';
     panel.innerHTML = html;
     panel.classList.remove('fade'); void panel.offsetWidth; panel.classList.add('fade');
@@ -144,6 +163,7 @@
   }
 
   map.addEventListener('click', function (e) { var b = e.target.closest('.room'); if (b) openRoom(b.dataset.room); });
+  panel.addEventListener('click', function (e) { var b = e.target.closest('.lk'); if (b) openRoom(b.dataset.go); });
   document.querySelector('.cabinet').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) openRoom(b.dataset.room, true); });
 
   // news
@@ -168,11 +188,11 @@
   // theme
   var root = document.documentElement;
   function curDark() { return root.dataset.theme ? root.dataset.theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; }
-  try { var saved = localStorage.getItem('darak-theme'); if (saved) root.dataset.theme = saved; } catch (e) {}
+  try { var saved = localStorage.getItem('onieum-theme'); if (saved) root.dataset.theme = saved; } catch (e) {}
   if (!root.dataset.theme) root.dataset.theme = curDark() ? 'dark' : 'light';
   document.getElementById('theme').addEventListener('click', function () {
     root.dataset.theme = curDark() ? 'light' : 'dark';
-    try { localStorage.setItem('darak-theme', root.dataset.theme); } catch (e) {}
+    try { localStorage.setItem('onieum-theme', root.dataset.theme); } catch (e) {}
   });
 
   renderNews('all');
