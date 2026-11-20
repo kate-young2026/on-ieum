@@ -98,10 +98,12 @@
       if (detailW === 'mo') $('dFrame').style.cssText = 'border:0;width:390px;height:560px;background:#fff';
     } else { $('dFrame').hidden = true; }
     $('dFrame').parentElement.hidden = !x.html;
+    document.querySelector('[data-dw]').parentElement.hidden = !x.html;
     var KIND = { main_visual_pc: 'PC 메인', main_visual_mob: '모바일 메인', main_visual_mo: '모바일 메인', main_visualsub_pc: '서브(PC)', main_visualsub_mo: '서브(모바일)' };
     $('dImgs').innerHTML = (x.files || []).map(function (f) {
-      var src = f.thumb ? '../' + f.thumb : f.url;
-      return '<a class="pf-file" href="' + esc(f.url) + '" target="_blank" rel="noopener"><img src="' + esc(src) + '" alt="' + esc(KIND[f.kind] || f.kind) + '" loading="lazy"><span>' + esc(KIND[f.kind] || f.kind) + ' · ' + esc(f.url.split('.').pop()) + (f.size ? ' · ' + (f.size / 1048576).toFixed(1) + 'MB' : '') + '</span></a>';
+      // 큰 GIF 원본(수십 MB)은 미리 불러오지 않고, PC 메인은 저장소 썸네일을 쓴다
+      var src = f.kind === 'main_visual_pc' && x.thumb ? '../' + x.thumb : (f.size && f.size < 3145728 ? f.url : '');
+      return '<a class="pf-file" href="' + esc(f.url) + '" target="_blank" rel="noopener">' + (src ? '<img src="' + esc(src) + '" alt="' + esc(KIND[f.kind] || f.kind) + '" loading="lazy">' : '<b class="pf-big">원본 열기</b>') + '<span>' + esc(KIND[f.kind] || f.kind) + ' · ' + esc(f.url.split('.').pop()) + (f.size ? ' · ' + (f.size / 1048576).toFixed(1) + 'MB' : '') + '</span></a>';
     }).join('');
     $('dCode').hidden = !x.html; if (x.html) $('dCodeText').value = x.html;
     $('dDel').dataset.i = i;

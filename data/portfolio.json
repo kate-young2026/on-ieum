@@ -1,15 +1,36 @@
 {
- "note": "KDI 홈페이지에 공개된 메인비주얼 작업 목록(공개용). 사내 전용 자료는 넣지 않습니다.",
+ "note": "KDI 홈페이지에 공개된 메인비주얼 작업 목록(2025년 8월 이후). 원본 이미지는 kdi.re.kr 주소로 연결하고 저장소에는 썸네일만 둡니다. 코드가 없는 항목은 CMS에서 가져와야 합니다.",
  "items": [
   {
    "id": "vs152",
-   "date": "2026-11-19",
    "vsNo": "152",
+   "date": "2026-11-17",
    "category": "KDI 경제전망",
    "title": "KDI 경제전망, 2026 하반기",
+   "thumb": "assets/portfolio/vs152.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-152.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-152.gif",
+     "kind": "main_visual_pc",
+     "size": 86768681,
+     "modified": "2026-11-17"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-152.gif",
+     "kind": "main_visual_mob",
+     "size": 17080738,
+     "modified": "2026-11-17"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-152.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 236982,
+     "modified": "2026-11-17"
+    }
+   ],
    "desc": "우리 경제는 반도체 호황에 따른 수출과 설비투자 호조가 지속되며 2026년(3.8%)에 이어 2027년에도 3.9%의 높은 성장률을 기록할 전망",
    "link": "https://www.kdi.re.kr/research/economy?pub_no=19321",
-   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-152.gif",
    "subs": [
     {
      "category": "현안분석 1",
@@ -23,6 +44,1306 @@
     }
    ],
    "html": "<div class=\"inner-wrap slide_pc\">\n\t<div class=\"main-box\">\n\t\t<em>KDI 경제전망</em>\n\t\t<strong style=\"width:700px; color:#000;\">KDI 경제전망,<br>2026 하반기</strong>\n\t\t<p style=\"width:500px; color:#000;\">우리 경제는 반도체 호황에 따른 수출과 설비투자 호조가 지속되며 2026년(3.8%)에 이어 2027년에도 3.9%의 <br>높은 성장률을 기록할 전망</p><br><br>\n\t\t<a href=\"https://www.kdi.re.kr/research/economy?pub_no=19321\" class=\"themore\" style=\"color:#000; border-color:#000\">자세히 보기</a>\n\t</div>\n\t<div class=\"sub-box_wrap\">\n\t\t<div class=\"sub-box\">\n\t\t\t<em>현안분석 1</em>\n\t\t\t<strong style=\"color:#000; background:rgba(255,255,255,0.8); padding:2px 8px; font-size:24px; -webkit-box-decoration-break:clone; box-decoration-break:clone; line-height:1.2;\">최근 반도체 호황과 유가 상승이 민간소비에 미치는 영향</strong>\n\t\t\t<a href=\"/research/analysisView?art_no=3829\" class=\"themore\" style=\"display:inline-block; width:auto; color:#000; border-color:#000; background:rgba(255,255,255,0.6); padding:2px 8px; line-height:1.2;\">자세히 보기</a>\n\t\t</div>\n\t\t<div class=\"sub-box\">\n\t\t\t<em>현안분석 2</em>\n\t\t\t<strong style=\"color:#000; background:rgba(255,255,255,0.8); padding:2px 8px; font-size:24px; -webkit-box-decoration-break:clone; box-decoration-break:clone; line-height:1.2;\">기업 생산성 분석으로 살펴본 실질임금 정체의 배경과 시사점</strong>\n\t\t\t<a href=\"/research/analysisView?art_no=3830\" class=\"themore\" style=\"display:inline-block; width:auto; color:#000; border-color:#000; background:rgba(255,255,255,0.6); padding:2px 8px; line-height:1.4;\">자세히 보기</a>\n\t\t</div>\n      </div>\n</div>\n<div class=\"inner-wrap slide_mo\">\n\t<div class=\"main-box\">\n\t\t<div class=\"text-box\">\n\t\t\t<em>KDI 경제전망</em>\n\t\t\t<strong style=\"color:#000;\">KDI 경제전망,<br>2026 하반기</strong>\n\t\t\t<p style=\"width:63%;  color:#000;\">우리 경제는 반도체 호황에 따른 수출과 설비투자 호조가 지속되며 2026년(3.8%)에 이어 2027년에도 3.9%의 높은 성장률을 기록할 전망<br><br></p>\n\t\t\t<a href=\"https://www.kdi.re.kr/research/economy?pub_no=19321\" class=\"themore\" style=\"color:#000; border-color:#000\">자세히 보기</a>\n\t\t</div>\n\t\t<img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-152.gif\" alt=\"KDI 경제전망, 2026 하반기\" class=\"mo\">\n\t</div>\n      <div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/research/analysisView?art_no=3830\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-152.jpg\" alt=\"KDI 현안분석\" class=\"mo\"></a>\n       </div>\n      <div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/research/analysisView?art_no=3829\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-150.jpg\" alt=\"KDI 현안분석\" class=\"mo\"></a>\n       </div>\n\t<div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/research/focusView?pub_no=19320\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-149.jpg\" alt=\"KDI FOCUS\" class=\"mo\"></a>\n       </div>\n       <div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/share/noticeView?bd_no=52923\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-137.png\" alt=\"KDI 기관사칭 주의\" class=\"mo\"></a>\n       </div>\n</div>\n"
+  },
+  {
+   "id": "vs151",
+   "vsNo": "151",
+   "date": "2026-11-16",
+   "category": "메인비주얼",
+   "title": "메인비주얼 151번",
+   "thumb": "assets/portfolio/vs151.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-151.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-151.jpg",
+     "kind": "main_visual_pc",
+     "size": 2022635,
+     "modified": "2026-11-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-151.jpg",
+     "kind": "main_visual_mob",
+     "size": 287419,
+     "modified": "2026-11-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-151.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 258008,
+     "modified": "2026-11-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-151.jpg",
+     "kind": "main_visualsub_mo",
+     "size": 192389,
+     "modified": "2026-11-16"
+    }
+   ]
+  },
+  {
+   "id": "vs150",
+   "vsNo": "150",
+   "date": "2026-11-13",
+   "category": "메인비주얼",
+   "title": "메인비주얼 150번",
+   "thumb": "assets/portfolio/vs150.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-150.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-150.jpg",
+     "kind": "main_visual_pc",
+     "size": 176225,
+     "modified": "2026-11-13"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-150.jpg",
+     "kind": "main_visual_mob",
+     "size": 115395,
+     "modified": "2026-11-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-150.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 203786,
+     "modified": "2026-11-13"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-150.jpg",
+     "kind": "main_visualsub_mo",
+     "size": 415962,
+     "modified": "2026-11-16"
+    }
+   ]
+  },
+  {
+   "id": "vs149",
+   "vsNo": "149",
+   "date": "2026-11-11",
+   "category": "메인비주얼",
+   "title": "메인비주얼 149번",
+   "thumb": "assets/portfolio/vs149.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-149.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-149.jpg",
+     "kind": "main_visual_pc",
+     "size": 236224,
+     "modified": "2026-11-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-149.jpg",
+     "kind": "main_visual_mob",
+     "size": 28146,
+     "modified": "2026-11-12"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-149.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 239498,
+     "modified": "2026-11-11"
+    }
+   ]
+  },
+  {
+   "id": "vs148",
+   "vsNo": "148",
+   "date": "2026-10-30",
+   "category": "메인비주얼",
+   "title": "메인비주얼 148번",
+   "thumb": "assets/portfolio/vs148.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-148.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-148.png",
+     "kind": "main_visual_pc",
+     "size": 455768,
+     "modified": "2026-11-02"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-148.gif",
+     "kind": "main_visual_mob",
+     "size": 175812,
+     "modified": "2026-11-02"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-148.gif",
+     "kind": "main_visualsub_pc",
+     "size": 175812,
+     "modified": "2026-11-02"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-148.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 417466,
+     "modified": "2026-10-30"
+    }
+   ]
+  },
+  {
+   "id": "vs146",
+   "vsNo": "146",
+   "date": "2026-08-18",
+   "category": "메인비주얼",
+   "title": "메인비주얼 146번",
+   "thumb": "assets/portfolio/vs146.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-146.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-146.gif",
+     "kind": "main_visual_pc",
+     "size": 60629117,
+     "modified": "2026-08-18"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-146.gif",
+     "kind": "main_visual_mob",
+     "size": 34132571,
+     "modified": "2026-08-20"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-146.png",
+     "kind": "main_visualsub_pc",
+     "size": 158573,
+     "modified": "2026-08-18"
+    }
+   ]
+  },
+  {
+   "id": "vs147",
+   "vsNo": "147",
+   "date": "2026-08-18",
+   "category": "메인비주얼",
+   "title": "메인비주얼 147번",
+   "thumb": "assets/portfolio/vs147.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-147.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-147.gif",
+     "kind": "main_visual_pc",
+     "size": 608331,
+     "modified": "2026-08-18"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-147.gif",
+     "kind": "main_visual_mob",
+     "size": 418334,
+     "modified": "2026-08-18"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-147.png",
+     "kind": "main_visualsub_pc",
+     "size": 158573,
+     "modified": "2026-08-18"
+    }
+   ]
+  },
+  {
+   "id": "vs145",
+   "vsNo": "145",
+   "date": "2026-08-10",
+   "category": "메인비주얼",
+   "title": "메인비주얼 145번",
+   "thumb": "assets/portfolio/vs145.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-145.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-145.gif",
+     "kind": "main_visual_pc",
+     "size": 525147,
+     "modified": "2026-08-10"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-145.gif",
+     "kind": "main_visual_mob",
+     "size": 923854,
+     "modified": "2026-08-10"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-145.png",
+     "kind": "main_visualsub_pc",
+     "size": 185693,
+     "modified": "2026-08-10"
+    }
+   ]
+  },
+  {
+   "id": "vs144",
+   "vsNo": "144",
+   "date": "2026-07-24",
+   "category": "메인비주얼",
+   "title": "메인비주얼 144번",
+   "thumb": "assets/portfolio/vs144.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-144.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-144.gif",
+     "kind": "main_visual_pc",
+     "size": 3637551,
+     "modified": "2026-07-24"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-144.gif",
+     "kind": "main_visual_mob",
+     "size": 1920325,
+     "modified": "2026-07-24"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-144.png",
+     "kind": "main_visualsub_pc",
+     "size": 474457,
+     "modified": "2026-07-24"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-144.png",
+     "kind": "main_visualsub_mo",
+     "size": 408795,
+     "modified": "2026-07-26"
+    }
+   ]
+  },
+  {
+   "id": "vs143",
+   "vsNo": "143",
+   "date": "2026-07-08",
+   "category": "메인비주얼",
+   "title": "메인비주얼 143번",
+   "thumb": "assets/portfolio/vs143.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-143.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-143.gif",
+     "kind": "main_visual_pc",
+     "size": 76266775,
+     "modified": "2026-07-08"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-143.gif",
+     "kind": "main_visual_mob",
+     "size": 51786620,
+     "modified": "2026-07-08"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-143.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 547328,
+     "modified": "2026-09-07"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-143.png",
+     "kind": "main_visualsub_pc",
+     "size": 896096,
+     "modified": "2026-09-07"
+    }
+   ]
+  },
+  {
+   "id": "vs142",
+   "vsNo": "142",
+   "date": "2026-06-29",
+   "category": "메인비주얼",
+   "title": "메인비주얼 142번",
+   "thumb": "assets/portfolio/vs142.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-142.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-142.png",
+     "kind": "main_visual_pc",
+     "size": 1158728,
+     "modified": "2026-06-29"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-142.png",
+     "kind": "main_visual_mob",
+     "size": 444035,
+     "modified": "2026-06-29"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-142.png",
+     "kind": "main_visualsub_pc",
+     "size": 511886,
+     "modified": "2026-06-29"
+    }
+   ]
+  },
+  {
+   "id": "vs141",
+   "vsNo": "141",
+   "date": "2026-05-19",
+   "category": "메인비주얼",
+   "title": "메인비주얼 141번",
+   "thumb": "assets/portfolio/vs141.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-141.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-141.gif",
+     "kind": "main_visual_pc",
+     "size": 2076982,
+     "modified": "2026-05-20"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-141.gif",
+     "kind": "main_visual_mob",
+     "size": 718081,
+     "modified": "2026-05-19"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-141.png",
+     "kind": "main_visualsub_pc",
+     "size": 157677,
+     "modified": "2026-05-19"
+    }
+   ]
+  },
+  {
+   "id": "vs139",
+   "vsNo": "139",
+   "date": "2026-05-12",
+   "category": "메인비주얼",
+   "title": "메인비주얼 139번",
+   "thumb": "assets/portfolio/vs139.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-139.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-139.jpg",
+     "kind": "main_visual_pc",
+     "size": 84757,
+     "modified": "2026-05-12"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-139.jpg",
+     "kind": "main_visual_mob",
+     "size": 43705,
+     "modified": "2026-05-12"
+    }
+   ]
+  },
+  {
+   "id": "vs140",
+   "vsNo": "140",
+   "date": "2026-05-12",
+   "category": "메인비주얼",
+   "title": "메인비주얼 140번",
+   "thumb": "assets/portfolio/vs140.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-140.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-140.gif",
+     "kind": "main_visual_pc",
+     "size": 6556372,
+     "modified": "2026-05-13"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-140.gif",
+     "kind": "main_visual_mob",
+     "size": 2698298,
+     "modified": "2026-05-13"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-140.png",
+     "kind": "main_visualsub_pc",
+     "size": 509890,
+     "modified": "2026-05-12"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-140.png",
+     "kind": "main_visualsub_mo",
+     "size": 206509,
+     "modified": "2026-05-12"
+    }
+   ]
+  },
+  {
+   "id": "vs138",
+   "vsNo": "138",
+   "date": "2026-05-08",
+   "category": "메인비주얼",
+   "title": "메인비주얼 138번",
+   "thumb": "assets/portfolio/vs138.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-138.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-138.jpg",
+     "kind": "main_visual_pc",
+     "size": 84757,
+     "modified": "2026-05-08"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-138.jpg",
+     "kind": "main_visual_mob",
+     "size": 43705,
+     "modified": "2026-05-08"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-138.png",
+     "kind": "main_visualsub_pc",
+     "size": 106439,
+     "modified": "2026-05-08"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-138.png",
+     "kind": "main_visualsub_mo",
+     "size": 311427,
+     "modified": "2026-05-08"
+    }
+   ]
+  },
+  {
+   "id": "vs137",
+   "vsNo": "137",
+   "date": "2026-05-06",
+   "category": "메인비주얼",
+   "title": "메인비주얼 137번",
+   "thumb": "assets/portfolio/vs137.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-137.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-137.png",
+     "kind": "main_visual_pc",
+     "size": 139587,
+     "modified": "2026-05-07"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-137.png",
+     "kind": "main_visual_mob",
+     "size": 97196,
+     "modified": "2026-05-07"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-137.png",
+     "kind": "main_visualsub_pc",
+     "size": 106439,
+     "modified": "2026-05-06"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-137.png",
+     "kind": "main_visualsub_mo",
+     "size": 311427,
+     "modified": "2026-05-06"
+    }
+   ]
+  },
+  {
+   "id": "vs136",
+   "vsNo": "136",
+   "date": "2026-04-28",
+   "category": "메인비주얼",
+   "title": "메인비주얼 136번",
+   "thumb": "assets/portfolio/vs136.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-136.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-136.gif",
+     "kind": "main_visual_pc",
+     "size": 3411415,
+     "modified": "2026-04-28"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-136.gif",
+     "kind": "main_visual_mob",
+     "size": 3391483,
+     "modified": "2026-04-28"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-136.png",
+     "kind": "main_visualsub_pc",
+     "size": 106439,
+     "modified": "2026-04-29"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-136.png",
+     "kind": "main_visualsub_mo",
+     "size": 311427,
+     "modified": "2026-04-29"
+    }
+   ]
+  },
+  {
+   "id": "vs135",
+   "vsNo": "135",
+   "date": "2026-04-10",
+   "category": "메인비주얼",
+   "title": "메인비주얼 135번",
+   "thumb": "assets/portfolio/vs135.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-135.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-135.gif",
+     "kind": "main_visual_pc",
+     "size": 3411415,
+     "modified": "2026-04-15"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-135.gif",
+     "kind": "main_visual_mob",
+     "size": 3391483,
+     "modified": "2026-04-15"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-135.png",
+     "kind": "main_visualsub_pc",
+     "size": 510133,
+     "modified": "2026-04-10"
+    }
+   ]
+  },
+  {
+   "id": "vs133",
+   "vsNo": "133",
+   "date": "2026-03-23",
+   "category": "메인비주얼",
+   "title": "메인비주얼 133번",
+   "thumb": "assets/portfolio/vs133.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-133.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-133.png",
+     "kind": "main_visual_pc",
+     "size": 1712392,
+     "modified": "2026-10-12"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-133.jpg",
+     "kind": "main_visual_mob",
+     "size": 356927,
+     "modified": "2026-10-12"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-133.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 547328,
+     "modified": "2026-10-08"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-133.png",
+     "kind": "main_visualsub_pc",
+     "size": 503775,
+     "modified": "2026-03-23"
+    }
+   ]
+  },
+  {
+   "id": "vs134",
+   "vsNo": "134",
+   "date": "2026-03-16",
+   "category": "메인비주얼",
+   "title": "메인비주얼 134번",
+   "thumb": "assets/portfolio/vs134.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-134.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-134.png",
+     "kind": "main_visual_pc",
+     "size": 1552598,
+     "modified": "2026-03-24"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-134.png",
+     "kind": "main_visual_mob",
+     "size": 540532,
+     "modified": "2026-03-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-134.png",
+     "kind": "main_visualsub_pc",
+     "size": 281508,
+     "modified": "2026-03-23"
+    }
+   ]
+  },
+  {
+   "id": "vs131",
+   "vsNo": "131",
+   "date": "2026-02-11",
+   "category": "메인비주얼",
+   "title": "메인비주얼 131번",
+   "thumb": "assets/portfolio/vs131.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-131.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-131.gif",
+     "kind": "main_visual_pc",
+     "size": 60629117,
+     "modified": "2026-02-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-131.gif",
+     "kind": "main_visual_mob",
+     "size": 27040303,
+     "modified": "2026-02-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-131.png",
+     "kind": "main_visualsub_pc",
+     "size": 510502,
+     "modified": "2026-02-11"
+    }
+   ]
+  },
+  {
+   "id": "vs132",
+   "vsNo": "132",
+   "date": "2026-02-06",
+   "category": "메인비주얼",
+   "title": "메인비주얼 132번",
+   "thumb": "assets/portfolio/vs132.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-132.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-132.gif",
+     "kind": "main_visual_pc",
+     "size": 53006804,
+     "modified": "2026-03-10"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-132.gif",
+     "kind": "main_visual_mob",
+     "size": 11104181,
+     "modified": "2026-02-06"
+    }
+   ]
+  },
+  {
+   "id": "vs130",
+   "vsNo": "130",
+   "date": "2026-01-30",
+   "category": "메인비주얼",
+   "title": "메인비주얼 130번",
+   "thumb": "assets/portfolio/vs130.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-130.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-130.gif",
+     "kind": "main_visual_pc",
+     "size": 73722192,
+     "modified": "2026-02-06"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-130.gif",
+     "kind": "main_visual_mob",
+     "size": 42430453,
+     "modified": "2026-01-30"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-130.gif",
+     "kind": "main_visualsub_pc",
+     "size": 8029339,
+     "modified": "2026-01-30"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-130.png",
+     "kind": "main_visualsub_pc",
+     "size": 244507,
+     "modified": "2026-06-08"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-130.png",
+     "kind": "main_visualsub_mo",
+     "size": 116056,
+     "modified": "2026-05-06"
+    }
+   ]
+  },
+  {
+   "id": "vs129",
+   "vsNo": "129",
+   "date": "2026-01-16",
+   "category": "메인비주얼",
+   "title": "메인비주얼 129번",
+   "thumb": "assets/portfolio/vs129.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-129.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-129.gif",
+     "kind": "main_visual_pc",
+     "size": 14091417,
+     "modified": "2026-01-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-129.gif",
+     "kind": "main_visual_mob",
+     "size": 8024277,
+     "modified": "2026-01-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-129.png",
+     "kind": "main_visualsub_pc",
+     "size": 104002,
+     "modified": "2026-01-19"
+    }
+   ]
+  },
+  {
+   "id": "vs128",
+   "vsNo": "128",
+   "date": "2026-01-13",
+   "category": "메인비주얼",
+   "title": "메인비주얼 128번",
+   "thumb": "assets/portfolio/vs128.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-128.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-128.gif",
+     "kind": "main_visual_pc",
+     "size": 1744004,
+     "modified": "2026-01-13"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-128.gif",
+     "kind": "main_visual_mob",
+     "size": 374201,
+     "modified": "2026-01-13"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-128.png",
+     "kind": "main_visualsub_pc",
+     "size": 201506,
+     "modified": "2026-01-13"
+    }
+   ]
+  },
+  {
+   "id": "vs127",
+   "vsNo": "127",
+   "date": "2025-12-31",
+   "category": "메인비주얼",
+   "title": "메인비주얼 127번",
+   "thumb": "assets/portfolio/vs127.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-127.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-127.png",
+     "kind": "main_visual_pc",
+     "size": 627880,
+     "modified": "2025-12-31"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-127.png",
+     "kind": "main_visual_mob",
+     "size": 224467,
+     "modified": "2025-12-31"
+    }
+   ]
+  },
+  {
+   "id": "vs126",
+   "vsNo": "126",
+   "date": "2025-12-22",
+   "category": "메인비주얼",
+   "title": "메인비주얼 126번",
+   "thumb": "assets/portfolio/vs126.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-126.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-126.jpg",
+     "kind": "main_visual_pc",
+     "size": 92188,
+     "modified": "2025-12-23"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-126.jpg",
+     "kind": "main_visual_mob",
+     "size": 45427,
+     "modified": "2025-12-22"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-126.png",
+     "kind": "main_visualsub_pc",
+     "size": 72584,
+     "modified": "2025-12-22"
+    }
+   ]
+  },
+  {
+   "id": "vs125",
+   "vsNo": "125",
+   "date": "2025-12-16",
+   "category": "메인비주얼",
+   "title": "메인비주얼 125번",
+   "thumb": "assets/portfolio/vs125.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-125.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-125.jpg",
+     "kind": "main_visual_pc",
+     "size": 68167,
+     "modified": "2025-12-17"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-125.jpg",
+     "kind": "main_visual_mob",
+     "size": 36541,
+     "modified": "2025-12-16"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-125.png",
+     "kind": "main_visualsub_pc",
+     "size": 109198,
+     "modified": "2025-12-16"
+    }
+   ]
+  },
+  {
+   "id": "vs124",
+   "vsNo": "124",
+   "date": "2025-12-04",
+   "category": "메인비주얼",
+   "title": "메인비주얼 124번",
+   "thumb": "assets/portfolio/vs124.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-124.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-124.jpg",
+     "kind": "main_visual_pc",
+     "size": 71884,
+     "modified": "2025-12-04"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-124.jpg",
+     "kind": "main_visual_mob",
+     "size": 39752,
+     "modified": "2025-12-04"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-124.png",
+     "kind": "main_visualsub_pc",
+     "size": 203633,
+     "modified": "2025-12-04"
+    }
+   ]
+  },
+  {
+   "id": "vs122",
+   "vsNo": "122",
+   "date": "2025-11-11",
+   "category": "메인비주얼",
+   "title": "메인비주얼 122번",
+   "thumb": "assets/portfolio/vs122.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-122.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-122.gif",
+     "kind": "main_visual_pc",
+     "size": 92254206,
+     "modified": "2025-11-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-122.gif",
+     "kind": "main_visual_mob",
+     "size": 35989122,
+     "modified": "2025-11-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-122.png",
+     "kind": "main_visualsub_pc",
+     "size": 72572,
+     "modified": "2025-11-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-122.jpg",
+     "kind": "main_visualsub_mo",
+     "size": 417158,
+     "modified": "2025-11-11"
+    }
+   ]
+  },
+  {
+   "id": "vs123",
+   "vsNo": "123",
+   "date": "2025-11-11",
+   "category": "메인비주얼",
+   "title": "메인비주얼 123번",
+   "thumb": "assets/portfolio/vs123.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-123.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-123.gif",
+     "kind": "main_visual_pc",
+     "size": 92254206,
+     "modified": "2025-11-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-123.gif",
+     "kind": "main_visual_mob",
+     "size": 35989122,
+     "modified": "2025-11-11"
+    }
+   ]
+  },
+  {
+   "id": "vs121",
+   "vsNo": "121",
+   "date": "2025-11-05",
+   "category": "메인비주얼",
+   "title": "메인비주얼 121번",
+   "thumb": "assets/portfolio/vs121.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-121.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-121.jpg",
+     "kind": "main_visual_pc",
+     "size": 242560,
+     "modified": "2025-11-06"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-121.jpg",
+     "kind": "main_visual_mob",
+     "size": 144642,
+     "modified": "2025-11-06"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-121.png",
+     "kind": "main_visualsub_pc",
+     "size": 47619,
+     "modified": "2025-11-05"
+    }
+   ]
+  },
+  {
+   "id": "vs120",
+   "vsNo": "120",
+   "date": "2025-10-31",
+   "category": "메인비주얼",
+   "title": "메인비주얼 120번",
+   "thumb": "assets/portfolio/vs120.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-120.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-120.jpg",
+     "kind": "main_visual_pc",
+     "size": 157939,
+     "modified": "2025-10-31"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-120.jpg",
+     "kind": "main_visual_mob",
+     "size": 90112,
+     "modified": "2025-10-31"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-120.png",
+     "kind": "main_visualsub_mo",
+     "size": 42065,
+     "modified": "2025-10-31"
+    }
+   ]
+  },
+  {
+   "id": "vs119",
+   "vsNo": "119",
+   "date": "2025-10-21",
+   "category": "메인비주얼",
+   "title": "메인비주얼 119번",
+   "thumb": "assets/portfolio/vs119.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-119.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-119.jpg",
+     "kind": "main_visual_pc",
+     "size": 72391,
+     "modified": "2025-10-21"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-119.png",
+     "kind": "main_visual_mob",
+     "size": 32686,
+     "modified": "2025-10-21"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-119.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 37409,
+     "modified": "2025-10-21"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-119.png",
+     "kind": "main_visualsub_pc",
+     "size": 65626,
+     "modified": "2025-10-21"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-119.png",
+     "kind": "main_visualsub_mo",
+     "size": 222914,
+     "modified": "2025-10-21"
+    }
+   ]
+  },
+  {
+   "id": "vs118",
+   "vsNo": "118",
+   "date": "2025-10-14",
+   "category": "메인비주얼",
+   "title": "메인비주얼 118번",
+   "thumb": "assets/portfolio/vs118.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-118.gif",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-118.gif",
+     "kind": "main_visual_pc",
+     "size": 76266775,
+     "modified": "2025-10-14"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-118.gif",
+     "kind": "main_visual_mob",
+     "size": 51786620,
+     "modified": "2025-10-14"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-118.jpg",
+     "kind": "main_visualsub_pc",
+     "size": 37409,
+     "modified": "2025-10-14"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-118.jpg",
+     "kind": "main_visualsub_mo",
+     "size": 38679,
+     "modified": "2025-10-14"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-118.png",
+     "kind": "main_visualsub_mo",
+     "size": 67093,
+     "modified": "2026-01-07"
+    }
+   ]
+  },
+  {
+   "id": "vs117",
+   "vsNo": "117",
+   "date": "2025-10-03",
+   "category": "메인비주얼",
+   "title": "메인비주얼 117번",
+   "thumb": "assets/portfolio/vs117.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-117.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-117.jpg",
+     "kind": "main_visual_pc",
+     "size": 278897,
+     "modified": "2025-10-03"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-117.jpg",
+     "kind": "main_visual_mob",
+     "size": 105714,
+     "modified": "2025-10-03"
+    }
+   ]
+  },
+  {
+   "id": "vs116",
+   "vsNo": "116",
+   "date": "2025-09-25",
+   "category": "메인비주얼",
+   "title": "메인비주얼 116번",
+   "thumb": "assets/portfolio/vs116.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-116.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-116.png",
+     "kind": "main_visual_pc",
+     "size": 1315095,
+     "modified": "2025-09-25"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-116.png",
+     "kind": "main_visual_mob",
+     "size": 487523,
+     "modified": "2025-09-25"
+    }
+   ]
+  },
+  {
+   "id": "vs115",
+   "vsNo": "115",
+   "date": "2025-09-24",
+   "category": "메인비주얼",
+   "title": "메인비주얼 115번",
+   "thumb": "assets/portfolio/vs115.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-115.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-115.jpg",
+     "kind": "main_visual_pc",
+     "size": 113154,
+     "modified": "2025-09-24"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-115.jpg",
+     "kind": "main_visual_mob",
+     "size": 85570,
+     "modified": "2025-09-24"
+    }
+   ]
+  },
+  {
+   "id": "vs114",
+   "vsNo": "114",
+   "date": "2025-09-19",
+   "category": "메인비주얼",
+   "title": "메인비주얼 114번",
+   "thumb": "assets/portfolio/vs114.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-114.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-114.jpg",
+     "kind": "main_visual_pc",
+     "size": 73097,
+     "modified": "2025-09-19"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-114.jpg",
+     "kind": "main_visual_mob",
+     "size": 33601,
+     "modified": "2025-09-19"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-114.jpg",
+     "kind": "main_visualsub_mo",
+     "size": 34401,
+     "modified": "2025-09-19"
+    }
+   ]
+  },
+  {
+   "id": "vs113",
+   "vsNo": "113",
+   "date": "2025-09-09",
+   "category": "메인비주얼",
+   "title": "메인비주얼 113번",
+   "thumb": "assets/portfolio/vs113.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-113.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-113.jpg",
+     "kind": "main_visual_pc",
+     "size": 66433,
+     "modified": "2025-09-09"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-113.jpg",
+     "kind": "main_visual_mob",
+     "size": 39752,
+     "modified": "2025-09-09"
+    }
+   ]
+  },
+  {
+   "id": "vs111",
+   "vsNo": "111",
+   "date": "2025-09-03",
+   "category": "메인비주얼",
+   "title": "메인비주얼 111번",
+   "thumb": "assets/portfolio/vs111.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-111.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-111.png",
+     "kind": "main_visual_pc",
+     "size": 653617,
+     "modified": "2025-09-03"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-111.png",
+     "kind": "main_visual_mob",
+     "size": 371095,
+     "modified": "2025-09-03"
+    }
+   ]
+  },
+  {
+   "id": "vs112",
+   "vsNo": "112",
+   "date": "2025-09-03",
+   "category": "메인비주얼",
+   "title": "메인비주얼 112번",
+   "thumb": "assets/portfolio/vs112.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-112.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-112.png",
+     "kind": "main_visual_pc",
+     "size": 321130,
+     "modified": "2025-09-03"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-112.png",
+     "kind": "main_visual_mob",
+     "size": 139508,
+     "modified": "2025-09-03"
+    }
+   ]
+  },
+  {
+   "id": "vs110",
+   "vsNo": "110",
+   "date": "2025-08-11",
+   "category": "메인비주얼",
+   "title": "메인비주얼 110번",
+   "thumb": "assets/portfolio/vs110.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-110.jpg",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-110.jpg",
+     "kind": "main_visual_pc",
+     "size": 99875,
+     "modified": "2025-08-11"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-110.jpg",
+     "kind": "main_visual_mob",
+     "size": 39751,
+     "modified": "2025-08-11"
+    }
+   ]
+  },
+  {
+   "id": "vs108",
+   "vsNo": "108",
+   "date": "2025-08-01",
+   "category": "메인비주얼",
+   "title": "메인비주얼 108번",
+   "thumb": "assets/portfolio/vs108.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-108.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-108.png",
+     "kind": "main_visual_pc",
+     "size": 76457,
+     "modified": "2025-08-01"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-108.png",
+     "kind": "main_visual_mob",
+     "size": 48750,
+     "modified": "2025-08-01"
+    }
+   ]
+  },
+  {
+   "id": "vs109",
+   "vsNo": "109",
+   "date": "2025-08-01",
+   "category": "메인비주얼",
+   "title": "메인비주얼 109번",
+   "thumb": "assets/portfolio/vs109.jpg",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-109.png",
+   "files": [
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-109.png",
+     "kind": "main_visual_pc",
+     "size": 76457,
+     "modified": "2025-08-01"
+    },
+    {
+     "url": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-109.png",
+     "kind": "main_visual_mob",
+     "size": 48750,
+     "modified": "2025-08-01"
+    }
+   ]
   }
  ]
 }

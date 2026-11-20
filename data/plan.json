@@ -110,9 +110,9 @@
       "tone": "oak",
       "features": [
         {
-          "name": "포트폴리오 목록 (2025.8~)",
-          "status": "doing",
-          "note": "코드·vs_no로 추가, 미리보기 · CMS 일괄 수집은 PC 연결 후",
+          "name": "포트폴리오 45건 (2025.8~ 메인비주얼 이미지)",
+          "status": "done",
+          "note": "코드는 공개된 1건(vs 152)만 · 나머지 코드는 CMS 로그인 필요",
           "link": "rooms/portfolio.html"
         },
         {
