@@ -84,7 +84,7 @@
           "link": "rooms/coding.html"
         },
         {
-          "name": "코딩 미리보기 + KDI CSS 주소 연결",
+          "name": "코딩 미리보기 + KDI CSS 자동 연결(style.css · main.css)",
           "status": "done",
           "link": "rooms/coding.html"
         },
@@ -179,7 +179,6 @@
     }
   ],
   "checks": [
-    "KDI CSS 주소: F12에서 찾아 코딩방에 입력",
     "포트폴리오: PC 연결 + CMS 직접 로그인 시점",
     "성취기준 원문 일부(초등 통합교과 등) 추출 상태 NCIC 원문과 대조"
   ],

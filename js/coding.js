@@ -350,7 +350,46 @@
     return renderCustom(t, text);
   }
 
-  var API = { TYPES: TYPES, render: render, inline: inline, splitMeta: splitMeta, renderCustom: renderCustom };
+  // KDI 홈페이지가 실제로 쓰는 CSS (복사하지 않고 주소로만 연결)
+  var KDI = {
+    base: 'https://www.kdi.re.kr/',
+    content: ['https://www.kdi.re.kr/res/css/style.css'],
+    main: ['https://www.kdi.re.kr/res/css/style.css', 'https://www.kdi.re.kr/res/css/main.css'],
+    // KDI 웹폰트(font.css)는 다른 주소에서 쓸 수 없게 막혀 있어(CORS) 같은 글꼴을 Google Fonts로 대신 불러온다
+    font: 'https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap',
+    wrap: 'editor-template'
+  };
+  // 미리보기 문서: 메인비주얼은 main.css + 메인 슬라이드 틀, 나머지는 style.css + editor-template
+  function previewDoc(typeId, html, opt) {
+    opt = opt || {};
+    var useKdi = opt.useKdi !== false, extra = opt.css || [];
+    var isMain = typeId === 'mainvisual';
+    var css = (useKdi ? (isMain ? KDI.main : KDI.content) : []).concat(extra);
+    var links = (useKdi ? '<link rel="stylesheet" href="' + KDI.font + '"><style>body{font-family:"Noto Sans KR",sans-serif}</style>' : '') + css.map(function (u) { return '<link rel="stylesheet" href="' + esc(u) + '">'; }).join('');
+    var body;
+    if (isMain) {
+      var vs = /main_visual(?:sub)?_(?:mob|mo|pc)-(\d+)/.exec(html);
+      body = '<main><section id="main_visual"><div class="main_slide_wrap"><div class="main_slide layout open">' +
+        (vs ? '<img src="/kdidata/mainContent/visual/main_visual_pc-' + vs[1] + '.gif" alt="" class="pc">' : '') + html + '</div></div></section></main>';
+    } else {
+      var w = opt.wrap != null ? opt.wrap : (useKdi ? KDI.wrap : '');
+      body = w ? '<div class="' + esc(w) + '">' + html + '</div>' : html;
+    }
+    var fallback = css.length ? '' : '<style>body{font-family:sans-serif;padding:16px;line-height:1.7}.p_type02,.p_type03{margin:0 0 14px}.bg_type02{background:#f3f3f3;padding:14px 18px;margin:14px 0;font-weight:bold}.img_type04 img{max-width:100%;height:auto}</style>';
+    return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><base href="' + KDI.base + '" target="_blank">' + links + fallback + '</head><body>' + body + '</body></html>';
+  }
+
+  // 넓은 화면용 미리보기(메인비주얼)를 패널 폭에 맞게 줄여 보여 준다
+  function fitFrame(frame, wide) {
+    var box = frame.parentElement;
+    if (!wide) { frame.style.cssText = frame.dataset.base || ''; box.style.height = ''; box.style.overflow = ''; box.style.justifyContent = ''; box.style.minHeight = ''; return; }
+    if (frame.dataset.base == null) frame.dataset.base = frame.style.cssText;
+    var W = 1400, H = 800, k = Math.min(1, (box.clientWidth - 2) / W);
+    frame.style.cssText = 'border:0;background:#fff;width:' + W + 'px;height:' + H + 'px;min-height:0;transform:scale(' + k + ');transform-origin:0 0;flex:none';
+    box.style.height = Math.ceil(H * k) + 'px'; box.style.minHeight = '0'; box.style.overflow = 'hidden'; box.style.justifyContent = 'flex-start';
+  }
+
+  var API = { TYPES: TYPES, render: render, inline: inline, splitMeta: splitMeta, renderCustom: renderCustom, KDI: KDI, previewDoc: previewDoc, fitFrame: fitFrame };
   if (typeof module !== 'undefined' && module.exports) { module.exports = API; return; }
   root.OnCoding = API;
 
@@ -364,6 +403,7 @@
   state.custom = state.custom || [];
   state.drafts = state.drafts || {};
   state.wrap = state.wrap == null ? '' : state.wrap;
+  if (state.useKdi == null) state.useKdi = true;
 
   var $ = function (id) { return document.getElementById(id); };
   var cur = 'bid', width = 'pc';
@@ -397,18 +437,17 @@
     var t = typeById(cur), html;
     try { html = render(t, $('srcText').value, state.custom); } catch (e) { html = '<!-- 변환 오류: ' + esc(e.message) + ' -->'; }
     $('outCode').value = html;
-    var links = state.css.map(function (u) { return '<link rel="stylesheet" href="' + esc(u) + '">'; }).join('');
-    var wrapOpen = state.wrap ? '<div class="' + esc(state.wrap) + '">' : '', wrapClose = state.wrap ? '</div>' : '';
-    var doc = '<!doctype html><html lang="ko"><head><meta charset="utf-8"><base href="https://www.kdi.re.kr/" target="_blank">' + links +
-      (state.css.length ? '' : '<style>body{font-family:sans-serif;padding:16px;line-height:1.7}.p_type02,.p_type03{margin:0 0 14px}.bg_type02{background:#f3f3f3;padding:14px 18px;margin:14px 0;font-weight:bold}.img_type04 img{max-width:100%;height:auto}</style>') +
-      '</head><body>' + wrapOpen + html + wrapClose + '</body></html>';
+    var doc = previewDoc(t.id, html, { useKdi: state.useKdi, css: state.css, wrap: state.wrap || undefined });
     $('preview').srcdoc = doc;
-    $('cssState').textContent = state.css.length ? 'KDI CSS ' + state.css.length + '개 적용 중' : 'KDI CSS 미적용 · 기본 미리보기';
+    fitFrame($('preview'), t.id === 'mainvisual' && width === 'pc');
+    if (!(t.id === 'mainvisual' && width === 'pc')) $('preview').style.width = width === 'mo' ? '390px' : '100%';
+    $('cssState').textContent = state.useKdi ? 'KDI CSS 연결됨 · ' + (t.id === 'mainvisual' ? 'main.css' : 'style.css + editor-template') : (state.css.length ? '추가 CSS ' + state.css.length + '개' : 'KDI CSS 끔 · 기본 미리보기');
   }
   function renderCss() {
     $('cssList').innerHTML = state.css.map(function (u, i) {
       return '<li><code>' + esc(u) + '</code> <button class="btn-s" data-rm="' + i + '">빼기</button></li>';
-    }).join('') || '<li class="note-s">아직 없어요. KDI 사이트에서 F12 → Elements의 &lt;link rel="stylesheet"&gt; 주소를 붙여 넣으세요.</li>';
+    }).join('') || '<li class="note-s">추가 CSS는 없어요. 필요할 때만 넣으세요.</li>';
+    $('useKdi').checked = state.useKdi;
     $('wrapClass').value = state.wrap;
   }
 
@@ -428,7 +467,7 @@
   document.querySelectorAll('[data-w]').forEach(function (b) {
     b.addEventListener('click', function () {
       width = b.dataset.w; document.querySelectorAll('[data-w]').forEach(function (x) { x.classList.toggle('on', x === b); });
-      $('preview').style.width = width === 'mo' ? '390px' : '100%';
+      build();
     });
   });
   $('addCss').addEventListener('click', function () {
@@ -437,6 +476,7 @@
     state.css.push(u); $('cssUrl').value = ''; save(); renderCss(); build();
   });
   $('cssList').addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (b) { state.css.splice(+b.dataset.rm, 1); save(); renderCss(); build(); } });
+  $('useKdi').addEventListener('change', function () { state.useKdi = this.checked; save(); build(); });
   $('wrapClass').addEventListener('change', function () { state.wrap = this.value.trim(); save(); build(); });
 
   // 유형 추가/수정

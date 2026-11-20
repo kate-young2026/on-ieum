@@ -78,9 +78,12 @@
       var cls = detailW === 'pc' ? '' : '';
       $('dFrame').hidden = false;
       $('dFrame').style.width = detailW === 'mo' ? '390px' : '100%';
-      $('dFrame').srcdoc = '<!doctype html><html lang="ko"><head><meta charset="utf-8"><base href="https://www.kdi.re.kr/" target="_blank">' + links +
-        (links ? '' : '<style>body{font-family:sans-serif;margin:0;padding:12px;background:#eef1f5}.slide_' + (detailW === 'pc' ? 'mo' : 'pc') + '{display:none}.main-box em{display:block;color:#555}.main-box strong{display:block;font-size:26px;margin:6px 0}.sub-box{display:inline-block;width:45%;vertical-align:top;margin:10px 2% 0 0}img{max-width:100%}.themore{display:inline-block;border:1px solid #000;padding:2px 8px;color:#000;text-decoration:none}</style>') +
-        '</head><body>' + x.html + '</body></html>';
+      var extra = cssLinks();
+      var doc = window.OnCoding ? window.OnCoding.previewDoc('mainvisual', x.html, { css: extra }) : x.html;
+      if (detailW === 'mo') doc = doc.replace('</head>', '<style>.slide_pc,img.pc{display:none!important}.slide_mo{display:block!important}</style></head>');
+      $('dFrame').srcdoc = doc;
+      if (window.OnCoding) window.OnCoding.fitFrame($('dFrame'), detailW === 'pc');
+      if (detailW === 'mo') $('dFrame').style.cssText = 'border:0;width:390px;height:560px;background:#fff';
     } else { $('dFrame').hidden = true; }
     $('dDel').dataset.i = i;
   }
