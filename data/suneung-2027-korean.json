@@ -4,384 +4,486 @@
  "official": "https://cdn.kice.re.kr/27dae-suneung/index.html",
  "notes": [
   "문제 본문은 싣지 않습니다. 공식 문제지는 한국교육과정평가원 페이지에서 받으세요.",
-  "정답은 평가원 공식 정답표로 확인해 채웁니다. 비어 있는 정답은 아직 확인하지 못한 것입니다(확인 필요).",
-  "영역 구분(독서 1~17, 문학 18~34, 언어 35~39, 매체 40~45)은 일반적인 구성을 따른 추정입니다. 문제지와 대조해 주세요.",
-  "2027 수능은 2015 개정 교육과정 범위에서 출제됩니다. 성취기준 매칭은 2022 개정 성취기준(학습맵 MCP) 가운데 가장 가까운 것을 '추정'으로 제안하며, 선생님이 화면에서 확정합니다."
+  "정답·배점은 평가원 공식 정답표(홀수형·짝수형)를 옮긴 것입니다. 형에 따라 9·16·27번, 화법과 작문 43번, 언어와 매체 45번 정답이 다릅니다.",
+  "영역 구분(독서 1~17, 문학 18~34, 언어 35~39, 매체 40~45)은 일반적인 구성을 따른 것입니다. 문제지와 대조해 주세요.",
+  "성취기준 매칭은 2022 개정 교육과정 성취기준으로 제안하며, 선생님이 화면에서 확정합니다."
  ],
  "common": [
   {
    "no": 1,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 1,
+    "even": 1
+   }
   },
   {
    "no": 2,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 4,
+    "even": 4
+   }
   },
   {
    "no": 3,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 3,
+    "even": 3
+   }
   },
   {
    "no": 4,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 2,
+    "even": 2
+   }
   },
   {
    "no": 5,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 3,
+    "even": 3
+   }
   },
   {
    "no": 6,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 5,
+    "even": 5
+   }
   },
   {
    "no": 7,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 3,
+    "even": 3
+   }
   },
   {
    "no": 8,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 2,
+    "even": 2
+   }
   },
   {
    "no": 9,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 1,
+    "even": 2
+   }
   },
   {
    "no": 10,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 4,
+    "even": 4
+   }
   },
   {
    "no": 11,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 2,
+    "even": 2
+   }
   },
   {
    "no": 12,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 5,
+    "even": 5
+   }
   },
   {
    "no": 13,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 3,
+    "even": 3
+   }
   },
   {
    "no": 14,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 1,
+    "even": 1
+   }
   },
   {
    "no": 15,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 3,
+    "even": 3
+   }
   },
   {
    "no": 16,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 5,
+    "even": 4
+   }
   },
   {
    "no": 17,
    "part": "공통",
    "section": "독서",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12독작01-03]",
     "[12독작01-04]"
-   ]
+   ],
+   "answers": {
+    "odd": 3,
+    "even": 3
+   }
   },
   {
    "no": 18,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 2,
+    "even": 2
+   }
   },
   {
    "no": 19,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 1,
+    "even": 1
+   }
   },
   {
    "no": 20,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 5,
+    "even": 5
+   }
   },
   {
    "no": 21,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 4,
+    "even": 4
+   }
   },
   {
    "no": 22,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 1,
+    "even": 1
+   }
   },
   {
    "no": 23,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 4,
+    "even": 4
+   }
   },
   {
    "no": 24,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 5,
+    "even": 5
+   }
   },
   {
    "no": 25,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 3,
+    "even": 3
+   }
   },
   {
    "no": 26,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 5,
+    "even": 5
+   }
   },
   {
    "no": 27,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 2,
+    "even": 1
+   }
   },
   {
    "no": 28,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 5,
+    "even": 5
+   }
   },
   {
    "no": 29,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 4,
+    "even": 4
+   }
   },
   {
    "no": 30,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 2,
+    "even": 2
+   }
   },
   {
    "no": 31,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 1,
+    "even": 1
+   }
   },
   {
    "no": 32,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 2,
+    "even": 2
+   }
   },
   {
    "no": 33,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 2,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 4,
+    "even": 4
+   }
   },
   {
    "no": 34,
    "part": "공통",
    "section": "문학",
-   "answer": null,
-   "points": null,
+   "points": 3,
    "standards": [
     "[12문학01-06]",
     "[12문학01-07]"
-   ]
+   ],
+   "answers": {
+    "odd": 4,
+    "even": 4
+   }
   }
  ],
  "elective": {
@@ -389,225 +491,292 @@
    {
     "no": 35,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-09]",
      "[12화언01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 1,
+     "even": 1
+    }
    },
    {
     "no": 36,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-09]",
      "[12화언01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 5,
+     "even": 5
+    }
    },
    {
     "no": 37,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-09]",
      "[12화언01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 5,
+     "even": 5
+    }
    },
    {
     "no": 38,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-09]",
      "[12화언01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 3,
+     "even": 3
+    }
    },
    {
     "no": 39,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-09]",
      "[12화언01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 3,
+     "even": 3
+    }
    },
    {
     "no": 40,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 3,
     "standards": [
      "[12독작01-10]",
      "[12독작01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 5,
+     "even": 5
+    }
    },
    {
     "no": 41,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12독작01-10]",
      "[12독작01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 1,
+     "even": 1
+    }
    },
    {
     "no": 42,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12독작01-10]",
      "[12독작01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 3,
+     "even": 3
+    }
    },
    {
     "no": 43,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12독작01-10]",
      "[12독작01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 4,
+     "even": 5
+    }
    },
    {
     "no": 44,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12독작01-10]",
      "[12독작01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 2,
+     "even": 2
+    }
    },
    {
     "no": 45,
     "section": "화법과 작문",
-    "answer": null,
-    "points": null,
+    "points": 3,
     "standards": [
      "[12독작01-10]",
      "[12독작01-11]"
-    ]
+    ],
+    "answers": {
+     "odd": 4,
+     "even": 4
+    }
    }
   ],
   "언어와 매체": [
    {
     "no": 35,
     "section": "언어",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-03]",
      "[12화언01-04]"
-    ]
+    ],
+    "answers": {
+     "odd": 5,
+     "even": 5
+    }
    },
    {
     "no": 36,
     "section": "언어",
-    "answer": null,
-    "points": null,
+    "points": 3,
     "standards": [
      "[12화언01-03]",
      "[12화언01-04]"
-    ]
+    ],
+    "answers": {
+     "odd": 2,
+     "even": 2
+    }
    },
    {
     "no": 37,
     "section": "언어",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-03]",
      "[12화언01-04]"
-    ]
+    ],
+    "answers": {
+     "odd": 5,
+     "even": 5
+    }
    },
    {
     "no": 38,
     "section": "언어",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-03]",
      "[12화언01-04]"
-    ]
+    ],
+    "answers": {
+     "odd": 3,
+     "even": 3
+    }
    },
    {
     "no": 39,
     "section": "언어",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12화언01-03]",
      "[12화언01-04]"
-    ]
+    ],
+    "answers": {
+     "odd": 4,
+     "even": 4
+    }
    },
    {
     "no": 40,
     "section": "매체",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12매의01-04]",
      "[12매의01-06]"
-    ]
+    ],
+    "answers": {
+     "odd": 1,
+     "even": 1
+    }
    },
    {
     "no": 41,
     "section": "매체",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12매의01-04]",
      "[12매의01-06]"
-    ]
+    ],
+    "answers": {
+     "odd": 2,
+     "even": 2
+    }
    },
    {
     "no": 42,
     "section": "매체",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12매의01-04]",
      "[12매의01-06]"
-    ]
+    ],
+    "answers": {
+     "odd": 1,
+     "even": 1
+    }
    },
    {
     "no": 43,
     "section": "매체",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12매의01-04]",
      "[12매의01-06]"
-    ]
+    ],
+    "answers": {
+     "odd": 5,
+     "even": 5
+    }
    },
    {
     "no": 44,
     "section": "매체",
-    "answer": null,
-    "points": null,
+    "points": 2,
     "standards": [
      "[12매의01-04]",
      "[12매의01-06]"
-    ]
+    ],
+    "answers": {
+     "odd": 3,
+     "even": 3
+    }
    },
    {
     "no": 45,
     "section": "매체",
-    "answer": null,
-    "points": null,
+    "points": 3,
     "standards": [
      "[12매의01-04]",
      "[12매의01-06]"
-    ]
+    ],
+    "answers": {
+     "odd": 4,
+     "even": 5
+    }
    }
   ]
- }
+ },
+ "answerSource": "한국교육과정평가원 2027학년도 수능 국어 영역 정답표(홀수형·짝수형)"
 }

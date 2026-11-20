@@ -36,7 +36,7 @@
 |---|---|
 | [`/`](https://kate-young2026.github.io/on-ieum/) | 둥둥 떠 있는 우주선 집 · 타임캡슐 수납장 · 이름의 뜻 · 뉴스 라운지 |
 | [`/dashboard.html`](https://kate-young2026.github.io/on-ieum/dashboard.html) | 기획 대시보드 (숫자는 `data/plan.json`에서 계산) |
-| [`/rooms/coding.html`](https://kate-young2026.github.io/on-ieum/rooms/coding.html) | 작업실 코딩방: 입찰공고·연구원동정·보도자료·FOCUS·전망·현안·세미나 프로그램·메인비주얼(+언론기고 기본 틀) 텍스트 → HTML, 미리보기, 유형 추가 |
+| [`/rooms/coding.html`](https://kate-young2026.github.io/on-ieum/rooms/coding.html) | 작업실 코딩방: 입찰공고·연구원동정·보도자료·언론기고·FOCUS·전망·현안·세미나 프로그램·메인비주얼 텍스트 → HTML, 미리보기, 유형 추가 |
 | [`/rooms/classroom.html`](https://kate-young2026.github.io/on-ieum/rooms/classroom.html) | 교실: 초등 620·중등 3,838 성취기준 → 설명·지표 → 학습목표 → 학습지·활동지·게임·프로젝트 초안 |
 | [`/rooms/locker.html`](https://kate-young2026.github.io/on-ieum/rooms/locker.html) | 교실 사물함: 2027 수능 국어 45문항 사물함 · OMR 풀이·채점 · 정답 사물함 · 성취기준 매칭 |
 | [`/rooms/portfolio.html`](https://kate-young2026.github.io/on-ieum/rooms/portfolio.html) | 서재 포트폴리오: 2025년 8월 이후 메인비주얼 작업 카드 |
@@ -44,8 +44,8 @@
 ### 쓰는 법 요약
 - **코딩방**: 공통 표기 `**굵게**` `__밑줄__` `[[주황:글]]` `[[파랑:글]]` `[글](주소)` `!이미지 경로`, 유형별 표기는 화면 위 안내. KDI CSS는 복사하지 않고 주소만 입력(이 브라우저에 저장).
 - **교실**: 학교급 → 과목 → 학년군 → 성취기준. 학습목표를 고치면 초안이 바로 바뀌고, 인쇄·HTML 저장, "AI에게 맡기기"로 프롬프트 복사.
-- **사물함**: 문제 본문은 싣지 않음(평가원 공식 문제지 링크 또는 내 PC의 PDF 열기). 정답은 정답 사물함에서 공식 정답표를 보고 입력.
-- **포트폴리오**: 메인비주얼 HTML 붙여 넣기 또는 JSON·CSV(날짜, 제목, 분류, 링크, 이미지) 가져오기.
+- **사물함**: 문제 본문은 싣지 않음(평가원 공식 문제지 링크 또는 내 PC의 PDF 열기). 정답·배점은 평가원 정답표(홀수형·짝수형) 반영, 문제지 형을 고르면 그에 맞게 채점.
+- **포트폴리오**: 메인비주얼 HTML 붙여 넣기(이미지 이름에서 vs_no를 찾아 CMS 미리보기 링크 생성), vs_no 번호로 추가, JSON·CSV 가져오기. 카드를 누르면 PC/모바일 미리보기.
 - 모든 입력은 각자의 브라우저에만 저장돼요(내보내기/가져오기 지원).
 
 ## 개발

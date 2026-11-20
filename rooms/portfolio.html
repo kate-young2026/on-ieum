@@ -45,13 +45,23 @@
   <aside class="r-side">
     <header><b>작업 추가 · 상세</b></header>
     <div class="r-body" id="side">
+      <div class="card-s" id="detail" hidden>
+        <h3 id="dTitle"></h3><p id="dMeta" style="margin:0 0 8px"></p><p id="dLinks" style="margin:0 0 8px"></p>
+        <div class="tabs" style="margin-bottom:8px"><button class="btn-s on" data-dw="pc">PC</button><button class="btn-s" data-dw="mo">모바일</button></div>
+        <div style="display:flex;justify-content:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:auto"><iframe id="dFrame" title="메인비주얼 미리보기" sandbox="allow-same-origin allow-popups" style="border:0;width:100%;height:420px;background:#fff"></iframe></div>
+        <p class="note-s">미리보기는 코딩방에 넣은 KDI CSS 주소를 함께 써요. 이미지는 kdi.re.kr에서 불러와요.</p>
+        <button class="btn-s" id="dDel">목록에서 지우기</button>
+      </div>
       <div class="card-s"><h3>메인비주얼 코드로 추가</h3>
-        <p class="note-s">코딩방에서 만든(또는 CMS에서 복사한) 메인비주얼 HTML을 붙여 넣고 날짜를 고르면 카드가 돼요.</p>
+        <p class="note-s">코딩방에서 만든(또는 CMS에서 복사한) 메인비주얼 HTML을 붙여 넣고 날짜를 고르면 카드가 돼요. 이미지 이름에서 vs_no를 찾아 CMS 미리보기 링크도 만들어요.</p>
         <label class="field"><span>게시일</span><input type="date" id="pDate" min="2025-08-01"></label>
         <label class="field"><span>HTML</span><textarea id="pasteBox" spellcheck="false"></textarea></label>
         <button class="btn-s pri" id="addFromHtml">추가</button></div>
-      <div class="card-s"><h3>KDI CMS에서 한 번에 가져오기</h3>
-        <p class="note-s">Kate 님이 PC에서 CMS에 직접 로그인한 뒤 Claude에게 "포트폴리오 가져와"라고 하면, 로그인된 브라우저에서 2025년 8월 이후 메인비주얼 목록만 읽어 JSON으로 만들어 드려요. 비밀번호는 주고받지 않아요. 만든 파일은 위 "가져오기"로 넣으면 돼요.</p></div>
+      <div class="card-s"><h3>vs_no 번호로 추가</h3>
+        <p class="note-s">CMS 미리보기 주소(visualPreview?vs_no=번호)의 번호만 알면 카드를 만들 수 있어요. 열어 보기는 CMS에 로그인한 브라우저에서 돼요.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><label class="field"><span>vs_no</span><input id="vsNo" inputmode="numeric" placeholder="152"></label><label class="field"><span>게시일</span><input type="date" id="vsDate" min="2025-08-01"></label></div>
+        <label class="field"><span>제목(선택)</span><input id="vsTitle"></label>
+        <button class="btn-s" id="addByNo">추가</button></div>
       <p class="note-s">목록은 이 브라우저에만 저장돼요. 사내 자료라 공개 저장소에는 올리지 않아요.</p>
     </div>
   </aside>

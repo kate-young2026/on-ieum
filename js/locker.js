@@ -23,7 +23,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var KEY = 'onieum-locker';
   var S = (function () { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } })();
-  S.elective = S.elective || '언어와 매체'; S.opened = S.opened || {}; S.marks = S.marks || {}; S.key = S.key || {}; S.points = S.points || {}; S.map = S.map || {}; S.ok = S.ok || {};
+  S.elective = S.elective || '언어와 매체'; S.form = S.form || 'odd'; S.opened = S.opened || {}; S.marks = S.marks || {}; S.key = S.key || {}; S.points = S.points || {}; S.map = S.map || {}; S.ok = S.ok || {};
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
   function toast(m) { var t = $('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function () { t.classList.remove('show'); }, 1800); }
 
@@ -36,7 +36,7 @@
       var k = S.elective + ':' + it.no, kc = it.no <= 34 ? 'c:' + it.no : k;
       return Object.assign({}, it, {
         key: kc,
-        answer: S.key[kc] != null ? S.key[kc] : it.answer,
+        answer: S.key[kc] != null ? S.key[kc] : (it.answers ? it.answers[S.form] : it.answer),
         points: S.points[kc] != null ? S.points[kc] : it.points,
         standards: S.map[kc] || it.standards,
         confirmed: !!S.ok[kc]
@@ -88,7 +88,7 @@
         }).join('') + '</div><div id="result"></div>';
     } else if (mode === 'answers') {
       html = answersOpen
-        ? '<div class="card-s"><h3>정답 사물함</h3><p class="note-s">평가원 공식 정답표를 보고 채워 주세요. 비어 있으면 아직 확인하지 못한 문항이에요. 입력값은 이 브라우저에만 저장돼요.</p>' +
+        ? '<div class="card-s"><h3>정답 사물함 · ' + (S.form === 'odd' ? '홀수형' : '짝수형') + '</h3><p class="note-s">' + esc(DATA.answerSource || '') + '. 고치면 이 브라우저에만 저장돼요.</p>' +
           '<table class="akey"><tr><th>번호</th><th>영역</th><th>정답</th><th>배점</th></tr>' + list.map(function (x) {
             return '<tr><td>' + x.no + '</td><td>' + esc(x.section) + '</td><td><select data-key="' + esc(x.key) + '"><option value="">확인 필요</option>' + [1, 2, 3, 4, 5].map(function (n) { return '<option' + (+x.answer === n ? ' selected' : '') + '>' + n + '</option>'; }).join('') + '</select></td>' +
               '<td><select data-pts="' + esc(x.key) + '"><option value="">-</option><option' + (x.points === 2 ? ' selected' : '') + '>2</option><option' + (x.points === 3 ? ' selected' : '') + '>3</option></select></td></tr>';
@@ -128,7 +128,7 @@
       '<div class="card-s"><h3>성취기준 매칭 <small class="muted">' + (x.confirmed ? '선생님 확정' : '추정') + '</small></h3><div id="stdCards"><p class="note-s">불러오는 중…</p></div>' +
       '<label class="field" style="margin-top:8px"><span>성취기준 추가/바꾸기</span><select id="stdPick"><option value="">후보에서 고르기…</option></select></label>' +
       '<div class="tabs"><button class="btn-s ' + (x.confirmed ? 'on' : '') + '" id="confirmMap">' + (x.confirmed ? '확정됨' : '이 매칭 확정') + '</button><button class="btn-s" id="resetMap">추정으로 되돌리기</button></div>' +
-      '<p class="note-s">2027 수능은 2015 개정 범위에서 출제돼요. 여기 성취기준은 가장 가까운 2022 개정 기준이에요.</p></div>';
+      '<p class="note-s">2022 개정 교육과정 성취기준으로 매칭해요. 확정하면 교실 학습지 설계로 바로 이어져요.</p></div>';
     Promise.all(x.standards.map(loadStd)).then(function (stds) {
       $('stdCards').innerHTML = stds.map(function (s, i) {
         var code = x.standards[i];
@@ -163,6 +163,7 @@
 
   // 이벤트
   $('itemList').addEventListener('click', function (e) { var b = e.target.closest('[data-no]'); if (b) select(+b.dataset.no); });
+  $('form').addEventListener('change', function () { S.form = this.value; save(); renderMain(); renderSide(); });
   $('elective').addEventListener('change', function () { S.elective = this.value; save(); cur = null; renderList(); renderMain(); renderSide(); progress(); });
   document.querySelectorAll('[data-mode]').forEach(function (b) { b.addEventListener('click', function () { mode = b.dataset.mode; renderMain(); }); });
   $('mainBody').addEventListener('click', function (e) {
@@ -225,7 +226,7 @@
     fetch('../data/standards/codes.json').then(function (r) { return r.json(); })
   ]).then(function (r) {
     DATA = r[0]; IDX = r[1]; CODES = r[2];
-    $('elective').value = S.elective;
+    $('elective').value = S.elective; $('form').value = S.form;
     $('dataNotes').innerHTML = DATA.notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('');
     if (S.tStart) timer = setInterval(tick, 1000);
     renderList(); renderMain(); renderSide(); progress();

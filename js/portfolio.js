@@ -12,10 +12,11 @@
     var text = function (sel, el) { var n = (el || box).querySelector(sel); return n ? n.textContent.replace(/\s+/g, ' ').trim() : ''; };
     var strong = box.querySelector('strong');
     var mo = doc.querySelector('.slide_mo img.mo') || doc.querySelector('img');
+    var vs = /main_visual(?:sub)?_(?:mob|mo|pc)-(\d+)/.exec(html);
     return {
       category: text('em'), title: strong ? strong.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim() : '',
       desc: text('p'), link: (box.querySelector('a') || {}).getAttribute ? box.querySelector('a').getAttribute('href') : '',
-      image: mo ? mo.getAttribute('src') : '',
+      image: mo ? mo.getAttribute('src') : '', vsNo: vs ? vs[1] : '', html: html,
       subs: Array.prototype.map.call(doc.querySelectorAll('.slide_pc .sub-box'), function (s) { return { category: text('em', s), title: text('strong', s), link: (s.querySelector('a') || { getAttribute: function () { return ''; } }).getAttribute('href') }; })
     };
   }
@@ -35,7 +36,8 @@
       var o = {}; head.forEach(function (h, i) { o[alias[h] || h] = (r[i] || '').trim(); }); return o;
     });
   }
-  var API = { parseCSV: parseCSV, parseMainVisual: parseMainVisual, SINCE: SINCE };
+  var PREVIEW = 'https://www.kdi.re.kr/sysMngr/main/visualPreview?vs_no=';
+  var API = { parseCSV: parseCSV, parseMainVisual: parseMainVisual, SINCE: SINCE, PREVIEW: PREVIEW };
   if (typeof module !== 'undefined' && module.exports) { module.exports = API; return; }
   if (typeof document === 'undefined' || !document.getElementById('pfApp')) return;
 
@@ -63,10 +65,32 @@
   }
   $('months').addEventListener('click', function (e) { var b = e.target.closest('[data-m]'); if (b) { month = b.dataset.m; render(); } });
   $('q').addEventListener('input', render);
-  $('grid').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-i]'); if (!b) return;
-    var x = items[+b.dataset.i];
-    if (confirm((x.title || '') + '\n' + (x.link ? abs(x.link) : '') + '\n\n이 작업을 목록에서 지울까요? (취소 = 그대로 두기)')) { items.splice(+b.dataset.i, 1); save(); render(); }
+  var detailW = 'pc';
+  function cssLinks() { try { return (JSON.parse(localStorage.getItem('onieum-coding')) || {}).css || []; } catch (e) { return []; } }
+  function showDetail(i) {
+    var x = items[i]; if (!x) return;
+    var links = cssLinks().map(function (u) { return '<link rel="stylesheet" href="' + esc(u) + '">'; }).join('');
+    $('detail').hidden = false;
+    $('dTitle').textContent = x.title || '(제목 없음)';
+    $('dMeta').innerHTML = '<span class="chip-s oak">' + esc(x.date) + '</span>' + (x.category ? '<span class="chip-s">' + esc(x.category) + '</span>' : '') + (x.vsNo ? '<span class="chip-s lock">vs_no ' + esc(x.vsNo) + '</span>' : '');
+    $('dLinks').innerHTML = (x.vsNo ? '<a class="btn-s" target="_blank" rel="noopener" href="' + PREVIEW + encodeURIComponent(x.vsNo) + '">CMS 미리보기 (로그인 필요)</a> ' : '') + (x.link ? '<a class="btn-s" target="_blank" rel="noopener" href="' + esc(abs(x.link)) + '">홈페이지 링크</a>' : '');
+    if (x.html) {
+      var cls = detailW === 'pc' ? '' : '';
+      $('dFrame').hidden = false;
+      $('dFrame').style.width = detailW === 'mo' ? '390px' : '100%';
+      $('dFrame').srcdoc = '<!doctype html><html lang="ko"><head><meta charset="utf-8"><base href="https://www.kdi.re.kr/" target="_blank">' + links +
+        (links ? '' : '<style>body{font-family:sans-serif;margin:0;padding:12px;background:#eef1f5}.slide_' + (detailW === 'pc' ? 'mo' : 'pc') + '{display:none}.main-box em{display:block;color:#555}.main-box strong{display:block;font-size:26px;margin:6px 0}.sub-box{display:inline-block;width:45%;vertical-align:top;margin:10px 2% 0 0}img{max-width:100%}.themore{display:inline-block;border:1px solid #000;padding:2px 8px;color:#000;text-decoration:none}</style>') +
+        '</head><body>' + x.html + '</body></html>';
+    } else { $('dFrame').hidden = true; }
+    $('dDel').dataset.i = i;
+  }
+  $('grid').addEventListener('click', function (e) { var b = e.target.closest('[data-i]'); if (b) showDetail(+b.dataset.i); });
+  document.querySelectorAll('[data-dw]').forEach(function (b) { b.addEventListener('click', function () { detailW = b.dataset.dw; document.querySelectorAll('[data-dw]').forEach(function (x) { x.classList.toggle('on', x === b); }); showDetail(+$('dDel').dataset.i); }); });
+  $('dDel').addEventListener('click', function () { var i = +this.dataset.i; if (confirm('이 작업을 목록에서 지울까요?')) { items.splice(i, 1); save(); $('detail').hidden = true; render(); } });
+  $('addByNo').addEventListener('click', function () {
+    var no = $('vsNo').value.trim(), d = $('vsDate').value, t = $('vsTitle').value.trim();
+    if (!/^\d+$/.test(no) || !d) { toast('번호와 게시일을 넣어 주세요'); return; }
+    items.push({ date: d, vsNo: no, title: t || ('메인비주얼 ' + no + '번'), category: '메인비주얼' }); save(); render(); toast('추가했어요');
   });
   $('addFromHtml').addEventListener('click', function () {
     var d = $('pDate').value, h = $('pasteBox').value.trim();

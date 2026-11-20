@@ -296,21 +296,8 @@
     return pc + '\n' + mo;
   };
 
-  // 언론기고 (샘플 대기 — 기본 틀)
-  R.column = function (text) {
-    var p = splitMeta(text), m = p.meta, out = [];
-    var paras = paragraphs(p.body), title = null;
-    if (paras.length && /^#\s+/.test(paras[0][0])) title = paras.shift()[0].replace(/^#\s+/, '');
-    if (title) out.push('<h4 class="strong_type04">' + inline(title) + '</h4>');
-    if (m['매체'] || m['날짜']) out.push('<p class="p_type02" style="color:#777;">' + esc([m['매체'], m['날짜']].filter(Boolean).join(' · ')) + '</p>');
-    paras.forEach(function (para) {
-      var im = imgs(para[0]);
-      if (im) im.forEach(function (s) { out.push('<div class="img_type04"><img src="' + esc(s) + '" /></div>'); });
-      else out.push('<p class="p_type02" style="text-align: justify;">' + inline(para.join(' ')) + '</p>');
-    });
-    if (m['필자']) out.push('<p class="p_type02"><span style="font-size:16px;">글: ' + esc(m['필자']) + '</span></p>');
-    return out.join('\n\n');
-  };
+  // 언론기고 — 보내 주신 샘플(보도자료 형식)과 같은 구조
+  R.column = R.press;
 
   // 사용자 유형: {{필드}} 템플릿 + {{본문}}
   function renderCustom(type, text) {
@@ -351,9 +338,9 @@
     { id: 'mainvisual', name: '메인비주얼', group: '홈페이지', sample: true,
       help: '@분류 @제목(줄바꿈은 " / ") @설명 @링크 @모바일이미지, 서브는 @서브1분류 @서브1제목 @서브1링크 @서브1이미지 (최대 4개). PC·모바일 코드가 함께 만들어져요.',
       example: '@분류: KDI 경제전망\n@제목: KDI 경제전망, / 2026 하반기\n@설명: 우리 경제는 예시 성장률을 기록할 전망\n@링크: https://www.kdi.re.kr/research/economy\n@모바일이미지: https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-000.gif\n@서브1분류: 현안분석 1\n@서브1제목: 예시 현안분석 제목\n@서브1링크: /research/analysisView?art_no=0000\n@서브1이미지: https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-000.jpg' },
-    { id: 'column', name: '언론기고', group: '소식', sample: false,
-      help: '샘플 HTML이 아직 없어 기본 틀이에요. "# 제목", @매체 @날짜 @필자, 문단, "!이미지". 샘플을 주시면 실제 구조로 바꿔요.',
-      example: '@매체: 예시일보\n@날짜: 2026.11.20.\n@필자: 예시 연구위원\n# 예시 기고 제목\n\n첫 문단입니다.\n\n둘째 문단입니다.' }
+    { id: 'column', name: '언론기고', group: '소식', sample: true,
+      help: '샘플(보도자료 형식)과 같은 구조예요. "□ " 핵심 문장, "○ " 보조 문장, "* 붙임. 제목" 줄부터 요약표("# 소제목", "> 주황 막대", "• 항목"), 마지막 "담당자: ...".',
+      example: '□ 예시 기고의 **핵심 주장 문장**\n○ 근거와 배경을 설명하는 문장\n□ 원문은 KDI 홈페이지에서 확인 가능 [[주황:([원문 링크](https://www.kdi.re.kr/))]]\n\n* 붙임. 기고 요약\n# 1. 주요 내용\n> 핵심 결론 문장\n• 근거 1\n• 근거 2\n담당자: 예시 연구위원 (000-000-0000)' }
   ];
 
   function render(typeOrId, text, customTypes) {
