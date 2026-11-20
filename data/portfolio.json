@@ -1,0 +1,28 @@
+{
+ "note": "KDI 홈페이지에 공개된 메인비주얼 작업 목록(공개용). 사내 전용 자료는 넣지 않습니다.",
+ "items": [
+  {
+   "id": "vs152",
+   "date": "2026-11-19",
+   "vsNo": "152",
+   "category": "KDI 경제전망",
+   "title": "KDI 경제전망, 2026 하반기",
+   "desc": "우리 경제는 반도체 호황에 따른 수출과 설비투자 호조가 지속되며 2026년(3.8%)에 이어 2027년에도 3.9%의 높은 성장률을 기록할 전망",
+   "link": "https://www.kdi.re.kr/research/economy?pub_no=19321",
+   "image": "https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-152.gif",
+   "subs": [
+    {
+     "category": "현안분석 1",
+     "title": "최근 반도체 호황과 유가 상승이 민간소비에 미치는 영향",
+     "link": "/research/analysisView?art_no=3829"
+    },
+    {
+     "category": "현안분석 2",
+     "title": "기업 생산성 분석으로 살펴본 실질임금 정체의 배경과 시사점",
+     "link": "/research/analysisView?art_no=3830"
+    }
+   ],
+   "html": "<div class=\"inner-wrap slide_pc\">\n\t<div class=\"main-box\">\n\t\t<em>KDI 경제전망</em>\n\t\t<strong style=\"width:700px; color:#000;\">KDI 경제전망,<br>2026 하반기</strong>\n\t\t<p style=\"width:500px; color:#000;\">우리 경제는 반도체 호황에 따른 수출과 설비투자 호조가 지속되며 2026년(3.8%)에 이어 2027년에도 3.9%의 <br>높은 성장률을 기록할 전망</p><br><br>\n\t\t<a href=\"https://www.kdi.re.kr/research/economy?pub_no=19321\" class=\"themore\" style=\"color:#000; border-color:#000\">자세히 보기</a>\n\t</div>\n\t<div class=\"sub-box_wrap\">\n\t\t<div class=\"sub-box\">\n\t\t\t<em>현안분석 1</em>\n\t\t\t<strong style=\"color:#000; background:rgba(255,255,255,0.8); padding:2px 8px; font-size:24px; -webkit-box-decoration-break:clone; box-decoration-break:clone; line-height:1.2;\">최근 반도체 호황과 유가 상승이 민간소비에 미치는 영향</strong>\n\t\t\t<a href=\"/research/analysisView?art_no=3829\" class=\"themore\" style=\"display:inline-block; width:auto; color:#000; border-color:#000; background:rgba(255,255,255,0.6); padding:2px 8px; line-height:1.2;\">자세히 보기</a>\n\t\t</div>\n\t\t<div class=\"sub-box\">\n\t\t\t<em>현안분석 2</em>\n\t\t\t<strong style=\"color:#000; background:rgba(255,255,255,0.8); padding:2px 8px; font-size:24px; -webkit-box-decoration-break:clone; box-decoration-break:clone; line-height:1.2;\">기업 생산성 분석으로 살펴본 실질임금 정체의 배경과 시사점</strong>\n\t\t\t<a href=\"/research/analysisView?art_no=3830\" class=\"themore\" style=\"display:inline-block; width:auto; color:#000; border-color:#000; background:rgba(255,255,255,0.6); padding:2px 8px; line-height:1.4;\">자세히 보기</a>\n\t\t</div>\n      </div>\n</div>\n<div class=\"inner-wrap slide_mo\">\n\t<div class=\"main-box\">\n\t\t<div class=\"text-box\">\n\t\t\t<em>KDI 경제전망</em>\n\t\t\t<strong style=\"color:#000;\">KDI 경제전망,<br>2026 하반기</strong>\n\t\t\t<p style=\"width:63%;  color:#000;\">우리 경제는 반도체 호황에 따른 수출과 설비투자 호조가 지속되며 2026년(3.8%)에 이어 2027년에도 3.9%의 높은 성장률을 기록할 전망<br><br></p>\n\t\t\t<a href=\"https://www.kdi.re.kr/research/economy?pub_no=19321\" class=\"themore\" style=\"color:#000; border-color:#000\">자세히 보기</a>\n\t\t</div>\n\t\t<img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_mob-152.gif\" alt=\"KDI 경제전망, 2026 하반기\" class=\"mo\">\n\t</div>\n      <div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/research/analysisView?art_no=3830\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-152.jpg\" alt=\"KDI 현안분석\" class=\"mo\"></a>\n       </div>\n      <div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/research/analysisView?art_no=3829\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-150.jpg\" alt=\"KDI 현안분석\" class=\"mo\"></a>\n       </div>\n\t<div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/research/focusView?pub_no=19320\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_pc-149.jpg\" alt=\"KDI FOCUS\" class=\"mo\"></a>\n       </div>\n       <div class=\"sub-box\">\n\t\t<a href=\"https://www.kdi.re.kr/share/noticeView?bd_no=52923\"><img src=\"https://www.kdi.re.kr/kdidata/mainContent/visual/main_visualsub_mo-137.png\" alt=\"KDI 기관사칭 주의\" class=\"mo\"></a>\n       </div>\n</div>\n"
+  }
+ ]
+}

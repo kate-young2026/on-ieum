@@ -42,9 +42,20 @@
   if (typeof document === 'undefined' || !document.getElementById('pfApp')) return;
 
   var $ = function (id) { return document.getElementById(id); };
-  var KEY = 'onieum-portfolio', items = [], month = '';
-  try { items = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {} }
+  var KEY = 'onieum-portfolio', HIDE = 'onieum-portfolio-hidden', items = [], mine = [], hidden = [], month = '';
+  try { mine = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) {}
+  try { hidden = JSON.parse(localStorage.getItem(HIDE)) || []; } catch (e) {}
+  var base = [];
+  function keyOf(x) { return x.id || (x.vsNo ? 'vs' + x.vsNo : (x.date + '|' + x.title)); }
+  function merge() {
+    var seen = {}, out = [];
+    mine.concat(base).forEach(function (x) { var k = keyOf(x); if (seen[k] || hidden.indexOf(k) >= 0) return; seen[k] = 1; out.push(x); });
+    items = out;
+  }
+  function save() {
+    mine = items.filter(function (x) { return !x.shared; });
+    try { localStorage.setItem(KEY, JSON.stringify(mine)); localStorage.setItem(HIDE, JSON.stringify(hidden)); } catch (e) {}
+  }
   function toast(m) { var t = $('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function () { t.classList.remove('show'); }, 1600); }
   function abs(u) { return !u ? '' : /^https?:/.test(u) ? u : 'https://www.kdi.re.kr' + (u.charAt(0) === '/' ? '' : '/') + u; }
 
@@ -59,8 +70,9 @@
     $('mTitle').textContent = month ? month.replace('-', '년 ') + '월' : '전체';
     $('count').textContent = shown.length + '건';
     $('grid').innerHTML = shown.map(function (x, i) {
-      return '<button class="pf-card" data-i="' + items.indexOf(x) + '"><div class="pf-img">' + (x.image ? '<img src="' + esc(abs(x.image)) + '" alt="" loading="lazy" onerror="this.remove()">' : '') + esc(x.category || '메인비주얼') + '</div>' +
-        '<div class="t"><span class="note-s">' + esc(x.date) + ' · ' + esc(x.category || '') + '</span><b>' + esc(x.title || '(제목 없음)') + '</b></div></button>';
+      var img = x.vsNo ? 'https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-' + x.vsNo + '.gif' : x.image;
+      return '<button class="pf-card" data-i="' + items.indexOf(x) + '"><div class="pf-img">' + (img ? '<img src="' + esc(abs(img)) + '" alt="" loading="lazy" onerror="this.remove()">' : '') + esc(x.category || '메인비주얼') + '</div>' +
+        '<div class="t"><span class="note-s">' + esc(x.date) + ' · ' + esc(x.category || '') + (x.shared ? ' · 공개 목록' : '') + '</span><b>' + esc(x.title || '(제목 없음)') + '</b></div></button>';
     }).join('') || '<div class="empty"><h3 style="font-family:var(--font-display);margin:0 0 6px">아직 작업이 없어요</h3><p class="note-s">오른쪽에서 메인비주얼 코드를 붙여 넣거나, CMS 목록 파일(JSON·CSV: 날짜, 제목, 분류, 링크, 이미지)을 가져오세요.</p></div>';
   }
   $('months').addEventListener('click', function (e) { var b = e.target.closest('[data-m]'); if (b) { month = b.dataset.m; render(); } });
@@ -89,7 +101,7 @@
   }
   $('grid').addEventListener('click', function (e) { var b = e.target.closest('[data-i]'); if (b) showDetail(+b.dataset.i); });
   document.querySelectorAll('[data-dw]').forEach(function (b) { b.addEventListener('click', function () { detailW = b.dataset.dw; document.querySelectorAll('[data-dw]').forEach(function (x) { x.classList.toggle('on', x === b); }); showDetail(+$('dDel').dataset.i); }); });
-  $('dDel').addEventListener('click', function () { var i = +this.dataset.i; if (confirm('이 작업을 목록에서 지울까요?')) { items.splice(i, 1); save(); $('detail').hidden = true; render(); } });
+  $('dDel').addEventListener('click', function () { var i = +this.dataset.i; var x = items[i]; if (confirm(x.shared ? '공개 목록 항목이에요. 이 브라우저에서만 숨길까요?' : '이 작업을 목록에서 지울까요?')) { if (x.shared) hidden.push(keyOf(x)); items.splice(i, 1); save(); $('detail').hidden = true; render(); } });
   $('addByNo').addEventListener('click', function () {
     var no = $('vsNo').value.trim(), d = $('vsDate').value, t = $('vsTitle').value.trim();
     if (!/^\d+$/.test(no) || !d) { toast('번호와 게시일을 넣어 주세요'); return; }
@@ -114,5 +126,8 @@
     var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(items, null, 2)], { type: 'application/json' }));
     a.download = 'onieum-portfolio.json'; a.click();
   });
-  render();
+  merge(); render();
+  fetch('../data/portfolio.json').then(function (r) { return r.json(); }).then(function (d) {
+    base = (d.items || []).map(function (x) { return Object.assign({ shared: true }, x); }); merge(); render();
+  }).catch(function () {});
 })(typeof window !== 'undefined' ? window : this);
