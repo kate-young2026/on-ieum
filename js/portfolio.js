@@ -70,8 +70,8 @@
     $('mTitle').textContent = month ? month.replace('-', '년 ') + '월' : '전체';
     $('count').textContent = shown.length + '건';
     $('grid').innerHTML = shown.map(function (x, i) {
-      var img = x.vsNo ? 'https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-' + x.vsNo + '.gif' : x.image;
-      return '<button class="pf-card" data-i="' + items.indexOf(x) + '"><div class="pf-img">' + (img ? '<img src="' + esc(abs(img)) + '" alt="" loading="lazy" onerror="this.remove()">' : '') + esc(x.category || '메인비주얼') + '</div>' +
+      var img = x.thumb ? '../' + x.thumb : (x.vsNo && !x.files ? 'https://www.kdi.re.kr/kdidata/mainContent/visual/main_visual_pc-' + x.vsNo + '.gif' : x.image);
+      return '<button class="pf-card" data-i="' + items.indexOf(x) + '"><div class="pf-img">' + (img ? '<img src="' + esc(/^\.\.\//.test(img) ? img : abs(img)) + '" alt="" loading="lazy" onerror="this.remove()">' : '') + esc(x.category || '메인비주얼') + '</div>' +
         '<div class="t"><span class="note-s">' + esc(x.date) + ' · ' + esc(x.category || '') + (x.shared ? ' · 공개 목록' : '') + '</span><b>' + esc(x.title || '(제목 없음)') + '</b></div></button>';
     }).join('') || '<div class="empty"><h3 style="font-family:var(--font-display);margin:0 0 6px">아직 작업이 없어요</h3><p class="note-s">오른쪽에서 메인비주얼 코드를 붙여 넣거나, CMS 목록 파일(JSON·CSV: 날짜, 제목, 분류, 링크, 이미지)을 가져오세요.</p></div>';
   }
@@ -97,6 +97,13 @@
       if (window.OnCoding) window.OnCoding.fitFrame($('dFrame'), detailW === 'pc');
       if (detailW === 'mo') $('dFrame').style.cssText = 'border:0;width:390px;height:560px;background:#fff';
     } else { $('dFrame').hidden = true; }
+    $('dFrame').parentElement.hidden = !x.html;
+    var KIND = { main_visual_pc: 'PC 메인', main_visual_mob: '모바일 메인', main_visual_mo: '모바일 메인', main_visualsub_pc: '서브(PC)', main_visualsub_mo: '서브(모바일)' };
+    $('dImgs').innerHTML = (x.files || []).map(function (f) {
+      var src = f.thumb ? '../' + f.thumb : f.url;
+      return '<a class="pf-file" href="' + esc(f.url) + '" target="_blank" rel="noopener"><img src="' + esc(src) + '" alt="' + esc(KIND[f.kind] || f.kind) + '" loading="lazy"><span>' + esc(KIND[f.kind] || f.kind) + ' · ' + esc(f.url.split('.').pop()) + (f.size ? ' · ' + (f.size / 1048576).toFixed(1) + 'MB' : '') + '</span></a>';
+    }).join('');
+    $('dCode').hidden = !x.html; if (x.html) $('dCodeText').value = x.html;
     $('dDel').dataset.i = i;
   }
   $('grid').addEventListener('click', function (e) { var b = e.target.closest('[data-i]'); if (b) showDetail(+b.dataset.i); });

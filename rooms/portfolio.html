@@ -17,6 +17,10 @@
   .pf-card div.t{padding:10px 12px}.pf-card b{display:block;font:700 15px/1.4 var(--font-display)}
   .empty{border:2px dashed var(--line);border-radius:16px;padding:28px;text-align:center}
   #pasteBox{min-height:140px}
+  .pf-files{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+  .pf-file{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;text-decoration:none;color:var(--ink);background:var(--paper)}
+  .pf-file img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--oak-soft)}
+  .pf-file span{display:block;font-size:11px;padding:4px 6px;color:var(--ink-muted)}
 </style>
 </head>
 <body class="room-page">
@@ -50,6 +54,8 @@
         <div class="tabs" style="margin-bottom:8px"><button class="btn-s on" data-dw="pc">PC</button><button class="btn-s" data-dw="mo">모바일</button></div>
         <div style="display:flex;justify-content:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:auto"><iframe id="dFrame" title="메인비주얼 미리보기" sandbox="allow-same-origin allow-popups" style="border:0;width:100%;height:420px;background:#fff"></iframe></div>
         <p class="note-s">미리보기는 KDI 홈페이지의 main.css와 이미지를 주소로 불러와요.</p>
+        <div id="dImgs" class="pf-files"></div>
+        <details id="dCode" hidden><summary class="note-s">메인비주얼 코드 보기</summary><textarea id="dCodeText" class="code" readonly spellcheck="false" style="min-height:160px"></textarea></details>
         <button class="btn-s" id="dDel">목록에서 지우기</button>
       </div>
       <div class="card-s"><h3>메인비주얼 코드로 추가</h3>
