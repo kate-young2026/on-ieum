@@ -30,14 +30,40 @@
 - 색: 종이 같은 아이보리 바탕, 온기를 뜻하는 장작불색(ember)을 브랜드 색으로, 층마다 하나의 색.
 - 글꼴: Gowun Batang(제목) · Noto Sans KR(본문) · JetBrains Mono(코드). 낮/밤 테마 지원.
 
-## 보기
+## 페이지 (v0.3)
 
-빌드 없이 `index.html`을 브라우저로 열면 됩니다. GitHub Pages: Settings → Pages → Branch `main` / `/ (root)`.
-
-| 파일 | 내용 |
+| 주소 | 하는 일 |
 |---|---|
-| `index.html` | 이름의 뜻 · 집 둘러보기 · 뉴스 라운지 · 계획 |
-| `styles.css` | 디자인 토큰(낮/밤)과 스타일 |
-| `app.js` | 방 열기, 이어지는 방, 수납장 런처, 뉴스 필터 |
+| [`/`](https://kate-young2026.github.io/on-ieum/) | 둥둥 떠 있는 우주선 집 · 타임캡슐 수납장 · 이름의 뜻 · 뉴스 라운지 |
+| [`/dashboard.html`](https://kate-young2026.github.io/on-ieum/dashboard.html) | 기획 대시보드 (숫자는 `data/plan.json`에서 계산) |
+| [`/rooms/coding.html`](https://kate-young2026.github.io/on-ieum/rooms/coding.html) | 작업실 코딩방: 입찰공고·연구원동정·보도자료·FOCUS·전망·현안·세미나 프로그램·메인비주얼(+언론기고 기본 틀) 텍스트 → HTML, 미리보기, 유형 추가 |
+| [`/rooms/classroom.html`](https://kate-young2026.github.io/on-ieum/rooms/classroom.html) | 교실: 초등 620·중등 3,838 성취기준 → 설명·지표 → 학습목표 → 학습지·활동지·게임·프로젝트 초안 |
+| [`/rooms/locker.html`](https://kate-young2026.github.io/on-ieum/rooms/locker.html) | 교실 사물함: 2027 수능 국어 45문항 사물함 · OMR 풀이·채점 · 정답 사물함 · 성취기준 매칭 |
+| [`/rooms/portfolio.html`](https://kate-young2026.github.io/on-ieum/rooms/portfolio.html) | 서재 포트폴리오: 2025년 8월 이후 메인비주얼 작업 카드 |
 
-화면의 데이터는 모두 예시입니다. 설계는 「개인 AI 워크스페이스 구축 가이드」(2026)의 10단계 구조를 따릅니다.
+### 쓰는 법 요약
+- **코딩방**: 공통 표기 `**굵게**` `__밑줄__` `[[주황:글]]` `[[파랑:글]]` `[글](주소)` `!이미지 경로`, 유형별 표기는 화면 위 안내. KDI CSS는 복사하지 않고 주소만 입력(이 브라우저에 저장).
+- **교실**: 학교급 → 과목 → 학년군 → 성취기준. 학습목표를 고치면 초안이 바로 바뀌고, 인쇄·HTML 저장, "AI에게 맡기기"로 프롬프트 복사.
+- **사물함**: 문제 본문은 싣지 않음(평가원 공식 문제지 링크 또는 내 PC의 PDF 열기). 정답은 정답 사물함에서 공식 정답표를 보고 입력.
+- **포트폴리오**: 메인비주얼 HTML 붙여 넣기 또는 JSON·CSV(날짜, 제목, 분류, 링크, 이미지) 가져오기.
+- 모든 입력은 각자의 브라우저에만 저장돼요(내보내기/가져오기 지원).
+
+## 개발
+
+빌드 없이 정적 파일로 동작합니다. 데이터 파일을 불러오므로 로컬에서는 간단한 서버로 여세요.
+
+```bash
+python3 -m http.server 8000
+```
+
+```bash
+for t in tests/*.cjs; do node "$t"; done
+```
+
+성취기준 데이터 다시 만들기(두 MCP 저장소를 받아 둔 경로를 넘김):
+
+```bash
+node scripts/build-standards.mjs ../korean-elementary-learning-map-mcp ../korean-secondary-learning-map-mcp
+```
+
+데이터 출처와 원칙은 [NOTICE.md](NOTICE.md)를 보세요. 설계는 「개인 AI 워크스페이스 구축 가이드」(2026)의 10단계 구조를 따릅니다.

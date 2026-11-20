@@ -1,0 +1,53 @@
+{
+  "version": "v0.3",
+  "updated": "2026-11-20",
+  "briefing": { "time": "08:20", "days": "매일", "fields": ["AI", "IT", "EDU", "교육정책"] },
+  "spaces": [
+    { "id": "news", "name": "뉴스 라운지", "floor": "1층", "tone": "pool", "features": [
+      { "name": "오늘의 뉴스 10 브리핑", "status": "done", "note": "매일 08:20 예약 실행 · 휴대폰 알림" },
+      { "name": "대시보드 자동 게재", "status": "plan", "note": "GitHub Actions 수집 → JSON" },
+      { "name": "기사 → 교실로 보내기", "status": "plan" } ] },
+    { "id": "edu", "name": "교실 · 교육", "floor": "2층", "tone": "lock", "features": [
+      { "name": "성취기준 서가 (초등 620 · 중등 3,838)", "status": "done", "link": "rooms/classroom.html" },
+      { "name": "학습목표 · 학습지 · 활동지 · 게임 · 프로젝트 설계", "status": "done", "link": "rooms/classroom.html" },
+      { "name": "2027 수능 국어 사물함 · 풀이 · 채점", "status": "doing", "note": "정답은 평가원 정답표 확인 후 입력", "link": "rooms/locker.html" },
+      { "name": "문항 ↔ 성취기준 매칭", "status": "doing", "note": "추정 제안 → 선생님 확정", "link": "rooms/locker.html" },
+      { "name": "서논술형 평가 · 2028 수능 작전 보드", "status": "plan" },
+      { "name": "국어랑 게임 · 초등수학게임 방탈출", "status": "plan" } ] },
+    { "id": "work", "name": "작업실 · 업무", "floor": "2층", "tone": "oak", "features": [
+      { "name": "코딩방: 8개 유형 텍스트 → HTML", "status": "done", "link": "rooms/coding.html" },
+      { "name": "코딩 미리보기 + KDI CSS 주소 연결", "status": "done", "link": "rooms/coding.html" },
+      { "name": "코딩 유형 신규 추가 · 내보내기", "status": "done", "link": "rooms/coding.html" },
+      { "name": "언론기고 실제 샘플 반영", "status": "doing", "note": "샘플 HTML 대기" },
+      { "name": "보고서 영문 변환 · 설명글 요약", "status": "plan" } ] },
+    { "id": "library", "name": "서재 · 다락", "floor": "3층", "tone": "oak", "features": [
+      { "name": "포트폴리오 목록 (2025.8~)", "status": "doing", "note": "화면 완료 · CMS 수집은 PC 연결 후", "link": "rooms/portfolio.html" },
+      { "name": "독서감상 · 작품모음", "status": "plan" },
+      { "name": "세계지도 여행 코스", "status": "plan" } ] },
+    { "id": "jf", "name": "with JF", "floor": "1층", "tone": "garden", "features": [
+      { "name": "시간표 생성", "status": "plan" },
+      { "name": "가족앨범북", "status": "plan" },
+      { "name": "1·2·3번방 관심사 놀이", "status": "plan" } ] }
+  ],
+  "roadmap": [
+    { "week": "0", "title": "디자인 초안 · 이름 온-이음 · 공개 배포", "status": "done" },
+    { "week": "v0.3", "title": "우주선 집 · 대시보드 · 코딩방 · 교실 · 사물함 · 포트폴리오", "status": "doing" },
+    { "week": "1주", "title": "앱 뼈대(Next.js) · 저장 창구 · 오늘 화면", "status": "plan" },
+    { "week": "2주", "title": "AI 관문 · 승인함 · 뉴스 자동 게재", "status": "plan" },
+    { "week": "3주", "title": "AI 가상 팀 · 지식 노트", "status": "plan" },
+    { "week": "4주", "title": "Supabase 실시간 · 휴대폰 앱", "status": "plan" }
+  ],
+  "checks": [
+    "2027 수능 국어 정답: 평가원 공식 정답표로 입력 (이 세션은 평가원 사이트 접속 불가)",
+    "KDI CSS 주소: F12에서 찾아 코딩방에 입력",
+    "언론기고 샘플 HTML",
+    "포트폴리오: PC 연결 + CMS 직접 로그인 시점",
+    "성취기준 원문 일부(초등 통합교과 등) 추출 상태 NCIC 원문과 대조"
+  ],
+  "rules": [
+    "보내기·삭제·게시는 승인 후에만",
+    "학생·아이의 이름과 사진은 AI 입력에서 제외",
+    "KDI CSS·수능 지문 전문·사내 CMS 자료는 공개 저장소에 올리지 않음",
+    "비밀값은 .env.local과 호스팅 환경변수에만"
+  ]
+}

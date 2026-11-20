@@ -136,7 +136,16 @@
     camp: [['living', '내일 할 일 3개'], ['library', '한 줄 일기 보관']]
   };
 
-  var TONE_TEXT ={ garden: 'var(--garden)', pool: 'var(--pool)', lock: 'var(--lock)', oak: 'var(--oak)', ember: 'var(--ember)' };
+  // 실제 방 페이지가 있는 곳
+  var PAGES = {
+    class: [['rooms/classroom.html', '교실 들어가기'], ['rooms/locker.html', '수능 사물함']],
+    escape: [['rooms/locker.html', '수능 사물함 열기']],
+    studio: [['rooms/coding.html', '코딩방 들어가기']],
+    library: [['rooms/portfolio.html', '포트폴리오 보기']],
+    living: [['dashboard.html', '기획 대시보드']]
+  };
+
+  var TONE_TEXT = { garden: 'var(--garden)', pool: 'var(--pool)', lock: 'var(--lock)', oak: 'var(--oak)', ember: 'var(--ember)' };
   var panel = document.getElementById('panel');
   var map = document.getElementById('houseMap');
 
@@ -155,7 +164,7 @@
       r.items.map(function (it) { return '<li><b>' + esc(it[0]) + '</b><small>' + esc(it[1]) + '</small>' + (it[2] ? '<em>' + esc(it[2]) + '</em>' : '') + '</li>'; }).join('') +
       '</ul><div class="links"><b>이어지는 방</b>' +
       (LINKS[id] || []).map(function (l) { return '<button class="lk" type="button" data-go="' + l[0] + '">' + esc(ROOMS[l[0]].title) + ' <small>' + esc(l[1]) + '</small></button>'; }).join('') +
-      '</div><div class="peek"><b>' + esc(r.peek[0]) + '</b>' + esc(r.peek[1]) + '</div>' +
+      '</div>' + (PAGES[id] ? '<div class="go-row">' + PAGES[id].map(function (g) { return '<a class="btn-go" href="' + g[0] + '">' + esc(g[1]) + ' →</a>'; }).join('') + '</div>' : '') + '<div class="peek"><b>' + esc(r.peek[0]) + '</b>' + esc(r.peek[1]) + '</div>' +
       '<div class="ai"><i style="background:' + TONE_TEXT[r.tone] + '">' + esc(r.ai[0]) + '</i><span><b style="color:var(--ink)">' + esc(r.ai[1]) + '</b> · ' + esc(r.ai[2]) + '</span></div>';
     panel.innerHTML = html;
     panel.classList.remove('fade'); void panel.offsetWidth; panel.classList.add('fade');
@@ -164,7 +173,14 @@
 
   map.addEventListener('click', function (e) { var b = e.target.closest('.room'); if (b) openRoom(b.dataset.room); });
   panel.addEventListener('click', function (e) { var b = e.target.closest('.lk'); if (b) openRoom(b.dataset.go); });
-  document.querySelector('.cabinet').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) openRoom(b.dataset.room, true); });
+  // 타임캡슐: 뚜껑이 열린 뒤 방을 부른다
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelector('.cabinet').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (reduce) { openRoom(b.dataset.room, true); return; }
+    b.classList.add('opening');
+    setTimeout(function () { b.classList.remove('opening'); openRoom(b.dataset.room, true); }, 420);
+  });
 
   // news
   var list = document.getElementById('newsList');

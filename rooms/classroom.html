@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>교실 · 온-이음</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='7' cy='16' r='5' fill='%23B5531F'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%2347704F'/%3E%3Cpath d='M12 16h8' stroke='%23B5531F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../css/room.css">
+<style>
+  #draft{width:100%;flex:1;min-height:520px;border:1px solid var(--line);border-radius:12px;background:#fff}
+  #objText{min-height:110px;font:13px/1.7 var(--font-sans)}
+  .r-list select{margin:0 14px 6px;width:calc(100% - 28px)}
+  #gbChips{padding:0 14px}
+</style>
+</head>
+<body class="room-page">
+<div class="r-app" id="classApp">
+  <nav class="r-rail" aria-label="방">
+    <a class="home" href="../index.html" title="집으로">온-<br>이음</a>
+    <a href="../dashboard.html">대시<br>보드</a>
+    <a href="coding.html">코딩</a>
+    <a href="classroom.html" class="on" aria-current="page">교실</a>
+    <a href="locker.html">사물함</a>
+    <a href="portfolio.html">서재</a>
+    <span class="grow"></span>
+    <a href="#" data-theme-toggle title="낮/밤">낮밤</a>
+  </nav>
+
+  <aside class="r-list">
+    <header><h1>교실 · 교육과정 서가</h1><p class="sub" id="totalInfo">성취기준 불러오는 중…</p></header>
+    <div class="tabs" style="padding:4px 14px 8px">
+      <button class="btn-s on" data-level="elem">초등</button><button class="btn-s" data-level="middle">중학교</button><button class="btn-s" data-level="high">고등학교</button>
+    </div>
+    <label class="field" style="margin:0"><span style="padding:0 14px">과목</span><select id="courseSel" class="r-search"></select></label>
+    <div id="gbChips"></div>
+    <input class="r-search" id="stdSearch" placeholder="코드·낱말로 찾기 (예: 문단)" aria-label="성취기준 찾기">
+    <ul class="r-items" id="stdList"></ul>
+  </aside>
+
+  <main class="r-main">
+    <header><h2 id="stdTitle">성취기준</h2><span id="stdMeta"></span></header>
+    <div class="r-body" id="stdBody"></div>
+  </main>
+
+  <aside class="r-side">
+    <header><b>수업 설계</b><button class="btn-s" id="aiCopy" title="성취기준·지표가 담긴 프롬프트 복사">AI에게 맡기기</button></header>
+    <div class="r-body" style="display:flex;flex-direction:column;gap:10px">
+      <label class="field" style="margin:0"><span>학습목표 (한 줄에 하나, 고쳐 쓰면 바로 반영)</span><textarea id="objText"></textarea></label>
+      <div class="tabs"><button class="btn-s" id="objReset">목표 다시 제안</button></div>
+      <div class="tabs" role="group" aria-label="설계할 것">
+        <button class="btn-s on" data-kind="sheet">학습지</button><button class="btn-s" data-kind="activity">활동지</button><button class="btn-s" data-kind="game">게임</button><button class="btn-s" data-kind="project">토의·프로젝트</button>
+      </div>
+      <iframe id="draft" title="설계 초안 미리보기"></iframe>
+      <div class="tabs"><button class="btn-s pri" id="printDraft">인쇄</button><button class="btn-s" id="saveDraft">HTML로 저장</button></div>
+      <p class="note-s">초안은 미리보기 안에서 바로 고칠 수 있어요. 성취기준 출처: 교육부·국가교육위원회 고시(NCIC), 지표: 학습맵 MCP 데이터(MIT, <a href="../NOTICE.md">NOTICE</a>).</p>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="../js/common.js"></script>
+<script src="../js/classroom.js"></script>
+</body>
+</html>

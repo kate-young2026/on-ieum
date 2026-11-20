@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>서재 포트폴리오 · 온-이음</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='7' cy='16' r='5' fill='%23B5531F'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%2347704F'/%3E%3Cpath d='M12 16h8' stroke='%23B5531F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../css/room.css">
+<style>
+  .pf{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .pf-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper-raised);cursor:pointer;text-align:left;padding:0;font:inherit;color:inherit}
+  .pf-card:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .pf-img{aspect-ratio:16/9;background:var(--oak-soft);display:grid;place-items:center;color:var(--oak);font:700 14px var(--font-display)}
+  .pf-img img{width:100%;height:100%;object-fit:cover}
+  .pf-card div.t{padding:10px 12px}.pf-card b{display:block;font:700 15px/1.4 var(--font-display)}
+  .empty{border:2px dashed var(--line);border-radius:16px;padding:28px;text-align:center}
+  #pasteBox{min-height:140px}
+</style>
+</head>
+<body class="room-page">
+<div class="r-app" id="pfApp">
+  <nav class="r-rail" aria-label="방">
+    <a class="home" href="../index.html" title="집으로">온-<br>이음</a>
+    <a href="../dashboard.html">대시<br>보드</a>
+    <a href="coding.html">코딩</a>
+    <a href="classroom.html">교실</a>
+    <a href="locker.html">사물함</a>
+    <a href="portfolio.html" class="on" aria-current="page">서재</a>
+    <span class="grow"></span>
+    <a href="#" data-theme-toggle title="낮/밤">낮밤</a>
+  </nav>
+  <aside class="r-list">
+    <header><h1>서재 · 포트폴리오</h1><p class="sub">KDI 메인비주얼 작업 (2025년 8월 이후)</p></header>
+    <input class="r-search" id="q" placeholder="제목·분류로 찾기">
+    <ul class="r-items" id="months"></ul>
+  </aside>
+  <main class="r-main">
+    <header><h2 id="mTitle">전체</h2><span class="chip-s oak" id="count">0건</span><span class="sp"></span>
+      <label class="btn-s">JSON·CSV 가져오기<input type="file" id="imp" accept=".json,.csv,text/csv,application/json" hidden></label>
+      <button class="btn-s" id="exp">내보내기</button></header>
+    <div class="r-body"><div class="pf" id="grid"></div></div>
+  </main>
+  <aside class="r-side">
+    <header><b>작업 추가 · 상세</b></header>
+    <div class="r-body" id="side">
+      <div class="card-s"><h3>메인비주얼 코드로 추가</h3>
+        <p class="note-s">코딩방에서 만든(또는 CMS에서 복사한) 메인비주얼 HTML을 붙여 넣고 날짜를 고르면 카드가 돼요.</p>
+        <label class="field"><span>게시일</span><input type="date" id="pDate" min="2025-08-01"></label>
+        <label class="field"><span>HTML</span><textarea id="pasteBox" spellcheck="false"></textarea></label>
+        <button class="btn-s pri" id="addFromHtml">추가</button></div>
+      <div class="card-s"><h3>KDI CMS에서 한 번에 가져오기</h3>
+        <p class="note-s">Kate 님이 PC에서 CMS에 직접 로그인한 뒤 Claude에게 "포트폴리오 가져와"라고 하면, 로그인된 브라우저에서 2025년 8월 이후 메인비주얼 목록만 읽어 JSON으로 만들어 드려요. 비밀번호는 주고받지 않아요. 만든 파일은 위 "가져오기"로 넣으면 돼요.</p></div>
+      <p class="note-s">목록은 이 브라우저에만 저장돼요. 사내 자료라 공개 저장소에는 올리지 않아요.</p>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="../js/common.js"></script>
+<script src="../js/portfolio.js"></script>
+</body>
+</html>

@@ -20,6 +20,7 @@
     <nav class="nav" aria-label="섹션">
       <a href="#meaning">이름의 뜻</a>
       <a href="#house">집 둘러보기</a>
+      <a href="dashboard.html">대시보드</a>
       <a href="#news">뉴스 라운지</a>
       <a href="#plan">계획</a>
     </nav>
@@ -32,7 +33,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-text">
-        <p class="eyebrow">개인 AI 워크스페이스 · 디자인 초안 v0.2</p>
+        <p class="eyebrow">개인 AI 워크스페이스 · v0.3</p>
         <h1 class="logo">온<span class="dash big" aria-hidden="true"></span>이음</h1>
         <p class="roman">On-ieum</p>
         <p class="tagline">온기를 잇고, 온 사람을 잇는 집</p>
@@ -40,6 +41,7 @@
         <div class="hero-cta">
           <a class="btn primary" href="#meaning">이름의 뜻</a>
           <a class="btn ghost" href="#house">집 둘러보기</a>
+          <a class="btn ghost" href="dashboard.html">기획 대시보드</a>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -102,6 +104,7 @@
         <p>방을 누르면 그 방에서 하는 일과 <b>이어지는 방</b>이 열립니다. 아래 수납장 서랍으로도 바로 부를 수 있어요.</p>
       </div>
       <div class="house-grid">
+        <div class="ship">
         <div class="house" id="houseMap">
           <div class="sky" aria-hidden="true"><span class="sunball"></span><span class="star s1"></span><span class="star s2"></span><span class="star s3"></span></div>
           <div class="roof" aria-hidden="true"></div>
@@ -123,11 +126,13 @@
           <p class="lvl">1층 · 하루의 시작과 가족</p>
           <div class="floor f1">
             <button class="room t-pool" data-room="news"><b>뉴스 라운지</b><span>오늘의 뉴스 10 · 08:20</span></button>
-            <button class="room t-garden" data-room="living"><b>거실 · 응접실</b><span>수납장으로 방 호출</span><i class="mini-cab" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></i></button>
+            <button class="room t-garden" data-room="living"><b>거실 · 응접실</b><span>타임캡슐 수납장으로 방 호출</span><i class="mini-cab" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></i></button>
             <button class="room t-garden" data-room="jf"><b>with JF</b><span>시간표 · 가족앨범 · 1·2·3번방</span></button>
           </div>
           <div class="yard"><span>앞마당</span> 주간 회고 · 산책 모드</div>
           <svg class="stitch" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 10 100"><path d="M5 0 V100"/></svg>
+        </div>
+        <div class="thrust" aria-hidden="true"><i></i><i></i><i></i></div>
         </div>
 
         <aside class="panel" id="panel" aria-live="polite"></aside>
@@ -225,19 +230,19 @@
   <div class="wrap foot-in">
     <p class="foot-logo">온<span class="dash" aria-hidden="true"></span>이음</p>
     <div>
-      <p>온기를 잇고, 온 사람을 잇는 집 · 디자인 초안 v0.2 · 2026. 11.</p>
+      <p>온기를 잇고, 온 사람을 잇는 집 · v0.3 · 2026. 11.</p>
       <p>설계 참고: 「개인 AI 워크스페이스 구축 가이드」(2026). 화면의 데이터는 모두 예시입니다.</p>
       <p><a href="https://github.com/kate-young2026/on-ieum">github.com/kate-young2026/on-ieum</a></p>
     </div>
   </div>
 </footer>
 
-<nav class="cabinet" aria-label="수납장">
-  <button data-room="news">뉴스</button>
-  <button data-room="class">교육</button>
-  <button data-room="studio">업무</button>
-  <button data-room="library">서재</button>
-  <button data-room="jf">JF</button>
+<nav class="cabinet" aria-label="타임캡슐 수납장">
+  <button data-room="news"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">뉴스</span></button>
+  <button data-room="class"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">교육</span></button>
+  <button data-room="studio"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">업무</span></button>
+  <button data-room="library"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">서재</span></button>
+  <button data-room="jf"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">JF</span></button>
 </nav>
 
 <script src="app.js"></script>

@@ -1,0 +1,33 @@
+// node tests/coding.test.cjs — 코딩 렌더러가 KDI 샘플 구조를 따르는지 확인
+const assert = require('assert');
+const C = require('../js/coding.js');
+let n = 0; const ok = (c, m) => { assert.ok(c, m); n++; };
+for (const t of C.TYPES) { const h = C.render(t.id, t.example); ok(h && h.length > 40, t.name + ' 출력'); ok(!/undefined/.test(h), t.name + ' undefined 없음'); }
+let h = C.render('bid', C.TYPES[0].example);
+ok(h.includes('<b>1. 견적 제출에 부치는 사항</b><br />'), '입찰 숫자 제목');
+ok(h.includes('<span style="color:#2980b9;"><b>2027년 온-이음 예시 용역</b></span>'), '입찰 건명 강조');
+ok(h.includes('&nbsp; &nbsp; &nbsp; - 계약 관련사항'), '입찰 하위 항목');
+ok(h.includes('<b>한 국 개 발 연 구 원 장</b></div>'), '입찰 꼬리말');
+h = C.render('news', C.TYPES[1].example);
+ok(h.startsWith('<h4 class="strong_type04"><span style="font-size:36px;"><span style="color:#e67e22;">'), '동정 제목');
+ok(h.includes('grid-template-columns:repeat(2, minmax(0, 1fr))'), '동정 사진 2장');
+ok(h.includes('<span style="color:#3498db;"><b style="font-weight:bold;">[세션 1 | 주제 발표]</b>'), '동정 섹션 제목');
+h = C.render('press', C.TYPES[2].example);
+ok(/□ <b>예시 분석 결과, <b>지역별/.test(h) || h.includes('□ <b>'), '보도 □');
+ok(h.includes('background-color: #e67e22;'), '보도 주황 막대');
+ok(h.includes('</table>') && h.includes('담당자:&nbsp;&nbsp;'), '보도 표/담당자');
+h = C.render('focus', C.TYPES[3].example);
+ok(h.includes('<div class="bg_type02">') && h.includes('KDI FOCUS 목차'), 'FOCUS 박스/목차');
+h = C.render('outlook', C.TYPES[4].example);
+ok(h.includes('economy_list-comm') && h.includes('<li>&nbsp; &middot; 세부 근거 1</li>') && h.includes('padding-left:40px'), '전망 구조');
+h = C.render('issue', C.TYPES[5].example);
+ok(h.startsWith('<dl class="dl_type01 frum_dl type2">') && h.includes('<span style="color:#3b6ea8;"><b>1. 문제제기</b>') && h.includes('img_type04'), '현안 구조');
+h = C.render('seminar', C.TYPES[6].example);
+ok(h.includes('<span class="time">09:30~09:50</span>') && h.includes('<em>개회사</em> <span><b>예시 원장</b>ㅣ한국개발연구원(KDI)</span> <span><b>예시 차관</b>'), '세미나 개회');
+ok(h.includes('<em>발표 1</em><strong>예시 발표 제목</strong>') && h.includes('<em>&nbsp;</em>'), '세미나 발표');
+ok(h.includes('<div class="session">커피 브레이크</div>'), '세미나 휴식');
+h = C.render('mainvisual', C.TYPES[7].example);
+ok(h.includes('slide_pc') && h.includes('slide_mo') && h.includes('KDI 경제전망,<br>2026 하반기'), '메인비주얼');
+ok(C.renderCustom({ template: '<h4>{{제목}}</h4>{{본문}}' }, '@제목: 가\n\n문단').includes('<h4>가</h4><p class="p_type02"'), '사용자 유형');
+ok(C.inline('<script>') === '&lt;script&gt;', '이스케이프');
+console.log('coding tests passed:', n);

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>수능 사물함 · 온-이음</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='7' cy='16' r='5' fill='%23B5531F'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%2347704F'/%3E%3Cpath d='M12 16h8' stroke='%23B5531F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../css/room.css">
+<style>
+  .xp{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:8px 14px 4px}
+  .xp i{display:block;height:100%;background:linear-gradient(90deg,var(--ember),var(--oak));width:0;transition:width .4s}
+  .lockers{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:10px}
+  .lk{all:unset;box-sizing:border-box;cursor:pointer;position:relative;height:118px;border-radius:10px;background:linear-gradient(160deg,var(--lock-soft),var(--paper-raised));border:2px solid var(--line);padding:8px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .2s}
+  .lk::before{content:"";position:absolute;left:10px;right:10px;top:34px;height:2px;background:var(--line);box-shadow:0 6px 0 var(--line),0 12px 0 var(--line)}
+  .lk:hover{transform:translateY(-3px)}
+  .lk:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .lk-no{font:700 22px/1 var(--font-display)}
+  .lk-sec{font:500 11px var(--font-sans);color:var(--ink-muted)}
+  .lk-knob{position:absolute;right:10px;top:56px;width:8px;height:18px;border-radius:4px;background:var(--ink-muted)}
+  .lk.sec-문학{background:linear-gradient(160deg,var(--oak-soft),var(--paper-raised))}
+  .lk.sec-언어,.lk.sec-매체,.lk.sec-화법과작문{background:linear-gradient(160deg,var(--garden-soft),var(--paper-raised))}
+  .lk.open{border-color:var(--pool)}
+  .lk.open .lk-knob{background:var(--pool)}
+  .lk.marked::after{content:"마킹";position:absolute;right:6px;bottom:6px;font:500 10px var(--font-sans);background:var(--ember);color:var(--on-accent);border-radius:6px;padding:1px 5px}
+  .lk.cur{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--ember)}
+  .solve-top{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  #clock{font:700 28px var(--font-mono);margin-right:6px}
+  .omr{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 18px}
+  .omr-row{display:flex;gap:6px;align-items:center;padding:3px 6px;border-radius:8px}
+  .omr-row.cur{background:var(--ember-soft)}
+  .omr-no{all:unset;cursor:pointer;width:30px;font:700 14px var(--font-mono);text-align:right;margin-right:4px}
+  .bub{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ink-muted);background:var(--paper-raised);color:var(--ink);font:500 12px var(--font-mono);cursor:pointer}
+  .bub.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .vault{display:grid;place-items:center;text-align:center;gap:14px;padding:40px 10px}
+  .vault-door{width:180px;height:180px;border-radius:22px;background:linear-gradient(145deg,var(--lock),var(--ink));display:grid;place-items:center;box-shadow:var(--shadow-soft)}
+  .dial{width:84px;height:84px;border-radius:50%;border:8px solid var(--oak);background:var(--paper-raised)}
+  .akey{border-collapse:collapse;width:100%;font-size:13px}.akey td,.akey th{border-bottom:1px solid var(--line);padding:5px 6px;text-align:left}
+  .akey select{border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);padding:2px 4px}
+  .pdf{width:100%;height:calc(100vh - 140px);border:1px solid var(--line);border-radius:12px}
+  .std-mini{border-top:1px solid var(--line);padding:8px 0}.std-mini a{font:700 13px var(--font-mono);color:var(--pool)}.std-mini p{margin:4px 0 0;font-size:13px;line-height:20px}
+  .big{font:700 22px var(--font-display)}
+</style>
+</head>
+<body class="room-page">
+<div class="r-app" id="lockerApp">
+  <nav class="r-rail" aria-label="방">
+    <a class="home" href="../index.html" title="집으로">온-<br>이음</a>
+    <a href="../dashboard.html">대시<br>보드</a>
+    <a href="coding.html">코딩</a>
+    <a href="classroom.html">교실</a>
+    <a href="locker.html" class="on" aria-current="page">사물함</a>
+    <a href="portfolio.html">서재</a>
+    <span class="grow"></span>
+    <a href="#" data-theme-toggle title="낮/밤">낮밤</a>
+  </nav>
+
+  <aside class="r-list">
+    <header><h1>교실 사물함</h1><p class="sub">2027학년도 수능 국어 · 2026.11.19.</p></header>
+    <div class="xp" aria-hidden="true"><i id="xpBar"></i></div>
+    <p class="note-s" id="xpText" style="padding:0 14px"></p>
+    <div id="badges" style="padding:0 14px 6px"></div>
+    <label class="field" style="margin:0 14px 6px"><span>선택과목</span><select id="elective"><option>언어와 매체</option><option>화법과 작문</option></select></label>
+    <ul class="r-items" id="itemList"></ul>
+  </aside>
+
+  <main class="r-main">
+    <header>
+      <h2>2027 수능 국어</h2>
+      <div class="tabs"><button class="btn-s on" data-mode="lockers">사물함</button><button class="btn-s" data-mode="solve">문제 풀이</button><button class="btn-s" data-mode="answers">정답 사물함</button><button class="btn-s" data-mode="pdf">문제지</button></div>
+      <span class="sp"></span>
+    </header>
+    <div class="r-body" id="mainBody"></div>
+    <details style="padding:0 18px 14px"><summary class="note-s">이 사물함에 대해</summary><ul class="note-s" id="dataNotes"></ul></details>
+  </main>
+
+  <aside class="r-side">
+    <header><b id="sideTitle">문항</b></header>
+    <div class="r-body" id="sideBody"></div>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="../js/common.js"></script>
+<script src="../js/locker.js"></script>
+</body>
+</html>

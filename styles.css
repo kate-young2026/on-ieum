@@ -250,3 +250,51 @@ section{padding:56px 0}
 .foot-in{display:flex;gap:var(--space-6);align-items:center;flex-wrap:wrap}
 .foot-logo{margin:0;display:flex;align-items:center;font:700 22px var(--font-display);color:var(--ink)}
 .cabinet button.on{background:var(--ember)}
+
+/* ===== v0.3 우주선 집 · 타임캡슐 ===== */
+.house-sec{
+  background:
+    radial-gradient(1.2px 1.2px at 20px 30px,var(--ink-muted) 50%,transparent 51%) 0 0/120px 110px,
+    radial-gradient(1px 1px at 70px 80px,var(--ink-muted) 50%,transparent 51%) 0 0/160px 140px,
+    radial-gradient(1.4px 1.4px at 100px 20px,var(--oak) 50%,transparent 51%) 0 0/230px 190px,
+    radial-gradient(ellipse 80% 40% at 50% 115%,var(--pool-soft),transparent 70%),
+    linear-gradient(var(--paper),var(--paper-raised));
+}
+:root[data-theme="dark"] .house-sec{
+  background:
+    radial-gradient(1.4px 1.4px at 20px 30px,#f2ece2 50%,transparent 51%) 0 0/120px 110px,
+    radial-gradient(1px 1px at 70px 80px,#b3a999 50%,transparent 51%) 0 0/160px 140px,
+    radial-gradient(1.8px 1.8px at 100px 20px,#d9ae62 50%,transparent 51%) 0 0/230px 190px,
+    radial-gradient(ellipse 80% 40% at 50% 115%,#1f3638,transparent 70%),
+    linear-gradient(#11141a,#1c1a17);
+}
+.ship{position:relative;padding-bottom:54px;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.ship .house{border-radius:48px 48px 30px 30px;box-shadow:0 0 0 6px var(--paper-raised),0 0 0 8px var(--line),0 36px 60px -26px rgba(0,0,0,.45)}
+.ship .roof{position:relative}
+.ship .roof::after{content:"";position:absolute;left:50%;top:-30px;width:2px;height:30px;background:var(--ink-muted);transform:translateX(-50%)}
+.ship .roof::before{content:"";position:absolute;left:50%;top:-38px;width:10px;height:10px;border-radius:50%;background:var(--ember);transform:translateX(-50%);box-shadow:0 0 12px var(--ember);animation:blink 2.4s ease-in-out infinite}
+@keyframes blink{50%{opacity:.35}}
+.ship .floor .room{border-radius:18px}
+.ship .floor .room::after{content:"";position:absolute;right:10px;top:10px;width:12px;height:12px;border-radius:50%;border:2px solid var(--line);background:var(--paper-raised)}
+.ship .room{position:relative}
+.thrust{position:absolute;left:0;right:0;bottom:0;height:54px;display:flex;justify-content:center;gap:22%;pointer-events:none}
+.thrust i{width:26px;height:46px;border-radius:50% 50% 50% 50%/30% 30% 70% 70%;background:radial-gradient(ellipse at 50% 20%,#fff3 0,var(--ember) 35%,transparent 72%);filter:blur(.5px);transform-origin:top;animation:flame .5s ease-in-out infinite alternate}
+.thrust i:nth-child(2){animation-delay:.15s;height:54px}
+.thrust i:nth-child(3){animation-delay:.3s}
+@keyframes flame{from{transform:scaleY(.82);opacity:.8}to{transform:scaleY(1.08);opacity:1}}
+.mini-cab i{border-radius:99px;background:linear-gradient(90deg,var(--ember) 50%,var(--paper-raised) 50%);border:1px solid var(--oak)}
+.go-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:var(--space-4)}
+.btn-go{display:inline-block;background:var(--ember);color:var(--on-accent);text-decoration:none;border-radius:var(--radius-md);padding:7px 12px;font:700 13px var(--font-sans)}
+.btn-go:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+/* 타임캡슐 수납장 */
+.cabinet{border-radius:999px;padding:8px 10px;gap:8px}
+.cabinet button{position:relative;min-width:64px;height:40px;padding:0 14px;border-radius:999px;overflow:visible;background:var(--paper-raised);box-shadow:var(--shadow-soft);border:1.5px solid var(--oak)}
+.cabinet button::before{display:none}
+.cabinet .cap-top{position:absolute;left:-1.5px;top:-1.5px;bottom:-1.5px;width:50%;border-radius:999px 0 0 999px;background:var(--ember-soft);border:1.5px solid var(--oak);border-right:0;transform-origin:100% 0;transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+.cabinet .cap-label{position:relative;font:700 13px var(--font-sans)}
+.cabinet button.opening .cap-top{transform:rotate(-38deg) translate(-4px,-6px)}
+.cabinet button.on{background:var(--ember);border-color:var(--ember);color:var(--on-accent)}
+.cabinet button.on .cap-top{background:color-mix(in srgb,var(--ember) 70%,#fff);border-color:var(--ember)}
+@media (prefers-reduced-motion:reduce){.ship,.thrust i,.ship .roof::before{animation:none}.cabinet .cap-top{transition:none}}
