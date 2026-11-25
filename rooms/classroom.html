@@ -13,6 +13,20 @@
   #objText{min-height:110px;font:13px/1.7 var(--font-sans)}
   .r-list select{margin:0 14px 6px;width:calc(100% - 28px)}
   #gbChips{padding:0 14px}
+  .mode-tabs{padding:0 14px 8px}
+  .mode-tabs .btn-s{flex:1}
+  .pane{display:flex;flex-direction:column;min-height:0;flex:1}
+  .pane[hidden]{display:none}
+  .uf-row{display:flex;gap:6px;margin:0 14px 8px}
+  .r-list .uf-row select{flex:1;width:auto;margin:0;min-width:0;padding:6px 8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);font:13px var(--font-sans)}
+  .r-items .unit-h{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:block;padding:10px 10px 4px;font:700 13px/18px var(--font-sans);color:var(--ink)}
+  .r-items .unit-h small{display:block;font:500 11px var(--font-sans);color:var(--ink-muted)}
+  .r-items .unit-h:hover,.r-items .unit-h.on{color:var(--ember)}
+  .r-items li.u-std button{padding:6px 10px 6px 18px}
+  .r-items li.u-std.dim button{opacity:.62}
+  .r-items li.u-sep{border-top:1px solid var(--line);margin:6px 4px 0}
+  .u-mark{color:var(--ember);font-weight:700;margin-right:3px}
+  .u-card button.chip-s{margin-top:6px}
 </style>
 </head>
 <body class="room-page">
@@ -30,6 +44,10 @@
 
   <aside class="r-list">
     <header><h1>교실 · 교육과정 서가</h1><p class="sub" id="totalInfo">성취기준 불러오는 중…</p></header>
+    <div class="tabs mode-tabs" role="tablist" aria-label="찾는 방법">
+      <button class="btn-s on" data-mode="browse" role="tab" aria-selected="true">과목별</button><button class="btn-s" data-mode="unit" role="tab" aria-selected="false">단원 찾기</button>
+    </div>
+    <div id="browsePane" class="pane">
     <div class="tabs" style="padding:4px 14px 8px">
       <button class="btn-s on" data-level="elem">초등</button><button class="btn-s" data-level="middle">중학교</button><button class="btn-s" data-level="high">고등학교</button>
     </div>
@@ -37,6 +55,19 @@
     <div id="gbChips"></div>
     <input class="r-search" id="stdSearch" placeholder="코드·낱말로 찾기 (예: 문단)" aria-label="성취기준 찾기">
     <ul class="r-items" id="stdList"></ul>
+    </div>
+    <div id="unitPane" class="pane" hidden>
+      <form id="unitForm" role="search" style="margin:0">
+        <input class="r-search" id="unitQ" type="search" placeholder="단원·주제어·코드 (예: 광합성, 4과01)" aria-label="단원 찾기" autocomplete="off">
+        <div class="uf-row">
+          <select id="unitLevel" aria-label="학교급"><option value="">전 학교급</option><option value="elem">초등</option><option value="middle">중학교</option><option value="high">고등학교</option></select>
+          <select id="unitGrade" aria-label="학년"><option value="">전 학년</option></select>
+        </div>
+        <input class="r-search" id="unitSubj" placeholder="과목 (비우면 전체, 예: 과학)" aria-label="과목" autocomplete="off" style="margin-top:0">
+      </form>
+      <p class="note-s" id="unitInfo" style="padding:0 14px;margin:0">낱말을 넣으면 맞는 단원과 그 단원의 성취기준을 보여 줘요. 과목·학년만 고르면 단원 목록이 나와요.</p>
+      <ul class="r-items" id="unitList"></ul>
+    </div>
   </aside>
 
   <main class="r-main">
@@ -60,12 +91,13 @@
         <p class="note-s" style="margin:0 0 8px">김초엽 「관내분실」로 AI 인물과 대화하고 300자로 생각을 정리하는 공통국어 1 서사 갈래 수업(10공국1-05-02). 무료 서버라 첫 접속에 1분쯤 걸릴 수 있어요.</p>
         <div class="tabs"><a class="btn-s pri" href="https://literary-dialogue-class-test.onrender.com/" target="_blank" rel="noopener" style="text-decoration:none">수업 열기</a><a class="btn-s" href="https://github.com/kate-young2026/literary-dialogue-prototype" target="_blank" rel="noopener" style="text-decoration:none">저장소</a></div>
       </section>
-      <p class="note-s">초안은 미리보기 안에서 바로 고칠 수 있어요. 성취기준 출처: 교육부·국가교육위원회 고시(NCIC), 지표: 학습맵 MCP 데이터(MIT, <a href="../NOTICE.md">NOTICE</a>).</p>
+      <p class="note-s">초안은 미리보기 안에서 바로 고칠 수 있어요. 성취기준 출처: 교육부·국가교육위원회 고시(NCIC), 지표: 학습맵 MCP 데이터(MIT, <a href="../NOTICE.md">NOTICE</a>). 같은 검색을 Claude에서 쓰려면 <a href="https://github.com/kate-young2026/on-ieum/tree/main/mcp" target="_blank" rel="noopener">성취기준 MCP 서버</a>를 연결하세요.</p>
     </div>
   </aside>
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script src="../js/common.js"></script>
+<script src="../js/standards-search.js"></script>
 <script src="../js/classroom.js"></script>
 </body>
 </html>
