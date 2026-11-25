@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "on-ieum-standards": {
+      "command": "node",
+      "args": ["mcp/server.mjs"]
+    }
+  }
+}
