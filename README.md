@@ -30,11 +30,12 @@
 - 색: 종이 같은 아이보리 바탕, 온기를 뜻하는 장작불색(ember)을 브랜드 색으로, 층마다 하나의 색.
 - 글꼴: Gowun Batang(제목) · Noto Sans KR(본문) · JetBrains Mono(코드). 낮/밤 테마 지원.
 
-## 페이지 (v0.3)
+## 페이지 (v0.4)
 
 | 주소 | 하는 일 |
 |---|---|
-| [`/`](https://kate-young2026.github.io/on-ieum/) | 둥둥 떠 있는 우주선 집 · 타임캡슐 수납장 · 이름의 뜻 · 뉴스 라운지 |
+| [`/`](https://kate-young2026.github.io/on-ieum/) | v0.4 아이소메트릭 집 단면도: 방을 누르면 설명·이어지는 방·방 열기(교실·사물함·코딩방·포트폴리오, 문학 작품 속 인물과 대화) · 이름의 뜻 · 뉴스 라운지 · 계획 |
+| [`/v03.html`](https://kate-young2026.github.io/on-ieum/v03.html) | v0.3 기획 사이트: 우주선 집 · 타임캡슐 수납장 |
 | [`/dashboard.html`](https://kate-young2026.github.io/on-ieum/dashboard.html) | 기획 대시보드 (숫자는 `data/plan.json`에서 계산) |
 | [`/rooms/coding.html`](https://kate-young2026.github.io/on-ieum/rooms/coding.html) | 작업실 코딩방: 입찰공고·연구원동정·보도자료·언론기고·FOCUS·전망·현안·세미나 프로그램·메인비주얼 텍스트 → HTML, 미리보기, 유형 추가 |
 | [`/rooms/classroom.html`](https://kate-young2026.github.io/on-ieum/rooms/classroom.html) | 교실: 초등 620·중등 3,838 성취기준 → 설명·지표 → 학습목표 → 학습지·활동지·게임·프로젝트 초안 |

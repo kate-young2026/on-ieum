@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>온-이음 On-ieum</title>
+<meta name="description" content="온기를 잇고, 온 사람을 잇는 집 — 뉴스·수업·일·서재·가족이 함께 사는 3층짜리 AI 워크스페이스 디자인 초안">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='7' cy='16' r='5' fill='%23B5531F'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%2347704F'/%3E%3Cpath d='M12 16h8' stroke='%23B5531F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#meaning">본문으로</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#" aria-label="온-이음 처음으로">온<span class="dash" aria-hidden="true"></span>이음</a>
+    <nav class="nav" aria-label="섹션">
+      <a href="#meaning">이름의 뜻</a>
+      <a href="#house">집 둘러보기</a>
+      <a href="dashboard.html">대시보드</a>
+      <a href="#news">뉴스 라운지</a>
+      <a href="#plan">계획</a>
+    </nav>
+    <button class="theme" id="theme" aria-label="낮/밤 바꾸기"><span class="sun">낮</span><span class="moon">밤</span></button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO / NAME -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">개인 AI 워크스페이스 · v0.3</p>
+        <h1 class="logo">온<span class="dash big" aria-hidden="true"></span>이음</h1>
+        <p class="roman">On-ieum</p>
+        <p class="tagline">온기를 잇고, 온 사람을 잇는 집</p>
+        <p class="lead">뉴스·수업·일·서재·가족, 흩어진 하루를 3층짜리 한 채의 집에 이어 둡니다. AI가 읽고 정리해 두면 나는 방을 거닐며 <b>확인하고 승인만</b> 합니다. PC와 휴대폰에서 같은 집이 실시간으로 열립니다.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#meaning">이름의 뜻</a>
+          <a class="btn ghost" href="#house">집 둘러보기</a>
+          <a class="btn ghost" href="dashboard.html">기획 대시보드</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 420 360" class="threads">
+          <path class="th t1" d="M70 70 C150 40 210 120 210 180"/>
+          <path class="th t2" d="M350 70 C280 50 220 110 210 180"/>
+          <path class="th t3" d="M60 290 C120 300 170 240 210 180"/>
+          <path class="th t4" d="M360 290 C300 310 250 240 210 180"/>
+          <path class="th t5" d="M210 180 C215 240 205 280 210 330"/>
+          <path class="th ring" d="M70 70 C160 10 260 10 350 70 C420 150 420 230 360 290 C280 360 140 360 60 290 C0 220 0 140 70 70"/>
+          <g class="node n-news"><circle cx="70" cy="70" r="26"/><text x="70" y="75">뉴스</text></g>
+          <g class="node n-class"><circle cx="350" cy="70" r="26"/><text x="350" y="75">교육</text></g>
+          <g class="node n-work"><circle cx="60" cy="290" r="26"/><text x="60" y="295">업무</text></g>
+          <g class="node n-lib"><circle cx="360" cy="290" r="26"/><text x="360" y="295">서재</text></g>
+          <g class="node n-jf"><circle cx="210" cy="330" r="22"/><text x="210" y="335">JF</text></g>
+          <g class="core"><circle cx="210" cy="180" r="44"/><text x="210" y="176">나</text><text x="210" y="196" class="sm">Young</text></g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEANING -->
+  <section id="meaning" class="meaning-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>이름의 뜻</h2>
+        <p>세 조각이 모여 하나의 이름이 됩니다. 가운데 붙임표(-)까지 이름의 일부예요.</p>
+      </div>
+      <div class="word">
+        <article class="piece p-on">
+          <p class="big">온</p>
+          <h3>따뜻할 온 · 온 누리의 온</h3>
+          <p>소리로는 <b>온기(溫)</b>, 순우리말로는 <b>'온 가족, 온 세상'의 모두</b>. 혼자 일해도 외롭지 않은 따뜻한 집, 누구나 들어와 함께하는 집이라는 뜻입니다.</p>
+        </article>
+        <article class="piece p-dash">
+          <p class="big"><span class="dash xl"></span></p>
+          <h3>붙임표 · 이음표</h3>
+          <p>예전 국어 문장부호 규정에서 붙임표(-)는 <b>'이음표'</b>에 속했습니다. 이름 가운데의 작은 선이 곧 <b>잇는 실</b>입니다. 이 사이트의 모든 선은 이 붙임표에서 나왔어요.</p>
+        </article>
+        <article class="piece p-ieum">
+          <p class="big">이음</p>
+          <h3>잇다 → 이음</h3>
+          <p>뉴스와 수업, 일과 가족, <b>AI와 사람</b>, 성취기준과 학습지, <b>PC와 휴대폰</b>. 흩어진 것을 끊김 없이 이어 주는 자리라는 뜻입니다.</p>
+        </article>
+      </div>
+      <div class="also">
+        <p><b>ON</b> 영문 표기의 'On'은 <i>켜다</i>이기도 합니다. 매일 08:20, 뉴스 라운지에 불이 켜지는 집.</p>
+        <p><b>다락</b> 3층 서재와 루프탑은 '다락'이라 부릅니다. 가장 아늑한 꼭대기 방.</p>
+        <p><b>느루</b> 집의 다짐. 한꺼번에 몰아치지 않고 오래도록, 꾸준히.</p>
+      </div>
+      <blockquote class="motto">온기를 잇고, 온 사람을 잇다.<br><span>느루, 오래도록 함께 자라는 집 — 온-이음</span></blockquote>
+    </div>
+  </section>
+
+  <!-- HOUSE -->
+  <section id="house" class="house-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>집 둘러보기</h2>
+        <p>방을 누르면 그 방에서 하는 일과 <b>이어지는 방</b>이 열립니다. 아래 수납장 서랍으로도 바로 부를 수 있어요.</p>
+      </div>
+      <div class="house-grid">
+        <div class="ship">
+        <div class="house" id="houseMap">
+          <div class="sky" aria-hidden="true"><span class="sunball"></span><span class="star s1"></span><span class="star s2"></span><span class="star s3"></span></div>
+          <div class="roof" aria-hidden="true"></div>
+
+          <p class="lvl">3층 · 다락 — 서재와 루프탑</p>
+          <div class="floor f3">
+            <button class="room t-oak" data-room="library"><b>서재</b><span>작품 · 독서 · 포트폴리오 · 여행 지도</span></button>
+            <button class="room t-pool" data-room="pool"><b>루프탑 수영장</b><span>집중 타이머</span></button>
+            <button class="room t-ember" data-room="camp"><b>캠핑 데크</b><span>저녁 회고</span></button>
+          </div>
+
+          <p class="lvl">2층 · 배움과 일</p>
+          <div class="floor f2">
+            <button class="room t-lock" data-room="class"><b>교실</b><span>성취기준 · 학습지 · 서논술형 · 수능작전</span></button>
+            <button class="room t-lock" data-room="escape"><b>방탈출</b><span>국어랑 게임 · 수학게임</span></button>
+            <button class="room t-oak" data-room="studio"><b>작업실</b><span>코딩 · 메인비주얼 · 요약 · 영문 보고서</span></button>
+          </div>
+
+          <p class="lvl">1층 · 하루의 시작과 가족</p>
+          <div class="floor f1">
+            <button class="room t-pool" data-room="news"><b>뉴스 라운지</b><span>오늘의 뉴스 10 · 08:20</span></button>
+            <button class="room t-garden" data-room="living"><b>거실 · 응접실</b><span>타임캡슐 수납장으로 방 호출</span><i class="mini-cab" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></i></button>
+            <button class="room t-garden" data-room="jf"><b>with JF</b><span>시간표 · 가족앨범 · 1·2·3번방</span></button>
+          </div>
+          <div class="yard"><span>앞마당</span> 주간 회고 · 산책 모드</div>
+          <svg class="stitch" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 10 100"><path d="M5 0 V100"/></svg>
+        </div>
+        <div class="thrust" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+
+        <aside class="panel" id="panel" aria-live="polite"></aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news" class="wrap news-sec">
+    <div class="sec-head">
+      <h2>뉴스 라운지</h2>
+      <p>매일 아침 AI · IT · EDU · 교육정책 뉴스 10개를 모아 3줄로 요약하고, 08:20에 휴대폰으로 알려 줍니다. 마음에 드는 기사는 <b>교실로 이어 보냅니다.</b></p>
+    </div>
+    <div class="news-wrap">
+      <div class="phone" aria-label="휴대폰 알림 미리보기">
+        <div class="phone-in">
+          <p class="clock">08:20</p>
+          <p class="date">11월 17일 화요일</p>
+          <div class="noti"><b>온-이음 · 뉴스 라운지</b><span>오늘 뉴스 10개가 도착했어요. 교육정책 3 · AI 4 · EDU 2 · IT 1</span></div>
+          <div class="noti dim"><b>온-이음 · 승인함</b><span>학습지 초안 2건이 승인을 기다려요 (B)</span></div>
+        </div>
+      </div>
+      <div class="news-board">
+        <div class="filters" aria-label="분야">
+          <button class="chip on" data-f="all">전체</button>
+          <button class="chip" data-f="AI">AI</button>
+          <button class="chip" data-f="IT">IT</button>
+          <button class="chip" data-f="EDU">EDU</button>
+          <button class="chip" data-f="정책">교육정책</button>
+        </div>
+        <ol class="news" id="newsList"></ol>
+        <p class="note">화면의 기사는 자리표시 예시입니다. 실제 버전은 공개 RSS에서 수집하며 원문은 저장하지 않고 제목·링크·요약만 보여 줍니다.</p>
+      </div>
+    </div>
+    <ol class="flow">
+      <li><b>08:05</b><span>RSS 수집</span></li>
+      <li><b>규칙 분류</b><span>분야 · 중복 제거</span></li>
+      <li><b>상위 10</b><span>숫자는 코드가</span></li>
+      <li><b>3줄 요약</b><span>AI는 문장만</span></li>
+      <li class="hot"><b>08:20</b><span>대시보드 + 휴대폰 알림</span></li>
+    </ol>
+  </section>
+
+  <!-- PLAN -->
+  <section id="plan" class="plan-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>계획 한눈에</h2>
+        <p>「개인 AI 워크스페이스 구축 가이드」의 10단계 구조를 따르고, 그 위에 '이어진 3층 집'이라는 공간 은유를 얹었습니다.</p>
+      </div>
+
+      <div class="cards3">
+        <article class="pc"><h3>데이터를 잇는 관문</h3><p><code>lib/data</code> — 모든 저장은 한 창구로. 데모 → 로컬 → Supabase 운영 모드가 자동 전환되고, 키가 없어도 화면은 깨지지 않습니다.</p></article>
+        <article class="pc"><h3>AI를 잇는 관문</h3><p><code>callLLM</code> — 모든 AI 호출은 한 함수로. FAST · MAIN · DEEP 등급, 월 예산 80%에서 등급 하향, 100%에서 정지.</p></article>
+        <article class="pc"><h3>실행을 잇는 관문</h3><p><code>executeApproval</code> — 보내기·삭제·게시는 승인된 건만, 24시간 이내, 내용 해시가 같을 때만 실행.</p></article>
+      </div>
+
+      <h3 class="sub">4주 로드맵</h3>
+      <ol class="road">
+        <li><span class="wk">1주</span><b>거실과 수납장이 열린다</b><span>뼈대 · 저장 창구 · 오늘 화면</span></li>
+        <li><span class="wk">2주</span><b>뉴스 라운지와 08:20 알림</b><span>AI 관문 · 승인함 · 외부 연동</span></li>
+        <li><span class="wk">3주</span><b>교실·작업실에서 지시가 문서로</b><span>AI 가상 팀 · 지식 노트 · 성취기준 MCP</span></li>
+        <li><span class="wk">4주</span><b>휴대폰에서도 같은 집</b><span>상시 서버 · Supabase 실시간 · 배포</span></li>
+      </ol>
+
+      <div class="two">
+        <div class="box">
+          <h3>교육과정 서가 — 성취기준 MCP</h3>
+          <ul>
+            <li><b>초등</b> korean-elementary-learning-map-mcp · 성취기준 620(원문), 세부 주제 1,956, 선수관계</li>
+            <li><b>중등</b> korean-secondary-learning-map-mcp · 255과목, 성취기준 3,838(원문), 중→고 전이</li>
+            <li>키·요금 없이 로컬 실행. 학습지에 찍히는 성취기준 코드는 이 서가에서 확인된 것만 씁니다.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>지키는 것</h3>
+          <ul>
+            <li>발송·삭제·외부 게시는 반드시 승인함을 거칩니다.</li>
+            <li>영구 삭제 없음 — 휴지통 이동 + 기록.</li>
+            <li>학생·아이의 이름과 사진은 AI 입력에서 제외합니다.</li>
+            <li>비밀값은 <code>.env.local</code>과 호스팅 환경변수에만.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub">기술 구성</h3>
+      <div class="stack">
+        <span>Next.js + TypeScript (PWA)</span><span>2.5D 아이소메트릭 SVG</span><span>Supabase Realtime · RLS</span><span>GitHub Actions 예약 수집</span><span>ntfy / 카카오 알림</span><span>Gemini · Claude API (관문 경유)</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p class="foot-logo">온<span class="dash" aria-hidden="true"></span>이음</p>
+    <div>
+      <p>온기를 잇고, 온 사람을 잇는 집 · v0.3 · 2026. 11.</p>
+      <p>설계 참고: 「개인 AI 워크스페이스 구축 가이드」(2026). 화면의 데이터는 모두 예시입니다.</p>
+      <p><a href="https://github.com/kate-young2026/on-ieum">github.com/kate-young2026/on-ieum</a></p>
+    </div>
+  </div>
+</footer>
+
+<nav class="cabinet" aria-label="타임캡슐 수납장">
+  <button data-room="news"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">뉴스</span></button>
+  <button data-room="class"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">교육</span></button>
+  <button data-room="studio"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">업무</span></button>
+  <button data-room="library"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">서재</span></button>
+  <button data-room="jf"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">JF</span></button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
