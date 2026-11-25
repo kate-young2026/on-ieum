@@ -1,0 +1,31 @@
+// 뉴스 라운지 알림: ntfy로 휴대폰·PC에 보낸다. 08:20(KST) 예약 전달은 ntfy의 delay 기능을 쓴다.
+// 사용: NOTIFY=0820|now|none NTFY_TOPIC=… node scripts/news/notify.mjs
+// NTFY_TOPIC이 없으면 data/news/feeds.json의 ntfy.topic을 쓴다(공개 저장소에 적힌 주제라 누구나 구독할 수 있음).
+import fs from 'node:fs';
+import path from 'node:path';
+import { at0820, CAT_LABEL } from './lib.mjs';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../..');
+const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/news/feeds.json'), 'utf8'));
+const news = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/news/today.json'), 'utf8'));
+const mode = process.env.NOTIFY || '0820';
+if (mode === 'none') { console.log('알림 건너뜀'); process.exit(0); }
+if (!news.items.length) { console.log('보낼 기사가 없어 알림을 건너뜀'); process.exit(0); }
+
+const topic = process.env.NTFY_TOPIC || cfg.ntfy.topic;
+const top = news.items.slice(0, 4).map((it) => '· [' + (CAT_LABEL[it.cat] || it.cat) + '] ' + it.title).join('\n');
+const body = {
+  topic,
+  title: '온-이음 · 뉴스 라운지 ' + news.date.slice(5).replace('-', '/'),
+  message: news.headline + '\n' + top,
+  tags: ['newspaper'],
+  click: cfg.ntfy.click,
+  actions: [{ action: 'view', label: '뉴스 라운지 열기', url: cfg.ntfy.click }]
+};
+const at = at0820();
+if (mode === '0820' && at - Date.now() / 1000 > 30) body.delay = String(at);
+
+const r = await fetch(cfg.ntfy.server, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+const text = await r.text();
+if (!r.ok) { console.error('ntfy 실패', r.status, text.slice(0, 200)); process.exit(1); }
+console.log(body.delay ? '08:20 KST 예약 완료' : '바로 보냄', '→ 주제', process.env.NTFY_TOPIC ? '(비밀값)' : topic);

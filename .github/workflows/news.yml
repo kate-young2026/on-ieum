@@ -1,0 +1,52 @@
+name: 뉴스 라운지
+
+# 매일 06:07 KST(21:07 UTC)에 수집해 data/news/today.json을 갱신하고,
+# 휴대폰 알림은 ntfy 예약 전달로 정확히 08:20 KST에 도착하게 한다.
+# (GitHub 예약 실행은 몇십 분 늦을 수 있어서 알림 시각은 ntfy가 맞춘다.)
+on:
+  schedule:
+    - cron: '7 21 * * *'
+  workflow_dispatch:
+    inputs:
+      notify:
+        description: '알림: 0820(오늘 08:20 예약, 지났으면 바로) · now(바로) · none(보내지 않음)'
+        type: choice
+        options: ['now', '0820', 'none']
+        default: 'now'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-lounge
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Claude 요약 준비 (ANTHROPIC_API_KEY가 있을 때만)
+        if: env.ANTHROPIC_API_KEY != ''
+        run: npm install --no-save --no-package-lock --prefix scripts/news @anthropic-ai/sdk
+      - name: 수집 · 분류 · 상위 10 · 3줄 요약
+        run: node scripts/news/collect.mjs
+      - name: 저장소에 반영 (GitHub Pages가 다시 배포됨)
+        run: |
+          git config user.name "on-ieum-news-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/news
+          if git diff --cached --quiet; then echo "바뀐 것 없음"; exit 0; fi
+          git commit -m "뉴스 라운지: $(date -u -d '+9 hours' +%Y-%m-%d) 오늘의 뉴스"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && break; sleep 5; done
+      - name: 알림 (ntfy)
+        run: node scripts/news/notify.mjs
+        env:
+          NOTIFY: ${{ github.event_name == 'schedule' && '0820' || inputs.notify }}

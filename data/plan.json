@@ -25,8 +25,8 @@
         },
         {
           "name": "대시보드 자동 게재",
-          "status": "plan",
-          "note": "GitHub Actions 수집 → JSON"
+          "status": "done",
+          "note": "GitHub Actions 06:07 수집 → data/news/today.json"
         },
         {
           "name": "기사 → 교실로 보내기",

@@ -202,6 +202,37 @@
     (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { toast('프롬프트를 복사했어요. Claude·Gemini에 붙여 넣으세요'); }, function () { prompt('복사해서 쓰세요', t); });
   });
 
+  // ---- 단원 찾기 (성취기준 MCP 데이터로 만든 단원 색인, mcp/server.mjs와 같은 검색 규칙) ----
+  function hl(text, words) {
+    var h = esc(text);
+    words.forEach(function (w) { if (w) h = h.split(esc(w)).join('<mark>' + esc(w) + '</mark>'); });
+    return h;
+  }
+  function findUnit(q) {
+    if (!q) return;
+    $('stdTitle').textContent = '단원 찾기';
+    $('stdMeta').innerHTML = '<span class="chip-s">' + esc(q) + '</span>';
+    $('stdBody').innerHTML = '<div class="card-s">단원 색인을 불러오는 중…</div>';
+    getJSON(BASE + 'units.json').then(function (d) {
+      var r = root.OnUnits.findUnits(d.units, q, { limit: 12 });
+      var lvName = { elem: '초등', middle: '중학교', high: '고등학교' };
+      var head = '<p class="note-s" style="margin:0 0 8px">' + (r.level ? lvName[r.level] + (r.gradeBand ? ' ' + r.gradeBand + (r.level === 'elem' ? '학년군' : '') : '') + ' · ' : '') +
+        '낱말 ' + r.words.map(function (w) { return '「' + esc(w) + '」'; }).join(' ') + ' → 단원 ' + r.total + '개' + (r.total > r.results.length ? ' 중 ' + r.results.length + '개' : '') + (r.partial ? ' (모든 낱말이 맞는 단원이 없어 일부만 맞는 단원)' : '') + '</p>';
+      if (!r.results.length) { $('stdBody').innerHTML = head + '<div class="card-s">맞는 단원이 없어요. 낱말을 줄이거나 학년 표현(예: 3학년, 중2, 고1)을 바꿔 보세요.</div>'; return; }
+      return Promise.all(r.results.map(function (u) { return getJSON(BASE + encFile(idx.courses[u.c].file)); })).then(function (files) {
+        $('stdBody').innerHTML = head + r.results.map(function (u, i) {
+          var byCode = {}; files[i].standards.forEach(function (s) { byCode[s.code] = s; });
+          return '<div class="card-s unit-card"><h3>' + esc(u.u || u.d) + ' <small class="muted">' + esc(root.OnUnits.label(u)) + '</small></h3><ol>' +
+            u.codes.map(function (c) {
+              var s = byCode[c] || { code: c, text: '' }, hit = r.words.some(function (w) { return (c + s.text).indexOf(w) >= 0; });
+              return '<li class="' + (hit ? 'hit' : '') + '"><button type="button" data-jump="' + esc(c) + '"><b>' + esc(c) + '</b>' + hl(s.text, r.words) + '</button></li>';
+            }).join('') + '</ol></div>';
+        }).join('');
+      });
+    }).catch(function () { $('stdBody').innerHTML = '<div class="card-s">단원 색인을 불러오지 못했어요.</div>'; });
+  }
+  $('unitForm').addEventListener('submit', function (e) { e.preventDefault(); findUnit($('unitQ').value.trim()); });
+
   Promise.all([getJSON(BASE + 'index.json'), getJSON(BASE + 'codes.json')]).then(function (r) {
     idx = r[0]; codes = r[1];
     $('totalInfo').textContent = '초등 ' + idx.total.elem + ' · 중등 ' + idx.total.sec + '개 성취기준';

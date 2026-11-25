@@ -13,6 +13,15 @@
   #objText{min-height:110px;font:13px/1.7 var(--font-sans)}
   .r-list select{margin:0 14px 6px;width:calc(100% - 28px)}
   #gbChips{padding:0 14px}
+  .unit-form{display:flex;gap:6px;align-items:center;padding:0 14px 8px}
+  .unit-form .r-search{margin:0;flex:1;min-width:0}
+  .unit-card h3{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}
+  .unit-card ol{margin:6px 0 0;padding-left:0;list-style:none}
+  .unit-card li button{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:block;padding:6px 8px;border-radius:8px;font:14px/1.6 var(--font-sans)}
+  .unit-card li button:hover,.unit-card li button:focus-visible{background:var(--paper-2, rgba(0,0,0,.05));outline:2px solid var(--pool, #22717a)}
+  .unit-card li b{font-family:var(--font-mono, monospace);font-weight:500;margin-right:6px}
+  .unit-card li.hit button{background:rgba(181,83,31,.08)}
+  .unit-card mark{background:rgba(181,83,31,.22);color:inherit;border-radius:3px;padding:0 1px}
 </style>
 </head>
 <body class="room-page">
@@ -30,6 +39,10 @@
 
   <aside class="r-list">
     <header><h1>교실 · 교육과정 서가</h1><p class="sub" id="totalInfo">성취기준 불러오는 중…</p></header>
+    <form id="unitForm" class="unit-form" role="search" aria-label="단원 찾기">
+      <input class="r-search" id="unitQ" placeholder="단원 찾기 (예: 초등 3학년 분수, 중2 일차함수)" aria-label="단원 찾기 낱말">
+      <button class="btn-s pri" type="submit">찾기</button>
+    </form>
     <div class="tabs" style="padding:4px 14px 8px">
       <button class="btn-s on" data-level="elem">초등</button><button class="btn-s" data-level="middle">중학교</button><button class="btn-s" data-level="high">고등학교</button>
     </div>
@@ -66,6 +79,7 @@
 </div>
 <div class="toast" id="toast" role="status"></div>
 <script src="../js/common.js"></script>
+<script src="../js/units.js"></script>
 <script src="../js/classroom.js"></script>
 </body>
 </html>
