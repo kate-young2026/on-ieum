@@ -1,250 +1,323 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>온-이음 On-ieum</title>
-<meta name="description" content="온기를 잇고, 온 사람을 잇는 집 — 뉴스·수업·일·서재·가족이 함께 사는 3층짜리 AI 워크스페이스 디자인 초안">
+<meta name="description" content="온기를 잇고, 온 사람을 잇는 집 — 뉴스·수업·일·서재·가족이 함께 사는 3층짜리 AI 워크스페이스">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='7' cy='16' r='5' fill='%23B5531F'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%2347704F'/%3E%3Cpath d='M12 16h8' stroke='%23B5531F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap">
-<link rel="stylesheet" href="styles.css">
+<style>
+/* VOICE: 따뜻하고 차분한 집 안내서. 말은 짧게, 그림이 먼저.
+   IDEA: 건축 단면도 — 집을 세로로 잘라 층과 방이 한눈에 보이는 도면.
+   PICTURE: 앞면과 지붕 앞쪽을 걷어낸 2.5D 아이소메트릭 3층 집(인형의 집 단면). 방을 누르면 '나'에서 그 방까지 이음선이 그어진다.
+   COLOUR and TYPE: 종이(paper) 바탕, 먹(ink) 글자, 방마다 고유색 하나, 이음선은 ember. 제목 고운바탕, 본문 Noto Sans KR, 시각은 JetBrains Mono.
+   LAYOUT: 상단 바 → 단면도 + 방 설명 패널 → 이름의 뜻 → 뉴스 라운지 → 계획 → 푸터. 600px 아래에서는 한 열. */
+:root{color-scheme:light;
+--paper:#FAF6EE;--raised:#FFFFFF;--line:#E3DACB;--ink:#2E2A25;--muted:#6B6258;
+--garden:#47704F;--garden-s:#E3EDE2;--pool:#22717A;--pool-s:#DCEFEF;--ember:#B5531F;--ember-s:#F6E2D5;
+--oak:#8A6220;--oak-s:#F1E6D0;--lock:#2E4A6B;--lock-s:#DFE6EF;--on:#FFFFFF;--sky:#DCEFEF;--wall:#EFE6D6;
+--shadow:0 2px 10px rgba(46,42,37,.08);
+--disp:"Gowun Batang","Noto Serif KR",serif;--sans:"Noto Sans KR",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+:root[data-theme=dark]{color-scheme:dark;
+--paper:#1C1A17;--raised:#26231F;--line:#3A352E;--ink:#F2ECE2;--muted:#B3A999;
+--garden:#8FBF98;--garden-s:#2A3A2D;--pool:#6CC3C9;--pool-s:#1F3638;--ember:#F0935C;--ember-s:#3E2A1E;
+--oak:#D9AE62;--oak-s:#3A3122;--lock:#9DB8D9;--lock-s:#232D39;--on:#1C1A17;--sky:#14202B;--wall:#2C2823;
+--shadow:0 2px 12px rgba(0,0,0,.35)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){color-scheme:dark;
+--paper:#1C1A17;--raised:#26231F;--line:#3A352E;--ink:#F2ECE2;--muted:#B3A999;
+--garden:#8FBF98;--garden-s:#2A3A2D;--pool:#6CC3C9;--pool-s:#1F3638;--ember:#F0935C;--ember-s:#3E2A1E;
+--oak:#D9AE62;--oak-s:#3A3122;--lock:#9DB8D9;--lock-s:#232D39;--on:#1C1A17;--sky:#14202B;--wall:#2C2823;
+--shadow:0 2px 12px rgba(0,0,0,.35)}}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 var(--sans);overflow-x:clip;word-break:keep-all;overflow-wrap:anywhere}
+a{color:var(--pool)}
+:focus-visible{outline:3px solid var(--pool);outline-offset:2px;border-radius:6px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--raised);padding:8px 12px;z-index:9}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px max(5vw,16px);flex-wrap:wrap}
+.logo{font:700 22px/1 var(--disp);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:2px}
+.logo i{display:inline-block;width:18px;height:3px;background:var(--ember);border-radius:2px;position:relative}
+.logo i::before,.logo i::after{content:"";position:absolute;top:-3px;width:9px;height:9px;border-radius:50%;background:var(--ember)}
+.logo i::before{left:-3px}.logo i::after{right:-3px}
+nav{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:10px 10px;border-radius:8px}
+nav a:hover{color:var(--ink);background:var(--ember-s)}
+.theme{min-height:44px;min-width:44px;border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:12px;font:500 14px var(--sans);cursor:pointer}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.in{max-width:1240px;margin:0 auto}
+h1,h2,h3{font-family:var(--disp);margin:0;line-height:1.15;text-wrap:balance}
+h1{font-size:clamp(34px,5vw,48px)}h2{font-size:clamp(26px,3.4vw,32px)}h3{font-size:18px}
+.lead{font-size:16px;color:var(--muted);max-width:60ch}
+.tag{display:inline-block;font:500 13px var(--sans);color:var(--ember);background:var(--ember-s);padding:4px 10px;border-radius:6px}
+.mono{font-family:var(--mono)}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:12px;font:700 14px var(--sans);text-decoration:none;border:1px solid var(--line);background:var(--raised);color:var(--ink);cursor:pointer}
+.btn.pri{background:var(--ember);border-color:var(--ember);color:var(--on)}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.hero-head{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:end;gap:12px 32px;justify-content:space-between}
+.hero-head p{margin:8px 0 0}
+.plan{background:linear-gradient(var(--sky),var(--paper) 70%);border:1px solid var(--line);border-radius:24px;padding:8px;box-shadow:var(--shadow)}
+.plan svg{display:block;width:100%;height:auto}
+.room{cursor:pointer}
+.room rect.f{stroke:var(--line);stroke-width:2;transition:stroke .2s}
+.room:hover rect.f,.room:focus rect.f{stroke:var(--ink)}
+.room.on rect.f{stroke:var(--ember);stroke-width:4}
+.room:focus{outline:none}
+.room text{font:700 15px var(--sans);fill:var(--ink)}
+.room text.s{font:500 12px var(--sans);fill:var(--muted)}
+.thread{fill:none;stroke:var(--ember);stroke-width:3;stroke-linecap:round;stroke-dasharray:6 6;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-24}}
+.panel{background:var(--raised);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:var(--shadow);position:sticky;top:84px}
+.panel .fl{font:500 13px var(--mono);color:var(--muted)}
+.panel h3{font-size:26px;margin:6px 0 10px}
+.panel ul{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:8px}
+.panel li{display:flex;gap:10px;align-items:baseline}
+.panel li b{flex:none;width:8px;height:8px;border-radius:50%;background:var(--c);transform:translateY(-1px)}
+.go{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.go .btn{min-height:40px;padding:8px 14px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links button{min-height:40px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:500 13px var(--sans);cursor:pointer}
+.floors{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.floors span{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.floors span i{width:12px;height:12px;border-radius:3px;background:var(--c)}
+/* meaning */
+.mean{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.card{background:var(--raised);border:1px solid var(--line);border-radius:16px;padding:24px}
+.big{font:700 64px/1 var(--disp);color:var(--ember);margin-bottom:12px}
+.quote{margin:24px 0 0;font:400 clamp(20px,2.6vw,26px)/1.5 var(--disp);text-align:center;color:var(--ink)}
+.words{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;color:var(--muted)}
+.words b{color:var(--ink);font-family:var(--disp)}
+/* news */
+.news{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:24px;margin-top:24px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--raised);color:var(--muted);font:500 13px var(--sans);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;padding:14px 0;border-top:1px solid var(--line)}
+.item .k{font:500 12px var(--mono);color:var(--c);background:var(--cs);padding:2px 8px;border-radius:6px;height:max-content}
+.item p{margin:0;color:var(--muted);font-size:14px}
+.item h4{margin:0;font-size:15px}
+.pipe{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.pipe li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;padding:12px 0;position:relative}
+.pipe li::before{content:"";position:absolute;left:35px;top:0;bottom:0;width:2px;background:var(--ember);opacity:.4}
+.pipe li:first-child::before{top:50%}.pipe li:last-child::before{bottom:50%}
+.pipe .t{font:500 13px var(--mono);color:var(--ember);background:var(--paper);position:relative;text-align:center;align-self:center;white-space:nowrap}
+.note{font-size:13px;color:var(--muted);margin-top:12px}
+/* plan */
+.gates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.gates code{font:500 14px var(--mono);color:var(--lock);background:var(--lock-s);padding:2px 8px;border-radius:6px}
+.road{margin-top:24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--raised)}
+.road>div{padding:18px;border-right:1px solid var(--line)}.road>div:last-child{border-right:0}
+.road .w{font:500 13px var(--mono);color:var(--muted)}
+.road .bar2{height:6px;border-radius:3px;background:var(--line);margin-top:12px;overflow:hidden}
+.road .bar2 i{display:block;height:100%;background:var(--ember)}
+.keep{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.keep span{font-size:13px;background:var(--garden-s);color:var(--ink);padding:6px 12px;border-radius:999px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+@media(max-width:900px){.hero{grid-template-columns:minmax(0,1fr)}.panel{position:static}.news{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){nav{display:none}.mean,.gates{grid-template-columns:minmax(0,1fr)}.road{grid-template-columns:minmax(0,1fr)}.road>div{border-right:0;border-bottom:1px solid var(--line)}}
+/* isometric hero */
+.plan{background:linear-gradient(var(--sky),var(--paper) 75%);border:1px solid var(--line);border-radius:24px;padding:12px 12px 16px;box-shadow:var(--shadow);overflow:hidden}
+.plan svg{display:block;width:100%;height:auto;max-height:min(82vh,820px);margin:0 auto}
+.room{cursor:pointer}
+.room .tile{stroke:var(--line);stroke-width:1.5;transition:stroke .2s,fill-opacity .2s}
+.room:hover .tile,.room:focus .tile{stroke:var(--ink);stroke-width:2}
+.room.on .tile{stroke:var(--ember);stroke-width:3.5}
+.room:focus{outline:none}
+.lb{font:700 15px var(--sans);fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:5px;stroke-linejoin:round;pointer-events:none}
+.lb.s{font:500 11px var(--sans);fill:var(--muted)}
+.edge{stroke:var(--ink);stroke-opacity:.18;stroke-width:1;stroke-linejoin:round}
+.star{fill:var(--ink);opacity:0;transition:opacity .4s}
+:root[data-theme=dark] .star{opacity:.8}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .star{opacity:.8}}
+.jump{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px}
+.jump button{min-height:40px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--raised);color:var(--ink);font:500 13px var(--sans);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.jump button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.jump button[aria-pressed=true]{border-color:var(--ember);background:var(--ember-s)}
+.panel .fl{display:flex;align-items:center;gap:8px}
+.panel .fl i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+@media(min-width:901px){.hero{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
+</style>
 </head>
 <body>
-<a class="skip" href="#meaning">본문으로</a>
+<a class="skip" href="#house">본문으로</a>
+<header><div class="bar">
+<a class="logo" href="#top" aria-label="온-이음 처음으로">온<i></i>이음</a>
+<nav aria-label="주요"><a href="#house">집 둘러보기</a><a href="dashboard.html">대시보드</a><a href="#meaning">이름의 뜻</a><a href="#news">뉴스 라운지</a><a href="#plan">계획</a></nav>
+<button class="theme" id="theme" aria-label="낮밤 전환">낮</button>
+</div></header>
 
-<header class="top">
-  <div class="wrap top-in">
-    <a class="brand" href="#" aria-label="온-이음 처음으로">온<span class="dash" aria-hidden="true"></span>이음</a>
-    <nav class="nav" aria-label="섹션">
-      <a href="#meaning">이름의 뜻</a>
-      <a href="#house">집 둘러보기</a>
-      <a href="dashboard.html">대시보드</a>
-      <a href="#news">뉴스 라운지</a>
-      <a href="#plan">계획</a>
-    </nav>
-    <button class="theme" id="theme" aria-label="낮/밤 바꾸기"><span class="sun">낮</span><span class="moon">밤</span></button>
-  </div>
-</header>
+<main id="top">
+<section class="band" id="house"><div class="in hero">
+<div class="hero-head">
+<div><span class="tag">개인 AI 워크스페이스 · v0.4 아이소메트릭</span>
+<h1 style="margin-top:10px">온기를 잇고, 온 사람을 잇는 집</h1>
+<p class="lead">뉴스·수업·일·서재·가족을 3층짜리 집 한 채에 담았습니다. 방을 눌러 보세요. AI가 정리해 두면 나는 확인하고 승인만 합니다.</p></div>
+<div class="floors" id="legend"></div>
+</div>
+<div class="plan"><svg id="svg" viewBox="0 0 680 860" role="group" aria-label="온이음 집 아이소메트릭 단면도. 방을 누르면 설명이 열립니다."></svg>
+<div class="jump" id="jump" role="group" aria-label="방 바로가기"></div></div>
+<aside class="panel" id="panel" aria-live="polite"></aside>
+</div></section>
 
-<main>
-  <!-- HERO / NAME -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-text">
-        <p class="eyebrow">개인 AI 워크스페이스 · v0.3</p>
-        <h1 class="logo">온<span class="dash big" aria-hidden="true"></span>이음</h1>
-        <p class="roman">On-ieum</p>
-        <p class="tagline">온기를 잇고, 온 사람을 잇는 집</p>
-        <p class="lead">뉴스·수업·일·서재·가족, 흩어진 하루를 3층짜리 한 채의 집에 이어 둡니다. AI가 읽고 정리해 두면 나는 방을 거닐며 <b>확인하고 승인만</b> 합니다. PC와 휴대폰에서 같은 집이 실시간으로 열립니다.</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="#meaning">이름의 뜻</a>
-          <a class="btn ghost" href="#house">집 둘러보기</a>
-          <a class="btn ghost" href="dashboard.html">기획 대시보드</a>
-        </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 420 360" class="threads">
-          <path class="th t1" d="M70 70 C150 40 210 120 210 180"/>
-          <path class="th t2" d="M350 70 C280 50 220 110 210 180"/>
-          <path class="th t3" d="M60 290 C120 300 170 240 210 180"/>
-          <path class="th t4" d="M360 290 C300 310 250 240 210 180"/>
-          <path class="th t5" d="M210 180 C215 240 205 280 210 330"/>
-          <path class="th ring" d="M70 70 C160 10 260 10 350 70 C420 150 420 230 360 290 C280 360 140 360 60 290 C0 220 0 140 70 70"/>
-          <g class="node n-news"><circle cx="70" cy="70" r="26"/><text x="70" y="75">뉴스</text></g>
-          <g class="node n-class"><circle cx="350" cy="70" r="26"/><text x="350" y="75">교육</text></g>
-          <g class="node n-work"><circle cx="60" cy="290" r="26"/><text x="60" y="295">업무</text></g>
-          <g class="node n-lib"><circle cx="360" cy="290" r="26"/><text x="360" y="295">서재</text></g>
-          <g class="node n-jf"><circle cx="210" cy="330" r="22"/><text x="210" y="335">JF</text></g>
-          <g class="core"><circle cx="210" cy="180" r="44"/><text x="210" y="176">나</text><text x="210" y="196" class="sm">Young</text></g>
-        </svg>
-      </div>
-    </div>
-  </section>
+<section class="band" id="meaning" style="background:var(--raised)"><div class="in">
+<h2>이름의 뜻</h2>
+<p class="lead">세 조각이 모여 하나의 이름이 됩니다. 가운데 붙임표(-)까지 이름의 일부예요.</p>
+<div class="mean">
+<div class="card"><div class="big">온</div><h3>따뜻할 온, 온 누리의 온</h3><p>하루를 데우는 온기와, 빠짐없이 모두라는 뜻을 함께 담았습니다.</p></div>
+<div class="card"><div class="big" aria-label="붙임표">–</div><h3>이음표</h3><p>붙임표를 '이음표'로 읽습니다. 흩어진 뉴스·수업·일·가족을 한 줄로 잇는 선이에요.</p></div>
+<div class="card"><div class="big">이음</div><h3>잇다</h3><p>PC와 휴대폰, 나와 가족, 오늘과 내일을 실시간으로 잇습니다.</p></div>
+</div>
+<div class="words"><span><b>다락</b> 3층 서재와 루프탑</span><span><b>느루</b> 꾸준히 오래 가는 다짐</span></div>
+<p class="quote">"온기를 잇고, 온 사람을 잇다."</p>
+</div></section>
 
-  <!-- MEANING -->
-  <section id="meaning" class="meaning-sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>이름의 뜻</h2>
-        <p>세 조각이 모여 하나의 이름이 됩니다. 가운데 붙임표(-)까지 이름의 일부예요.</p>
-      </div>
-      <div class="word">
-        <article class="piece p-on">
-          <p class="big">온</p>
-          <h3>따뜻할 온 · 온 누리의 온</h3>
-          <p>소리로는 <b>온기(溫)</b>, 순우리말로는 <b>'온 가족, 온 세상'의 모두</b>. 혼자 일해도 외롭지 않은 따뜻한 집, 누구나 들어와 함께하는 집이라는 뜻입니다.</p>
-        </article>
-        <article class="piece p-dash">
-          <p class="big"><span class="dash xl"></span></p>
-          <h3>붙임표 · 이음표</h3>
-          <p>예전 국어 문장부호 규정에서 붙임표(-)는 <b>'이음표'</b>에 속했습니다. 이름 가운데의 작은 선이 곧 <b>잇는 실</b>입니다. 이 사이트의 모든 선은 이 붙임표에서 나왔어요.</p>
-        </article>
-        <article class="piece p-ieum">
-          <p class="big">이음</p>
-          <h3>잇다 → 이음</h3>
-          <p>뉴스와 수업, 일과 가족, <b>AI와 사람</b>, 성취기준과 학습지, <b>PC와 휴대폰</b>. 흩어진 것을 끊김 없이 이어 주는 자리라는 뜻입니다.</p>
-        </article>
-      </div>
-      <div class="also">
-        <p><b>ON</b> 영문 표기의 'On'은 <i>켜다</i>이기도 합니다. 매일 08:20, 뉴스 라운지에 불이 켜지는 집.</p>
-        <p><b>다락</b> 3층 서재와 루프탑은 '다락'이라 부릅니다. 가장 아늑한 꼭대기 방.</p>
-        <p><b>느루</b> 집의 다짐. 한꺼번에 몰아치지 않고 오래도록, 꾸준히.</p>
-      </div>
-      <blockquote class="motto">온기를 잇고, 온 사람을 잇다.<br><span>느루, 오래도록 함께 자라는 집 — 온-이음</span></blockquote>
-    </div>
-  </section>
+<section class="band" id="news"><div class="in">
+<span class="tag">1층 · 뉴스 라운지</span>
+<h2 style="margin-top:10px">매일 08:20, 뉴스 10개를 세 줄로</h2>
+<div class="news">
+<div><h3 style="margin-bottom:12px">요약 파이프라인</h3>
+<ol class="pipe" id="pipe"></ol></div>
+<div><div class="tabs" id="tabs" role="group" aria-label="뉴스 분류"></div><div id="list"></div>
+<p class="note">화면의 기사는 자리표시 예시이며, 원문은 저장하지 않습니다.</p></div>
+</div>
+</div></section>
 
-  <!-- HOUSE -->
-  <section id="house" class="house-sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>집 둘러보기</h2>
-        <p>방을 누르면 그 방에서 하는 일과 <b>이어지는 방</b>이 열립니다. 아래 수납장 서랍으로도 바로 부를 수 있어요.</p>
-      </div>
-      <div class="house-grid">
-        <div class="ship">
-        <div class="house" id="houseMap">
-          <div class="sky" aria-hidden="true"><span class="sunball"></span><span class="star s1"></span><span class="star s2"></span><span class="star s3"></span></div>
-          <div class="roof" aria-hidden="true"></div>
-
-          <p class="lvl">3층 · 다락 — 서재와 루프탑</p>
-          <div class="floor f3">
-            <button class="room t-oak" data-room="library"><b>서재</b><span>작품 · 독서 · 포트폴리오 · 여행 지도</span></button>
-            <button class="room t-pool" data-room="pool"><b>루프탑 수영장</b><span>집중 타이머</span></button>
-            <button class="room t-ember" data-room="camp"><b>캠핑 데크</b><span>저녁 회고</span></button>
-          </div>
-
-          <p class="lvl">2층 · 배움과 일</p>
-          <div class="floor f2">
-            <button class="room t-lock" data-room="class"><b>교실</b><span>성취기준 · 학습지 · 서논술형 · 수능작전</span></button>
-            <button class="room t-lock" data-room="escape"><b>방탈출</b><span>국어랑 게임 · 수학게임</span></button>
-            <button class="room t-oak" data-room="studio"><b>작업실</b><span>코딩 · 메인비주얼 · 요약 · 영문 보고서</span></button>
-          </div>
-
-          <p class="lvl">1층 · 하루의 시작과 가족</p>
-          <div class="floor f1">
-            <button class="room t-pool" data-room="news"><b>뉴스 라운지</b><span>오늘의 뉴스 10 · 08:20</span></button>
-            <button class="room t-garden" data-room="living"><b>거실 · 응접실</b><span>타임캡슐 수납장으로 방 호출</span><i class="mini-cab" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></i></button>
-            <button class="room t-garden" data-room="jf"><b>with JF</b><span>시간표 · 가족앨범 · 1·2·3번방</span></button>
-          </div>
-          <div class="yard"><span>앞마당</span> 주간 회고 · 산책 모드</div>
-          <svg class="stitch" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 10 100"><path d="M5 0 V100"/></svg>
-        </div>
-        <div class="thrust" aria-hidden="true"><i></i><i></i><i></i></div>
-        </div>
-
-        <aside class="panel" id="panel" aria-live="polite"></aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWS -->
-  <section id="news" class="wrap news-sec">
-    <div class="sec-head">
-      <h2>뉴스 라운지</h2>
-      <p>매일 아침 AI · IT · EDU · 교육정책 뉴스 10개를 모아 3줄로 요약하고, 08:20에 휴대폰으로 알려 줍니다. 마음에 드는 기사는 <b>교실로 이어 보냅니다.</b></p>
-    </div>
-    <div class="news-wrap">
-      <div class="phone" aria-label="휴대폰 알림 미리보기">
-        <div class="phone-in">
-          <p class="clock">08:20</p>
-          <p class="date">11월 17일 화요일</p>
-          <div class="noti"><b>온-이음 · 뉴스 라운지</b><span>오늘 뉴스 10개가 도착했어요. 교육정책 3 · AI 4 · EDU 2 · IT 1</span></div>
-          <div class="noti dim"><b>온-이음 · 승인함</b><span>학습지 초안 2건이 승인을 기다려요 (B)</span></div>
-        </div>
-      </div>
-      <div class="news-board">
-        <div class="filters" aria-label="분야">
-          <button class="chip on" data-f="all">전체</button>
-          <button class="chip" data-f="AI">AI</button>
-          <button class="chip" data-f="IT">IT</button>
-          <button class="chip" data-f="EDU">EDU</button>
-          <button class="chip" data-f="정책">교육정책</button>
-        </div>
-        <ol class="news" id="newsList"></ol>
-        <p class="note">화면의 기사는 자리표시 예시입니다. 실제 버전은 공개 RSS에서 수집하며 원문은 저장하지 않고 제목·링크·요약만 보여 줍니다.</p>
-      </div>
-    </div>
-    <ol class="flow">
-      <li><b>08:05</b><span>RSS 수집</span></li>
-      <li><b>규칙 분류</b><span>분야 · 중복 제거</span></li>
-      <li><b>상위 10</b><span>숫자는 코드가</span></li>
-      <li><b>3줄 요약</b><span>AI는 문장만</span></li>
-      <li class="hot"><b>08:20</b><span>대시보드 + 휴대폰 알림</span></li>
-    </ol>
-  </section>
-
-  <!-- PLAN -->
-  <section id="plan" class="plan-sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>계획 한눈에</h2>
-        <p>「개인 AI 워크스페이스 구축 가이드」의 10단계 구조를 따르고, 그 위에 '이어진 3층 집'이라는 공간 은유를 얹었습니다.</p>
-      </div>
-
-      <div class="cards3">
-        <article class="pc"><h3>데이터를 잇는 관문</h3><p><code>lib/data</code> — 모든 저장은 한 창구로. 데모 → 로컬 → Supabase 운영 모드가 자동 전환되고, 키가 없어도 화면은 깨지지 않습니다.</p></article>
-        <article class="pc"><h3>AI를 잇는 관문</h3><p><code>callLLM</code> — 모든 AI 호출은 한 함수로. FAST · MAIN · DEEP 등급, 월 예산 80%에서 등급 하향, 100%에서 정지.</p></article>
-        <article class="pc"><h3>실행을 잇는 관문</h3><p><code>executeApproval</code> — 보내기·삭제·게시는 승인된 건만, 24시간 이내, 내용 해시가 같을 때만 실행.</p></article>
-      </div>
-
-      <h3 class="sub">4주 로드맵</h3>
-      <ol class="road">
-        <li><span class="wk">1주</span><b>거실과 수납장이 열린다</b><span>뼈대 · 저장 창구 · 오늘 화면</span></li>
-        <li><span class="wk">2주</span><b>뉴스 라운지와 08:20 알림</b><span>AI 관문 · 승인함 · 외부 연동</span></li>
-        <li><span class="wk">3주</span><b>교실·작업실에서 지시가 문서로</b><span>AI 가상 팀 · 지식 노트 · 성취기준 MCP</span></li>
-        <li><span class="wk">4주</span><b>휴대폰에서도 같은 집</b><span>상시 서버 · Supabase 실시간 · 배포</span></li>
-      </ol>
-
-      <div class="two">
-        <div class="box">
-          <h3>교육과정 서가 — 성취기준 MCP</h3>
-          <ul>
-            <li><b>초등</b> korean-elementary-learning-map-mcp · 성취기준 620(원문), 세부 주제 1,956, 선수관계</li>
-            <li><b>중등</b> korean-secondary-learning-map-mcp · 255과목, 성취기준 3,838(원문), 중→고 전이</li>
-            <li>키·요금 없이 로컬 실행. 학습지에 찍히는 성취기준 코드는 이 서가에서 확인된 것만 씁니다.</li>
-          </ul>
-        </div>
-        <div class="box">
-          <h3>지키는 것</h3>
-          <ul>
-            <li>발송·삭제·외부 게시는 반드시 승인함을 거칩니다.</li>
-            <li>영구 삭제 없음 — 휴지통 이동 + 기록.</li>
-            <li>학생·아이의 이름과 사진은 AI 입력에서 제외합니다.</li>
-            <li>비밀값은 <code>.env.local</code>과 호스팅 환경변수에만.</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3 class="sub">기술 구성</h3>
-      <div class="stack">
-        <span>Next.js + TypeScript (PWA)</span><span>2.5D 아이소메트릭 SVG</span><span>Supabase Realtime · RLS</span><span>GitHub Actions 예약 수집</span><span>ntfy / 카카오 알림</span><span>Gemini · Claude API (관문 경유)</span>
-      </div>
-    </div>
-  </section>
+<section class="band" id="plan" style="background:var(--raised)"><div class="in">
+<h2>계획 한눈에</h2>
+<p class="lead">AI는 세 개의 관문을 지나야만 움직입니다.</p>
+<div class="gates">
+<div class="card"><code>lib/data</code><h3 style="margin:12px 0 6px">데이터 저장</h3><p>모든 기록은 한 곳으로. 영구 삭제 없이 보관함으로 옮깁니다.</p></div>
+<div class="card"><code>callLLM</code><h3 style="margin:12px 0 6px">AI 호출</h3><p>월 예산을 넘기면 모델 등급을 낮추고, 한도에서 멈춥니다.</p></div>
+<div class="card"><code>executeApproval</code><h3 style="margin:12px 0 6px">승인 후 실행</h3><p>내가 승인한 건만 24시간 안에 실행합니다.</p></div>
+</div>
+<div class="road" id="road"></div>
+<div class="keep"><span>승인 필수</span><span>영구 삭제 없음</span><span>학생 정보는 AI에 넣지 않음</span><span>비밀값은 환경변수에</span></div>
+<p class="note">Next.js + TypeScript(PWA) · 2.5D SVG · Supabase Realtime · GitHub Actions · ntfy/카카오 알림 · Gemini·Claude API</p>
+</div></section>
 </main>
 
-<footer class="foot">
-  <div class="wrap foot-in">
-    <p class="foot-logo">온<span class="dash" aria-hidden="true"></span>이음</p>
-    <div>
-      <p>온기를 잇고, 온 사람을 잇는 집 · v0.3 · 2026. 11.</p>
-      <p>설계 참고: 「개인 AI 워크스페이스 구축 가이드」(2026). 화면의 데이터는 모두 예시입니다.</p>
-      <p><a href="https://github.com/kate-young2026/on-ieum">github.com/kate-young2026/on-ieum</a></p>
-    </div>
-  </div>
-</footer>
+<footer class="band"><div class="in">
+<span><b style="font-family:var(--disp);color:var(--ink)">온이음</b> 온기를 잇고, 온 사람을 잇는 집</span>
+<span>v0.4 아이소메트릭 · 2026. 11. · <a href="v03.html">v0.3 기획 사이트</a> · <a href="https://github.com/kate-young2026/on-ieum">GitHub</a></span>
+</div></footer>
 
-<nav class="cabinet" aria-label="타임캡슐 수납장">
-  <button data-room="news"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">뉴스</span></button>
-  <button data-room="class"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">교육</span></button>
-  <button data-room="studio"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">업무</span></button>
-  <button data-room="library"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">서재</span></button>
-  <button data-room="jf"><span class="cap-top" aria-hidden="true"></span><span class="cap-label">JF</span></button>
-</nav>
+<script>
+{
+const C={oak:['--oak','--oak-s'],pool:['--pool','--pool-s'],lock:['--lock','--lock-s'],ember:['--ember','--ember-s'],garden:['--garden','--garden-s']};
+const rooms=[
+{id:'study',fl:'3층 · 다락',n:'서재',c:'oak',f:2,i:0,s:'책·논문·메모',d:['읽던 책과 논문을 이어 읽기','AI가 하이라이트를 카드로 정리','느루 노트: 오래 가는 다짐'],to:['class','deck'],go:[['서재 포트폴리오','rooms/portfolio.html']]},
+{id:'pool',fl:'3층 · 루프탑',n:'수영장',c:'pool',f:2,i:1,win:1,s:'집중 타이머',d:['25분 물결 타이머','집중한 시간은 하루 리본에 기록'],to:['work']},
+{id:'deck',fl:'3층 · 루프탑',n:'캠핑 데크',c:'ember',f:2,i:2,win:1,s:'저녁 회고',d:['모닥불 앞 질문 세 개','오늘 승인한 일 되돌아보기'],to:['yard','study']},
+{id:'class',fl:'2층 · 배움',n:'교실',c:'pool',f:1,i:0,s:'성취기준·학습지',d:['성취기준 MCP로 단원 찾기','학습지 초안 → 승인 대기','수능 작전표'],to:['escape','study'],go:[['교실 열기','rooms/classroom.html'],['교실 사물함','rooms/locker.html'],['문학 작품 속 인물과 대화','https://literary-dialogue-class-test.onrender.com/']]},
+{id:'escape',fl:'2층 · 배움',n:'방탈출',c:'garden',f:1,i:1,s:'국어·수학 게임',d:['문제를 풀어야 열리는 문','수업용 게임으로 내보내기'],to:['class']},
+{id:'work',fl:'2층 · 일',n:'작업실',c:'lock',f:1,i:2,win:1,s:'코딩·요약·영문',d:['코드 초안과 리뷰','긴 보고서 요약','영문 보고서 번역 검수'],to:['news','pool'],go:[['코딩방 열기','rooms/coding.html']]},
+{id:'news',fl:'1층 · 하루의 시작',n:'뉴스 라운지',c:'ember',f:0,i:0,win:1,s:'08:20 도착',d:['AI·IT·EDU·교육정책 10개','세 줄 요약과 원문 링크만'],to:['living','work']},
+{id:'living',fl:'1층 · 가족',n:'거실',c:'oak',f:0,i:1,s:'수납장 = 방 호출',d:['수납장 칸을 열면 그 방으로','오늘 화면이 여기 있어요'],to:['news','jf','class']},
+{id:'jf',fl:'1층 · 가족',n:'with JF',c:'garden',f:0,i:2,s:'시간표·앨범',d:['아이 시간표와 준비물','가족 앨범'],to:['living','yard']},
+{id:'yard',fl:'앞마당',n:'앞마당',c:'garden',f:-1,i:0,s:'주간 회고 · 산책 모드',d:['한 주를 산책하듯 돌아보기','휴대폰만 들고 나가는 산책 모드'],to:['deck','jf']}];
+const svg=document.getElementById('svg'),panel=document.getElementById('panel'),jump=document.getElementById('jump');
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+/* isometric projection: x → right-down, y → left-down, z → up (px) */
+const CX=103.92,HY=60,OX=262,OY=516,D=1.1,W=3,FH=150,WH=124,YD=2.0;
+const P=(x,y,z)=>[OX+(x-y)*CX,OY+(x+y)*HY-z];
+const pts=a=>a.map(p=>P(...p).map(v=>v.toFixed(1)).join(',')).join(' ');
+const poly=(a,at)=>`<polygon points="${pts(a)}" ${at}/>`;
+const fq=(x0,y0,x1,y1,z)=>[[x0,y0,z],[x1,y0,z],[x1,y1,z],[x0,y1,z]];
+const wy=(y,x0,x1,z0,z1)=>[[x0,y,z0],[x1,y,z0],[x1,y,z1],[x0,y,z1]];
+const wx=(x,y0,y1,z0,z1)=>[[x,y0,z0],[x,y1,z0],[x,y1,z1],[x,y0,z1]];
+const shade=(a,o)=>poly(a,`fill="#000" fill-opacity="${o}"`);
+const face=(a,col,o)=>poly(a,`fill="var(${col})" class="edge"`)+(o?shade(a,o):'');
+const box=(x,y,w,d,h,z,col)=>face(wy(y+d,x,x+w,z,z+h),col,.22)+face(wx(x+w,y,y+d,z,z+h),col,.36)+face(fq(x,y,x+w,y+d,z+h),col,0);
+const dot=(x,y,z,r,col,o=1)=>{const[a,b]=P(x,y,z);return `<circle cx="${a.toFixed(1)}" cy="${b.toFixed(1)}" r="${r}" fill="var(${col})" opacity="${o}"/>`};
+const props={
+ study:(X,z)=>box(X+.06,.04,.66,.16,92,z,'--oak')+[0,1,2].map(k=>face(wy(.2,X+.1,X+.68,z+18+k*26,z+21+k*26),'--oak-s',0)).join('')+box(X+.4,.62,.42,.26,30,z,'--oak')+dot(X+.55,.7,z+42,5,'--ember',.9),
+ pool:(X,z)=>poly(fq(X+.1,.1,X+.9,1.0,z+1),'fill="var(--paper)" class="edge"')+poly(fq(X+.17,.17,X+.83,.93,z+2),'fill="var(--pool)" fill-opacity=".8"')+[.36,.55,.74].map(y=>{const[a,b]=P(X+.3,y,z+2),[c,d]=P(X+.7,y,z+2);return `<path d="M${a} ${b} Q${(a+c)/2} ${(b+d)/2-6} ${c} ${d}" stroke="var(--paper)" stroke-width="2" fill="none" opacity=".8"/>`}).join(''),
+ deck:(X,z)=>poly([[X+.08,.62,z],[X+.62,.62,z],[X+.35,.62,z+58]],'fill="var(--garden)" class="edge"')+poly([[X+.35,.62,z+58],[X+.35,.1,z+58],[X+.62,.1,z],[X+.62,.62,z]],'fill="var(--garden)" class="edge"')+shade([[X+.35,.62,z+58],[X+.35,.1,z+58],[X+.62,.1,z],[X+.62,.62,z]],.3)+box(X+.6,.84,.26,.06,6,z,'--oak')+box(X+.7,.76,.06,.22,6,z,'--oak')+dot(X+.73,.87,z+16,9,'--ember')+dot(X+.73,.87,z+14,4,'--oak'),
+ class:(X,z)=>face(wy(.01,X+.12,X+.88,z+42,z+92),'--lock',0)+[0,1].map(k=>`<path d="M${P(X+.22+k*.3,.01,z+75).join(' ')} L${P(X+.4+k*.3,.01,z+75).join(' ')}" stroke="var(--paper)" stroke-width="2" opacity=".7"/>`).join('')+box(X+.18,.55,.26,.2,24,z,'--pool')+box(X+.56,.55,.26,.2,24,z,'--pool'),
+ escape:(X,z)=>face(wy(.01,X+.34,X+.66,z,z+90),'--garden',.1)+dot(X+.6,.01,z+44,3.5,'--oak')+box(X+.3,.66,.32,.3,26,z,'--garden')+box(X+.38,.74,.16,.14,10,z+26,'--oak'),
+ work:(X,z)=>box(X+.12,.14,.74,.3,32,z,'--lock')+box(X+.3,.18,.38,.05,36,z+32,'--lock')+box(X+.4,.7,.2,.2,22,z,'--oak'),
+ news:(X,z)=>box(X+.1,.08,.72,.08,46,z,'--ember')+box(X+.1,.16,.72,.22,24,z,'--ember')+box(X+.3,.66,.38,.24,14,z,'--oak')+poly(fq(X+.37,.71,X+.58,.84,z+15),'fill="var(--paper)" class="edge"'),
+ living:(X,z)=>box(X+.06,.04,.88,.24,66,z,'--oak')+[0,1,2].map(k=>face(wy(.281,X+.1+k*.28,X+.32+k*.28,z+10,z+54),'--oak-s',0)+dot(X+.21+k*.28,.281,z+32,2.5,'--ember')).join('')+poly(fq(X+.18,.5,X+.82,1.0,z+1),'fill="var(--ember-s)" stroke="var(--ember)" stroke-opacity=".4"'),
+ jf:(X,z)=>face(wy(.01,X+.12,X+.34,z+52,z+86),'--oak-s',0)+face(wy(.01,X+.42,X+.58,z+58,z+80),'--garden-s',0)+face(wy(.01,X+.66,X+.9,z+40,z+90),'--paper',0)+[0,1,2,3].map(k=>`<path d="M${P(X+.69,.01,z+48+k*11).join(' ')} L${P(X+.87,.01,z+48+k*11).join(' ')}" stroke="var(--garden)" stroke-width="2"/>`).join('')+box(X+.25,.5,.5,.38,22,z,'--garden'),
+ yard:()=>[.1,.3,.5,.7].map(k=>poly(fq(1.42,D+.25+k*.95*.85,1.62,D+.25+k*.95*.85+.12,1),'fill="var(--paper)" class="edge"')).join('')+box(.42,1.78,.06,.06,40,0,'--oak')+dot(.45,1.81,78,30,'--garden')+dot(.38,1.74,92,16,'--garden-s',.5)+box(3.08,1.55,.04,.04,26,0,'--oak')+dot(3.1,1.57,46,17,'--garden')};
+const anchor=r=>r.f<0?P(1.4,1.55,0):P(r.i+.5,D*.55,r.f*FH+8);
+let cur='living';
+function draw(){
+ const sel=rooms.find(r=>r.id===cur);let s='';
+ s+=[[470,40],[540,96],[640,36],[430,120],[660,170],[40,70],[90,30],[150,110]].map(([x,y],k)=>`<circle class="star" cx="${x}" cy="${y}" r="${k%3?1.4:2}"/>`).join('');
+ s+='<circle cx="580" cy="70" r="20" fill="var(--oak)" opacity=".55"/>';
+ /* ground */
+ s+=face(wy(YD,-.4,W+.3,-16,0),'--garden',.25)+face(wx(W+.3,-.35,YD,-16,0),'--garden',.4)+poly(fq(-.4,-.35,W+.3,YD,0),'fill="var(--wall)" class="edge"');
+ /* yard (clickable) */
+ const yd=rooms.find(r=>r.id==='yard');
+ s+=`<g class="room${cur==='yard'?' on':''}" data-id="yard" tabindex="0" role="button" aria-pressed="${cur==='yard'}" aria-label="앞마당">${poly(fq(-.2,D+.16,W+.15,YD-.12,0),'class="tile" fill="var(--garden-s)"')}${props.yard()}</g>`;
+ /* floors */
+ for(let f=0;f<3;f++){const z=f*FH;
+  if(f>0)s+=face(wy(D,0,W,z-14,z),'--line',.12)+face(wx(W,0,D,z-14,z),'--line',.25);
+  s+=face(wx(0,0,D,z,z+WH),'--wall',.04)+face(wy(0,0,W,z,z+WH),'--raised',0);
+  s+=`<text class="lb s" x="${(P(0,D,z+40)[0]-10).toFixed(1)}" y="${P(0,D,z+40)[1].toFixed(1)}" text-anchor="end">${['1층','2층','3층'][f]}</text>`;
+  rooms.filter(r=>r.f===f).sort((a,b)=>a.i-b.i).forEach(r=>{const X=r.i,on=r.id===cur;
+   if(r.win)s+=face(wy(.005,X+.3,X+.7,z+46,z+92),'--sky',0)+`<path d="M${P(X+.5,.005,z+46).join(' ')} L${P(X+.5,.005,z+92).join(' ')}" stroke="var(--line)" stroke-width="2"/>`;
+   s+=`<g class="room${on?' on':''}" data-id="${r.id}" tabindex="0" role="button" aria-pressed="${on}" aria-label="${esc(r.fl+' '+r.n)}">${poly(fq(X,0,X+1,D,z),`class="tile" fill="var(${C[r.c][1]})"`)}${props[r.id](X,z)}</g>`;
+   if(r.i<2)s+=face(wx(X+1,0,D*.58,z,z+WH),'--wall',.1);
+  });
+ }
+ /* roof: back slope + gable, front slope cut away (dashed) */
+ const RB=3*FH-4,RT=RB+62;
+ s+=face(wy(-.02,-.02,W+.02,RB-8,RB),'--oak',.1);
+ s+=poly([[0,0,RB],[0,D,RB],[0,D/2,RT]],'fill="var(--oak-s)" class="edge"')+shade([[0,0,RB],[0,D,RB],[0,D/2,RT]],.06);
+ s+=poly([[-.18,-.14,RB-10],[W+.18,-.14,RB-10],[W+.18,D/2,RT],[-.18,D/2,RT]],'fill="var(--oak)" fill-opacity=".85" class="edge"');
+ s+=box(2.3,.12,.18,.18,40,RB+22,'--oak');
+ s+=`<path d="M${P(-.18,D/2,RT).join(' ')} L${P(W+.18,D/2,RT).join(' ')}" stroke="var(--oak)" stroke-width="5" stroke-linecap="round"/>`;
+ s+=poly([[W,0,RB],[W,D,RB],[W,D/2,RT]],'fill="none" stroke="var(--oak)" stroke-width="2" stroke-dasharray="6 6"');
+ /* labels */
+ rooms.forEach(r=>{const[a,b]=r.f<0?P(.55,1.88,0):P(r.i+.6,D,r.f*FH);
+  s+=`<text class="lb" x="${a.toFixed(1)}" y="${(b+(r.f<0?-4:16)).toFixed(1)}" text-anchor="middle">${esc(r.n)}</text><text class="lb s" x="${a.toFixed(1)}" y="${(b+(r.f<0?12:31)).toFixed(1)}" text-anchor="middle">${esc(r.s)}</text>`});
+ /* me + threads */
+ const me=P(2.3,1.85,0);
+ if(sel){const t=anchor(sel);s+=`<path class="thread" d="M${me[0]} ${me[1]-26} C ${me[0]} ${t[1]+60} ${t[0]+90} ${t[1]} ${t[0]} ${t[1]}"/>`;
+  sel.to.forEach(id=>{const q=anchor(rooms.find(r=>r.id===id));s+=`<path class="thread" style="opacity:.4" d="M${t[0]} ${t[1]} L${q[0]} ${q[1]}"/>`});
+  s+=`<circle cx="${t[0]}" cy="${t[1]}" r="6" fill="var(--ember)"/>`}
+ s+=`<ellipse cx="${me[0]}" cy="${me[1]+4}" rx="30" ry="12" fill="#000" fill-opacity=".12"/><circle cx="${me[0]}" cy="${me[1]-26}" r="28" fill="var(--ember)"/><text x="${me[0]}" y="${me[1]-20}" text-anchor="middle" style="font:700 17px var(--disp);fill:var(--on)">나</text>`;
+ svg.innerHTML=s;
+ const [c1]=C[sel.c];panel.style.setProperty('--c',`var(${c1})`);
+ panel.innerHTML=`<div class="fl"><i></i>${esc(sel.fl)}</div><h3>${esc(sel.n)}</h3><ul>${sel.d.map(x=>`<li><b></b><span>${esc(x)}</span></li>`).join('')}</ul>
+ ${sel.go?`<div class="go">${sel.go.map(([t,h],k)=>`<a class="btn${k?'':' pri'}" href="${esc(h)}"${/^https?:/.test(h)?' target="_blank" rel="noopener"':''}>${esc(t)}${/^https?:/.test(h)?' ↗':''}</a>`).join('')}</div>`:''}
+ <div class="fl" style="margin-bottom:8px">이어지는 방</div><div class="links">${sel.to.map(t=>{const r=rooms.find(q=>q.id===t);return `<button data-go="${r.id}">${esc(r.n)} →</button>`}).join('')}</div>`;
+ jump.innerHTML=rooms.map(r=>`<button data-go="${r.id}" aria-pressed="${r.id===cur}" style="--c:var(${C[r.c][0]})"><i></i>${esc(r.n)}</button>`).join('');
+}
+draw();
+const pick=(id,focus)=>{cur=id;draw();if(focus){const g=svg.querySelector(`[data-id="${id}"]`);if(g)g.focus()}};
+svg.addEventListener('click',e=>{const g=e.target.closest('.room');if(g)pick(g.dataset.id)});
+svg.addEventListener('keydown',e=>{const g=e.target.closest('.room');if(g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();pick(g.dataset.id,1)}});
+panel.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)pick(b.dataset.go)});
+jump.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)pick(b.dataset.go)});
 
-<script src="app.js"></script>
+const news=[
+{k:'AI',c:'ember',t:'생성형 AI 교실 활용 가이드 개정',p:'교사용 프롬프트 예시 확대 · 평가 활용은 제한 · 학교별 자율 운영'},
+{k:'EDU',c:'pool',t:'2022 개정 교육과정 고교학점제 운영 점검',p:'선택과목 개설 현황 · 공동교육과정 확대 · 진로 상담 강화'},
+{k:'IT',c:'lock',t:'PWA 푸시 알림, 모바일 브라우저 지원 넓어져',p:'설치 없이 알림 · 배터리 영향 적음 · 권한 요청 문구가 관건'},
+{k:'교육정책',c:'garden',t:'디지털 기반 수업 혁신 지원 사업 공모',p:'학교 단위 신청 · 연수 연계 · 성과 공유회 예정'},
+{k:'AI',c:'ember',t:'오픈 모델 경량화로 개인 기기 추론 늘어',p:'노트북에서 요약 가능 · 비용 절감 · 정확도 확인 필요'}];
+const tabs=['전체','AI','IT','EDU','교육정책'];let tf='전체';
+const tabEl=document.getElementById('tabs'),listEl=document.getElementById('list');
+function renderNews(){tabEl.innerHTML=tabs.map(t=>`<button aria-pressed="${t===tf}" data-t="${t}">${t}</button>`).join('');
+ const a=news.filter(n=>tf==='전체'||n.k===tf);
+ listEl.innerHTML=a.length?a.map(n=>`<div class="item" style="--c:var(${C[n.c][0]});--cs:var(${C[n.c][1]})"><span class="k">${esc(n.k)}</span><div><h4>${esc(n.t)}</h4><p>${esc(n.p)}</p></div></div>`).join(''):'<p class="note">이 분류의 오늘 뉴스는 아직 없어요.</p>'}
+tabEl.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){tf=b.dataset.t;renderNews()}});renderNews();
+document.getElementById('pipe').innerHTML=[['06:00','RSS 수집','신뢰 출처 목록에서 새 글만'],['06:10','규칙 분류','AI · IT · EDU · 교육정책'],['06:20','상위 10','중복을 묶고 중요도로 정렬'],['07:30','3줄 요약','요약만 저장, 원문은 링크로'],['08:20','알림','휴대폰과 PC에 동시에']].map(([t,a,b])=>`<li><span class="t">${t}</span><div><b>${a}</b><br><span style="color:var(--muted);font-size:14px">${b}</span></div></li>`).join('');
+document.getElementById('road').innerHTML=[['1주','뼈대와 오늘 화면',100],['2주','뉴스와 알림',60],['3주','교실·작업실과 AI 팀',15],['4주','휴대폰 동기화와 배포',0]].map(([w,t,p])=>`<div><span class="w">${w}</span><h3 style="margin-top:4px">${t}</h3><div class="bar2" role="img" aria-label="진행 ${p}%"><i style="width:${p}%"></i></div></div>`).join('');
+const tb=document.getElementById('theme'),root=document.documentElement;
+const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+try{const t=localStorage.getItem('onieum-theme');if(t)root.dataset.theme=t}catch(e){}
+const sync=()=>{tb.textContent=isDark()?'밤':'낮'};sync();
+tb.addEventListener('click',()=>{root.dataset.theme=isDark()?'light':'dark';try{localStorage.setItem('onieum-theme',root.dataset.theme)}catch(e){}sync()});
+}
+</script>
 </body>
 </html>
