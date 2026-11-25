@@ -43,7 +43,7 @@
 | [`/rooms/portfolio.html`](https://kate-young2026.github.io/on-ieum/rooms/portfolio.html) | 서재 포트폴리오: 2025년 8월 이후 메인비주얼 작업 카드 |
 
 ### 뉴스 라운지 (실제 동작)
-- `.github/workflows/news.yml`이 매일 06:07 KST에 `scripts/news/collect.mjs`를 돌려 공개 RSS 19곳(`data/news/feeds.json`: OpenAI·Anthropic·Google DeepMind·Google AI·Hugging Face·Microsoft·NVIDIA 공식 발표, AI타임스·ZDNet·전자신문·블로터, 한국교육신문·에듀프레스·교육플러스, 정책브리핑 교육부, 구글 뉴스 검색)을 읽습니다.
+- `.github/workflows/news.yml`이 매일 06:07 KST에 `scripts/news/collect.mjs`를 돌려 공개 RSS 16곳(`data/news/feeds.json`: OpenAI·Anthropic·Google DeepMind·Google AI·Hugging Face·NVIDIA 공식 발표, AI타임스·ZDNet·전자신문·블로터, 에듀프레스·교육플러스, 구글 뉴스 검색)을 읽습니다.
 - 분류(AI 출시 · AI · IT · EDU · 교육정책) → 중복 제거 → 분야별 몫으로 상위 10 → 3줄 요약 → `data/news/today.json`, `archive/날짜.json`, AI 모델 출시 기록 `releases.json`(최근 20건). 원문은 저장하지 않습니다.
 - 3줄 요약: 저장소 비밀값 `ANTHROPIC_API_KEY`가 있으면 Claude가, 없으면 기사 설명문 앞 세 문장으로 씁니다.
 - 알림: [ntfy](https://ntfy.sh) 예약 전달로 **08:20 KST**에 도착. 앱에서 주제 `on-ieum-news-915c3aa849`를 구독하세요. 주제를 비공개로 바꾸려면 비밀값 `NTFY_TOPIC`을 넣고 그 주제를 구독합니다.

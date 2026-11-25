@@ -12,7 +12,6 @@
     { "name": "Google DeepMind", "cat": "출시", "url": "https://deepmind.google/blog/rss.xml" },
     { "name": "Google AI", "cat": "출시", "url": "https://blog.google/technology/ai/rss/" },
     { "name": "Hugging Face", "cat": "출시", "url": "https://huggingface.co/blog/feed.xml" },
-    { "name": "Microsoft AI", "cat": "출시", "url": "https://blogs.microsoft.com/ai/feed/" },
     { "name": "NVIDIA", "cat": "출시", "url": "https://blogs.nvidia.com/feed/" },
     { "name": "구글 뉴스 · AI 모델 출시", "cat": "출시", "url": "https://news.google.com/rss/search?q=(GPT+OR+Claude+OR+Gemini+OR+Llama+OR+%ED%95%98%EC%9D%B4%ED%8D%BC%ED%81%B4%EB%A1%9C%EB%B0%94+OR+%EC%97%91%EC%82%AC%EC%9B%90)+(%EC%B6%9C%EC%8B%9C+OR+%EA%B3%B5%EA%B0%9C)+when:2d&hl=ko&gl=KR&ceid=KR:ko" },
     { "name": "AI타임스", "cat": "AI", "url": "https://www.aitimes.com/rss/allArticle.xml" },
@@ -20,11 +19,9 @@
     { "name": "ZDNet Korea", "cat": "IT", "url": "https://feeds.feedburner.com/zdkorea" },
     { "name": "전자신문", "cat": "IT", "url": "https://rss.etnews.com/Section901.xml" },
     { "name": "블로터", "cat": "IT", "url": "https://www.bloter.net/rss/allArticle.xml" },
-    { "name": "한국교육신문", "cat": "EDU", "url": "https://www.hangyo.com/rss/allArticle.xml" },
     { "name": "에듀프레스", "cat": "EDU", "url": "https://www.edupress.kr/rss/allArticle.xml" },
     { "name": "교육플러스", "cat": "EDU", "url": "https://www.edpl.co.kr/rss/allArticle.xml" },
     { "name": "구글 뉴스 · 에듀테크", "cat": "EDU", "url": "https://news.google.com/rss/search?q=(%EC%97%90%EB%93%80%ED%85%8C%ED%81%AC+OR+AI+%EA%B5%90%EC%9C%A1+OR+%EB%94%94%EC%A7%80%ED%84%B8+%EA%B5%90%EA%B3%BC%EC%84%9C)+when:1d&hl=ko&gl=KR&ceid=KR:ko" },
-    { "name": "정책브리핑 · 교육부", "cat": "정책", "url": "https://www.korea.kr/rss/dept_moe.xml" },
     { "name": "구글 뉴스 · 교육부", "cat": "정책", "url": "https://news.google.com/rss/search?q=(%EA%B5%90%EC%9C%A1%EB%B6%80+OR+%EA%B5%AD%EA%B0%80%EA%B5%90%EC%9C%A1%EC%9C%84%EC%9B%90%ED%9A%8C+OR+%EA%B3%A0%EA%B5%90%ED%95%99%EC%A0%90%EC%A0%9C+OR+%EB%8C%80%EC%9E%85)+when:1d&hl=ko&gl=KR&ceid=KR:ko" }
   ]
 }
