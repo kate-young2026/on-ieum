@@ -1,6 +1,6 @@
 {
  "date": "2026-11-26",
- "generatedAt": "2026-11-25T15:55:59.177Z",
+ "generatedAt": "2026-11-25T15:56:36.209Z",
  "summary": "extract",
  "headline": "오늘 뉴스 10개가 도착했어요. AI 출시 3 · AI 2 · IT 1 · EDU 2 · 교육정책 2",
  "items": [
@@ -124,7 +124,7 @@
    "name": "Anthropic",
    "cat": "출시",
    "ok": true,
-   "n": 3
+   "n": 8
   },
   {
    "name": "Google DeepMind",
@@ -143,12 +143,6 @@
    "cat": "출시",
    "ok": true,
    "n": 916
-  },
-  {
-   "name": "Microsoft AI",
-   "cat": "출시",
-   "ok": false,
-   "error": "HTTP 410"
   },
   {
    "name": "NVIDIA",
@@ -193,12 +187,6 @@
    "n": 50
   },
   {
-   "name": "한국교육신문",
-   "cat": "EDU",
-   "ok": true,
-   "n": 0
-  },
-  {
    "name": "에듀프레스",
    "cat": "EDU",
    "ok": true,
@@ -214,13 +202,7 @@
    "name": "구글 뉴스 · 에듀테크",
    "cat": "EDU",
    "ok": true,
-   "n": 15
-  },
-  {
-   "name": "정책브리핑 · 교육부",
-   "cat": "정책",
-   "ok": false,
-   "error": "HTTP 404"
+   "n": 17
   },
   {
    "name": "구글 뉴스 · 교육부",
