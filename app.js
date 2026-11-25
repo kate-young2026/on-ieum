@@ -139,7 +139,7 @@
   // 실제 방 페이지가 있는 곳
   var PAGES = {
     class: [['rooms/classroom.html', '교실 들어가기'], ['rooms/locker.html', '수능 사물함']],
-    escape: [['rooms/locker.html', '수능 사물함 열기']],
+    escape: [['rooms/escape.html', '방탈출 들어가기'], ['rooms/locker.html', '수능 사물함 열기']],
     studio: [['rooms/coding.html', '코딩방 들어가기']],
     library: [['rooms/portfolio.html', '포트폴리오 보기']],
     living: [['dashboard.html', '기획 대시보드']]

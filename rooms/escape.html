@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>방탈출 · 온-이음</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='7' cy='16' r='5' fill='%23B5531F'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%2347704F'/%3E%3Cpath d='M12 16h8' stroke='%23B5531F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../css/room.css">
+<link rel="stylesheet" href="../css/escape.css">
+</head>
+<body class="room-page">
+<div class="r-app" id="escapeApp">
+  <nav class="r-rail" aria-label="방">
+    <a class="home" href="../index.html" title="집으로">온-<br>이음</a>
+    <a href="../dashboard.html">대시<br>보드</a>
+    <a href="coding.html">코딩</a>
+    <a href="classroom.html">교실</a>
+    <a href="escape.html" class="on" aria-current="page">방<br>탈출</a>
+    <a href="locker.html">사물함</a>
+    <a href="portfolio.html">서재</a>
+    <span class="grow"></span>
+    <a href="#" data-theme-toggle title="낮/밤">낮밤</a>
+  </nav>
+
+  <aside class="r-list">
+    <header><h1>방탈출</h1><p class="sub">문제를 풀어야 열리는 문 · 국어 · 수학</p></header>
+    <div class="tabs" style="padding:0 14px 6px"><button class="btn-s pri" id="newRoom">+ 새 방 만들기</button></div>
+    <ul class="r-items" id="roomList"></ul>
+  </aside>
+
+  <main class="r-main">
+    <header>
+      <h2 id="roomTitle">방탈출</h2>
+      <div class="tabs" role="tablist"><button class="btn-s on" data-mode="play" role="tab">도전하기</button><button class="btn-s" data-mode="edit" role="tab">방 꾸미기</button></div>
+      <span class="sp"></span>
+      <button class="btn-s" id="fullPlay" title="학생 화면으로 크게 열기">전체 화면</button>
+    </header>
+    <div class="r-body" id="stage"></div>
+  </main>
+
+  <aside class="r-side">
+    <header><b>수업용으로 내보내기</b></header>
+    <div class="r-body" id="side"></div>
+  </aside>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="../js/common.js"></script>
+<script src="../js/standards-search.js"></script>
+<script src="../js/escape.js"></script>
+</body>
+</html>

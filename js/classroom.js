@@ -143,6 +143,7 @@
     renderStds();
     var ind = indicators(std);
     $('stdTitle').textContent = std.code;
+    if ($('toEscape')) $('toEscape').href = 'escape.html?std=' + encodeURIComponent(std.code.replace(/[\[\]]/g, ''));
     $('stdMeta').innerHTML = '<span class="chip-s lock">' + esc(course.subject) + '</span><span class="chip-s oak">' + esc(std.gb) + (level === 'elem' ? '학년군' : '') + '</span><span class="chip-s garden">' + esc(std.domain) + '</span>';
     $('stdBody').innerHTML =
       '<div class="card-s"><h3>성취기준 설명</h3><p style="font-size:16px;line-height:1.8;margin:0">' + esc(std.text) + '</p>' +
