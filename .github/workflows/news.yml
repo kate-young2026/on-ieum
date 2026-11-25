@@ -6,6 +6,13 @@ name: 뉴스 라운지
 on:
   schedule:
     - cron: '7 21 * * *'
+  # 피드 목록이나 수집 코드가 바뀌면 바로 한 번 다시 수집한다(알림은 보내지 않음)
+  push:
+    branches: [main]
+    paths:
+      - 'data/news/feeds.json'
+      - 'scripts/news/**'
+      - '.github/workflows/news.yml'
   workflow_dispatch:
     inputs:
       notify:
@@ -49,4 +56,4 @@ jobs:
       - name: 알림 (ntfy)
         run: node scripts/news/notify.mjs
         env:
-          NOTIFY: ${{ github.event_name == 'schedule' && '0820' || inputs.notify }}
+          NOTIFY: ${{ github.event_name == 'schedule' && '0820' || github.event_name == 'push' && 'none' || inputs.notify }}
