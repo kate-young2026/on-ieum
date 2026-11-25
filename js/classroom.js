@@ -202,36 +202,88 @@
     (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { toast('프롬프트를 복사했어요. Claude·Gemini에 붙여 넣으세요'); }, function () { prompt('복사해서 쓰세요', t); });
   });
 
-  // ---- 단원 찾기 (성취기준 MCP 데이터로 만든 단원 색인, mcp/server.mjs와 같은 검색 규칙) ----
-  function hl(text, words) {
-    var h = esc(text);
-    words.forEach(function (w) { if (w) h = h.split(esc(w)).join('<mark>' + esc(w) + '</mark>'); });
-    return h;
+  // ---- 단원 찾기 (js/standards-search.js · MCP 서버와 같은 검색) ----
+  var SS = root.OnStdSearch, recs = null, unitRes = null, unitTimer = null;
+  function loadRecs() {
+    if (recs) return Promise.resolve(recs);
+    return getJSON(BASE + 'search.json').then(function (d) { recs = SS.fromIndex(d, idx); return recs; });
   }
-  function findUnit(q) {
-    if (!q) return;
-    $('stdTitle').textContent = '단원 찾기';
-    $('stdMeta').innerHTML = '<span class="chip-s">' + esc(q) + '</span>';
-    $('stdBody').innerHTML = '<div class="card-s">단원 색인을 불러오는 중…</div>';
-    getJSON(BASE + 'units.json').then(function (d) {
-      var r = root.OnUnits.findUnits(d.units, q, { limit: 12 });
-      var lvName = { elem: '초등', middle: '중학교', high: '고등학교' };
-      var head = '<p class="note-s" style="margin:0 0 8px">' + (r.level ? lvName[r.level] + (r.gradeBand ? ' ' + r.gradeBand + (r.level === 'elem' ? '학년군' : '') : '') + ' · ' : '') +
-        '낱말 ' + r.words.map(function (w) { return '「' + esc(w) + '」'; }).join(' ') + ' → 단원 ' + r.total + '개' + (r.total > r.results.length ? ' 중 ' + r.results.length + '개' : '') + (r.partial ? ' (모든 낱말이 맞는 단원이 없어 일부만 맞는 단원)' : '') + '</p>';
-      if (!r.results.length) { $('stdBody').innerHTML = head + '<div class="card-s">맞는 단원이 없어요. 낱말을 줄이거나 학년 표현(예: 3학년, 중2, 고1)을 바꿔 보세요.</div>'; return; }
-      return Promise.all(r.results.map(function (u) { return getJSON(BASE + encFile(idx.courses[u.c].file)); })).then(function (files) {
-        $('stdBody').innerHTML = head + r.results.map(function (u, i) {
-          var byCode = {}; files[i].standards.forEach(function (s) { byCode[s.code] = s; });
-          return '<div class="card-s unit-card"><h3>' + esc(u.u || u.d) + ' <small class="muted">' + esc(root.OnUnits.label(u)) + '</small></h3><ol>' +
-            u.codes.map(function (c) {
-              var s = byCode[c] || { code: c, text: '' }, hit = r.words.some(function (w) { return (c + s.text).indexOf(w) >= 0; });
-              return '<li class="' + (hit ? 'hit' : '') + '"><button type="button" data-jump="' + esc(c) + '"><b>' + esc(c) + '</b>' + hl(s.text, r.words) + '</button></li>';
-            }).join('') + '</ol></div>';
+  function setMode(m) {
+    document.querySelectorAll('[data-mode]').forEach(function (b) { var on = b.dataset.mode === m; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+    $('browsePane').hidden = m !== 'browse'; $('unitPane').hidden = m !== 'unit';
+    if (m === 'unit') { $('unitQ').focus(); runUnit(); }
+  }
+  function gradeOptions() {
+    var lv = $('unitLevel').value, g = [];
+    if (!lv || lv === 'elem') for (var i = 1; i <= 6; i++) g.push([i, '초' + i]);
+    if (!lv || lv === 'middle') for (i = 1; i <= 3; i++) g.push([6 + i, '중' + i]);
+    if (!lv || lv === 'high') for (i = 1; i <= 3; i++) g.push([9 + i, '고' + i]);
+    var cur = $('unitGrade').value;
+    $('unitGrade').innerHTML = '<option value="">전 학년</option>' + g.map(function (x) { return '<option value="' + x[0] + '">' + x[1] + '</option>'; }).join('');
+    if (g.some(function (x) { return String(x[0]) === cur; })) $('unitGrade').value = cur;
+  }
+  function unitQuery() { return { query: $('unitQ').value.trim(), level: $('unitLevel').value, grade: $('unitGrade').value, subject: $('unitSubj').value.trim(), limit: 30 }; }
+  function runUnit() {
+    var o = unitQuery();
+    if (!o.query && !o.subject && !o.level && !o.grade) {
+      unitRes = null; $('unitList').innerHTML = '';
+      $('unitInfo').textContent = '낱말을 넣으면 맞는 단원과 그 단원의 성취기준을 보여 줘요. 과목·학년만 고르면 단원 목록이 나와요.';
+      return;
+    }
+    $('unitInfo').textContent = recs ? '찾는 중…' : '성취기준 색인을 불러오는 중…';
+    loadRecs().then(function () {
+      unitRes = SS.findUnits(recs, o); unitRes.q = o.query;
+      renderUnits();
+      try { history.replaceState(null, '', '?find=' + encodeURIComponent(o.query || o.subject) + location.hash); } catch (e) {}
+    }).catch(function () { $('unitInfo').textContent = '색인(search.json)을 불러오지 못했어요.'; });
+  }
+  function renderUnits() {
+    var r = unitRes, q = r.q;
+    $('unitInfo').textContent = r.total ? '단원 ' + r.total + '개' + (r.total > r.units.length ? ' · 잘 맞는 ' + r.units.length + '개만 보여요' : '') + (q ? ' · ★ 낱말이 들어간 성취기준' : '') : '맞는 단원이 없어요. 낱말을 줄이거나 조건을 빼 보세요.';
+    $('unitList').innerHTML = r.units.map(function (u, i) {
+      return (i ? '<li class="u-sep" aria-hidden="true"></li>' : '') +
+        '<li><button class="unit-h" data-unit="' + i + '">' + esc(u.unit) + '<small>' + esc(u.levelKo + ' ' + u.subject + ' · ' + u.gb + ' · [' + u.unitKey + '-..] · ' + u.count + '개') + '</small></button></li>' +
+        u.standards.map(function (s) {
+          return '<li class="u-std' + (q && !s.match ? ' dim' : '') + '"><button data-ucode="' + esc(s.code) + '" class="' + (std && std.code === s.code ? 'on' : '') + '">' + (q && s.match ? '<span class="u-mark">★</span>' : '') + esc(s.code) + '<small>' + esc(s.text) + '</small></button></li>';
         }).join('');
-      });
-    }).catch(function () { $('stdBody').innerHTML = '<div class="card-s">단원 색인을 불러오지 못했어요.</div>'; });
+    }).join('');
   }
-  $('unitForm').addEventListener('submit', function (e) { e.preventDefault(); findUnit($('unitQ').value.trim()); });
+  function unitPrompt(u) {
+    return '다음 단원의 차시별 수업 흐름(차시 수, 차시별 학습목표·활동·평가)을 설계해 주세요.\n단원: ' + u.title + '\n성취기준:\n' +
+      u.standards.map(function (s) { return '- ' + s.code + ' ' + s.text; }).join('\n') +
+      '\n조건: 학생 실명·개인정보를 넣지 말 것, 성취기준 코드는 위 코드만 쓸 것, 확인하지 못한 사실은 [확인 필요]로 표시할 것.';
+  }
+  function showUnit(i) {
+    var u = unitRes && unitRes.units[i]; if (!u) return;
+    document.querySelectorAll('.unit-h').forEach(function (b) { b.classList.toggle('on', +b.dataset.unit === i); });
+    $('stdTitle').textContent = u.unit;
+    $('stdMeta').innerHTML = '<span class="chip-s lock">' + esc(u.levelKo + ' ' + u.subject) + '</span><span class="chip-s oak">' + esc(u.gb) + '</span><span class="chip-s garden">[' + esc(u.unitKey) + '-..]</span>';
+    $('stdBody').innerHTML =
+      '<div class="card-s"><h3>단원 한눈에</h3><p class="note-s" style="margin:0 0 8px">성취기준 ' + u.count + '개' + (unitRes.q ? ' · 「' + esc(unitRes.q) + '」가 들어간 것 ' + u.matched + '개(★)' : '') + '. 성취기준을 누르면 설명·지표와 학습지 초안이 열려요.</p>' +
+      '<div class="tabs"><button class="btn-s pri" data-uprompt="' + i + '">AI에게 단원 설계 맡기기</button></div></div>' +
+      u.standards.map(function (s) {
+        return '<div class="card-s u-card"><h3>' + (unitRes.q && s.match ? '<span class="u-mark">★</span>' : '') + esc(s.code) + ' <small class="muted">' + esc(s.domain) + '</small></h3><p style="margin:0;line-height:1.75">' + esc(s.text) + '</p><button class="chip-s ember" data-jump="' + esc(s.code) + '">이 성취기준으로 수업 설계 →</button></div>';
+      }).join('');
+    $('stdBody').scrollTop = 0;
+  }
+  document.querySelectorAll('[data-mode]').forEach(function (b) { b.addEventListener('click', function () { setMode(b.dataset.mode); }); });
+  $('unitForm').addEventListener('submit', function (e) { e.preventDefault(); clearTimeout(unitTimer); runUnit(); });
+  $('unitQ').addEventListener('input', function () { clearTimeout(unitTimer); unitTimer = setTimeout(runUnit, 250); });
+  $('unitSubj').addEventListener('input', function () { clearTimeout(unitTimer); unitTimer = setTimeout(runUnit, 300); });
+  $('unitLevel').addEventListener('change', function () { gradeOptions(); runUnit(); });
+  $('unitGrade').addEventListener('change', runUnit);
+  $('unitList').addEventListener('click', function (e) {
+    var h = e.target.closest('[data-unit]'); if (h) { showUnit(+h.dataset.unit); return; }
+    var b = e.target.closest('[data-ucode]'); if (!b) return;
+    document.querySelectorAll('[data-ucode]').forEach(function (x) { x.classList.toggle('on', x === b); });
+    jump(b.dataset.ucode);
+  });
+  $('stdBody').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-uprompt]'); if (!b) return;
+    var t = unitPrompt(unitRes.units[+b.dataset.uprompt]);
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { toast('단원 설계 프롬프트를 복사했어요'); }, function () { prompt('복사해서 쓰세요', t); });
+  });
+  gradeOptions();
 
   Promise.all([getJSON(BASE + 'index.json'), getJSON(BASE + 'codes.json')]).then(function (r) {
     idx = r[0]; codes = r[1];
@@ -239,5 +291,7 @@
     var h = decodeURIComponent(location.hash.slice(1) || '');
     if (h && codes[h] != null) { var c = idx.courses[codes[h]]; level = c.level; document.querySelectorAll('[data-level]').forEach(function (b) { b.classList.toggle('on', b.dataset.level === level); }); renderCoursesOnly(); $('courseSel').value = codes[h]; openCourse(codes[h], h); }
     else renderCourses();
+    var find = new URLSearchParams(location.search).get('find');
+    if (find) { $('unitQ').value = find; setMode('unit'); }
   }).catch(function () { $('stdBody').innerHTML = '<div class="card-s">성취기준 데이터를 불러오지 못했어요. 웹 서버(또는 GitHub Pages)에서 열어 주세요.</div>'; });
 })(typeof window !== 'undefined' ? window : this);

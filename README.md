@@ -38,7 +38,7 @@
 | [`/v03.html`](https://kate-young2026.github.io/on-ieum/v03.html) | v0.3 기획 사이트: 우주선 집 · 타임캡슐 수납장 |
 | [`/dashboard.html`](https://kate-young2026.github.io/on-ieum/dashboard.html) | 기획 대시보드 (숫자는 `data/plan.json`에서 계산) |
 | [`/rooms/coding.html`](https://kate-young2026.github.io/on-ieum/rooms/coding.html) | 작업실 코딩방: 입찰공고·연구원동정·보도자료·언론기고·FOCUS·전망·현안·세미나 프로그램·메인비주얼 텍스트 → HTML, 미리보기, 유형 추가 |
-| [`/rooms/classroom.html`](https://kate-young2026.github.io/on-ieum/rooms/classroom.html) | 교실: 초등 620·중등 3,838 성취기준 → 설명·지표 → 학습목표 → 학습지·활동지·게임·프로젝트 초안 |
+| [`/rooms/classroom.html`](https://kate-young2026.github.io/on-ieum/rooms/classroom.html) | 교실: 초등 620·중등 3,838 성취기준 → 설명·지표 → 학습목표 → 학습지·활동지·게임·프로젝트 초안. **단원 찾기**: 낱말·과목·학년·코드로 단원과 그 단원의 성취기준 찾기 (`?find=광합성`으로 바로 열기) |
 | [`/rooms/locker.html`](https://kate-young2026.github.io/on-ieum/rooms/locker.html) | 교실 사물함: 2027 수능 국어 45문항 사물함 · OMR 풀이·채점 · 정답 사물함 · 성취기준 매칭 |
 | [`/rooms/portfolio.html`](https://kate-young2026.github.io/on-ieum/rooms/portfolio.html) | 서재 포트폴리오: 2025년 8월 이후 메인비주얼 작업 카드 |
 
@@ -49,15 +49,9 @@
 - 알림: [ntfy](https://ntfy.sh) 예약 전달로 **08:20 KST**에 도착. 앱에서 주제 `on-ieum-news-915c3aa849`를 구독하세요. 주제를 비공개로 바꾸려면 비밀값 `NTFY_TOPIC`을 넣고 그 주제를 구독합니다.
 - 바로 돌려 보기: Actions → 뉴스 라운지 → Run workflow (알림 now/0820/none).
 
-### 교실 단원 찾기 (성취기준 MCP)
-- 교실 화면 왼쪽 위 "단원 찾기"에 `초등 3학년 분수`, `중2 일차함수`, `고1 논증`처럼 쓰면 교과·학년군·영역·단원과 성취기준 원문을 보여 줍니다. 성취기준을 누르면 수업 설계로 이어집니다.
-- 같은 검색을 MCP 서버로도 씁니다: `node mcp/server.mjs` (의존성 없음, stdio). 도구: `find_unit`, `get_unit`, `get_standard`. 터미널에서 바로 실행: `node scripts/find-unit.mjs "초등 3학년 분수"`.
-- Claude Desktop 등록: `{"mcpServers":{"on-ieum-classroom":{"command":"node","args":["<저장소 경로>/mcp/server.mjs"]}}}`
-- 단원 색인 다시 만들기: `node scripts/build-units.mjs ../korean-elementary-learning-map-mcp ../korean-secondary-learning-map-mcp`
-
 ### 쓰는 법 요약
 - **코딩방**: 공통 표기 `**굵게**` `__밑줄__` `[[주황:글]]` `[[파랑:글]]` `[글](주소)` `!이미지 경로`, 유형별 표기는 화면 위 안내. 미리보기는 KDI 홈페이지 CSS를 주소로 자동 연결(게시물: `/res/css/style.css` + `editor-template`, 메인비주얼: `/res/css/main.css`) — 파일은 복사하지 않음.
-- **교실**: 학교급 → 과목 → 학년군 → 성취기준. 학습목표를 고치면 초안이 바로 바뀌고, 인쇄·HTML 저장, "AI에게 맡기기"로 프롬프트 복사.
+- **교실**: '과목별'은 학교급 → 과목 → 학년군 → 성취기준. '단원 찾기'는 낱말(예: 힘과 우리 생활, 분수의 덧셈, 4과01)과 학교급·학년·과목으로 단원을 찾고, 단원을 누르면 성취기준 전체와 'AI에게 단원 설계 맡기기', 성취기준을 누르면 수업 설계로 이어집니다. 학습목표를 고치면 초안이 바로 바뀌고, 인쇄·HTML 저장, "AI에게 맡기기"로 프롬프트 복사.
 - **사물함**: 문제 본문은 싣지 않음(평가원 공식 문제지 링크 또는 내 PC의 PDF 열기). 정답·배점은 평가원 정답표(홀수형·짝수형) 반영, 문제지 형을 고르면 그에 맞게 채점.
 - **포트폴리오**: 메인비주얼 HTML 붙여 넣기(이미지 이름에서 vs_no를 찾아 CMS 미리보기 링크 생성), vs_no 번호로 추가, JSON·CSV 가져오기. 카드를 누르면 PC/모바일 미리보기.
 - 모든 입력은 각자의 브라우저에만 저장돼요(내보내기/가져오기 지원).
@@ -74,10 +68,17 @@ python3 -m http.server 8000
 for t in tests/*.cjs; do node "$t"; done
 ```
 
-성취기준 데이터 다시 만들기(두 MCP 저장소를 받아 둔 경로를 넘김):
+성취기준 데이터 다시 만들기(두 MCP 저장소를 받아 둔 경로를 넘김). 데이터를 바꾸면 단원 찾기 색인도 다시 만드세요:
 
 ```bash
 node scripts/build-standards.mjs ../korean-elementary-learning-map-mcp ../korean-secondary-learning-map-mcp
+node scripts/build-search-index.mjs   # data/standards/search.json
 ```
+
+## 성취기준 MCP 서버
+
+교실의 단원 찾기와 같은 검색을 Claude 같은 AI 도우미가 도구로 쓰게 하는 서버입니다(`mcp/server.mjs`, Node 18 이상, 설치할 것 없음).
+도구: `find_unit`(단원 찾기) · `search_standards`(성취기준 찾기) · `get_standard`(지표·평가 질문까지 자세히) · `list_subjects`(과목 목록).
+연결 방법은 [mcp/README.md](mcp/README.md)를 보세요.
 
 데이터 출처와 원칙은 [NOTICE.md](NOTICE.md)를 보세요. 설계는 「개인 AI 워크스페이스 구축 가이드」(2026)의 10단계 구조를 따릅니다.
