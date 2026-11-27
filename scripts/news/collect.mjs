@@ -1,9 +1,10 @@
-// 뉴스 라운지 수집: 공개 RSS → 분류 → 중복 제거 → 상위 10 → 3줄 요약 → data/news/today.json
+// 뉴스 라운지 수집: 공개 RSS → 제외 키워드 → 분류·교육 관련성 점수 → 중복 제거
+//   → 설명문이 없는 후보는 기사 페이지의 요약 문구(og:description)를 읽어 채움 → 상위 10 → 3줄 요약 → data/news/today.json
 // 사용: node scripts/news/collect.mjs
 // ANTHROPIC_API_KEY가 있으면 Claude가 3줄 요약을 쓰고, 없으면 기사 설명문 앞 세 문장으로 대신한다.
 import fs from 'node:fs';
 import path from 'node:path';
-import { parseFeed, parseHtmlList, classify, dedupe, score, selectTop, extractLines, kstDate, headline } from './lib.mjs';
+import { parseFeed, parseHtmlList, classify, dedupe, score, selectTop, extractLines, kstDate, headline, isExcluded, eduRelevance, metaDescription, googleNewsId } from './lib.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../..');
 const DIR = path.join(ROOT, 'data/news');
@@ -12,14 +13,51 @@ const now = Date.now();
 const today = kstDate();
 const UA = 'Mozilla/5.0 (compatible; on-ieum-news/1.0; +https://github.com/kate-young2026/on-ieum)';
 
-async function get(url) {
+async function get(url, opt = {}) {
   const ctl = new AbortController();
-  const t = setTimeout(() => ctl.abort(), 20000);
+  const t = setTimeout(() => ctl.abort(), opt.timeout || 20000);
   try {
-    const r = await fetch(url, { headers: { 'user-agent': UA, accept: 'application/rss+xml, application/atom+xml, application/xml, text/xml, text/html;q=0.8' }, signal: ctl.signal, redirect: 'follow' });
+    const r = await fetch(url, { method: opt.method || 'GET', body: opt.body, headers: Object.assign({ 'user-agent': UA, accept: 'application/rss+xml, application/atom+xml, application/xml, text/xml, text/html;q=0.8', 'accept-language': 'ko-KR,ko;q=0.9,en;q=0.6' }, opt.headers || {}), signal: ctl.signal, redirect: 'follow' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    return await r.text();
+    const buf = await r.arrayBuffer();
+    // 일부 언론사는 EUC-KR로 응답한다
+    const ct = r.headers.get('content-type') || '';
+    let text = new TextDecoder('utf-8').decode(buf);
+    if (/euc-kr|ks_c_5601/i.test(ct) || /<meta[^>]+charset=["']?(euc-kr|ks_c_5601)/i.test(text.slice(0, 3000))) text = new TextDecoder('euc-kr').decode(buf);
+    return text;
   } finally { clearTimeout(t); }
+}
+
+// 구글 뉴스 링크 → 실제 기사 주소(구글 뉴스 페이지가 쓰는 방식 그대로, 실패하면 빈 값)
+async function decodeGoogle(link) {
+  const id = googleNewsId(link);
+  if (!id) return '';
+  const html = await get('https://news.google.com/rss/articles/' + id, { timeout: 10000, headers: { accept: 'text/html' } });
+  const sg = html.match(/data-n-a-sg="([^"]+)"/), ts = html.match(/data-n-a-ts="([^"]+)"/);
+  if (!sg || !ts) return '';
+  const inner = JSON.stringify(['garturlreq', [['X', 'X', ['X', 'X'], null, null, 1, 1, 'US:en', null, 1, null, null, null, null, null, 0, 1], 'X', 'X', 1, [1, 1, 1], 1, 1, null, 0, 0, null, 0], id, +ts[1], sg[1]]);
+  const body = 'f.req=' + encodeURIComponent(JSON.stringify([[['Fbv4je', inner]]]));
+  const res = await get('https://news.google.com/_/DotsSplashUi/data/batchexecute', { method: 'POST', body, timeout: 10000, headers: { 'content-type': 'application/x-www-form-urlencoded;charset=UTF-8' } });
+  for (const line of res.split('\n')) {
+    if (!line.includes('garturlres')) continue;
+    try { const u = JSON.parse(JSON.parse(line)[0][2])[1]; if (/^https?:\/\//.test(u)) return u; } catch (e) { /* 형식이 바뀌면 포기 */ }
+  }
+  return '';
+}
+
+// 설명문이 없는 기사: 원문 페이지의 og:description을 읽어 요약 재료로 쓴다(원문 본문은 저장하지 않음)
+async function enrich(it) {
+  try {
+    if (googleNewsId(it.link)) { const real = await decodeGoogle(it.link); if (!real) return false; it.gLink = it.link; it.link = real; }
+    const html = await get(it.link, { timeout: 10000, headers: { accept: 'text/html,application/xhtml+xml' } });
+    const d = metaDescription(html, it.title);
+    if (d) { it.desc = d; it.descFrom = 'og'; return true; }
+  } catch (e) { /* 실패하면 제목만 쓴다 */ }
+  return false;
+}
+async function pool(list, n, fn) {
+  let i = 0;
+  await Promise.all(Array.from({ length: Math.min(n, list.length) }, async () => { while (i < list.length) { const k = i++; await fn(list[k]); } }));
 }
 
 const seenPath = path.join(DIR, 'seen.json');
@@ -49,9 +87,16 @@ const fresh = all.filter((it) => {
   if (!it.published) return true;
   const age = now - Date.parse(it.published);
   return age < 36 * 36e5 && age > -6 * 36e5;
-});
-fresh.forEach((it) => { it.cat = classify(it); it.score = score(it, now); });
-const top = selectTop(dedupe(fresh.sort((a, b) => b.score - a.score)), cfg.quota, 10);
+}).filter((it) => !isExcluded(it, cfg.exclude));
+const rescore = (it) => { it.cat = classify(it); it.rel = eduRelevance(it, cfg.eduKeywords); it.score = score(it, now); };
+fresh.forEach(rescore);
+const cands = dedupe(fresh.sort((a, b) => b.score - a.score));
+// 분야마다 앞쪽 후보 7건 중 설명문이 없는 기사만 원문 요약 문구를 읽어 온다(6개씩 동시에)
+const need = Object.keys(cfg.quota).flatMap((c) => cands.filter((it) => it.cat === c && !it.desc).slice(0, 7));
+let filled = 0;
+await pool(need, 6, async (it) => { if (await enrich(it)) filled++; });
+cands.forEach(rescore);
+const top = selectTop(cands.filter((it) => !isExcluded(it, cfg.exclude)).sort((a, b) => b.score - a.score), cfg.quota, 10);
 
 let mode = 'extract';
 const lines = top.map(extractLines);
@@ -79,7 +124,7 @@ if (process.env.ANTHROPIC_API_KEY && top.length) {
 }
 
 const items = top.map((it, i) => ({ cat: it.cat, title: it.title, link: it.link, source: it.source, published: it.published, lines: lines[i] }));
-const out = { date: today, generatedAt: new Date(now).toISOString(), summary: mode, headline: headline(items), items, sources };
+const out = { date: today, generatedAt: new Date(now).toISOString(), summary: mode, headline: headline(items), items, sources, described: top.filter((x) => x.desc).length };
 
 fs.writeFileSync(path.join(DIR, 'today.json'), JSON.stringify(out, null, 1) + '\n');
 fs.mkdirSync(path.join(DIR, 'archive'), { recursive: true });
@@ -97,13 +142,13 @@ rel.items.sort((a, b) => (b.published || b.date + 'T12:00:00+09:00').localeCompa
 rel.items = rel.items.slice(0, 20);
 rel.updated = today;
 fs.writeFileSync(relPath, JSON.stringify(rel, null, 1) + '\n');
-for (const it of fresh.filter((x) => x.cat === '출시' || !x.published)) seen[it.link] ||= today;
+for (const it of fresh.filter((x) => x.cat === '출시' || !x.published)) { seen[it.link] ||= today; if (it.gLink) seen[it.gLink] ||= today; }
 
-for (const it of items) seen[it.link] ||= today;
+for (const it of top) { seen[it.link] ||= today; if (it.gLink) seen[it.gLink] ||= today; }
 const cutoff = kstDate(new Date(now - 30 * 864e5));
 for (const k of Object.keys(seen)) if (seen[k] < cutoff) delete seen[k];
 fs.writeFileSync(seenPath, JSON.stringify(seen) + '\n');
 
 console.log(out.headline);
-console.log('요약 방식:', mode, '| 피드', sources.filter((s) => s.ok).length + '/' + sources.length, '성공 | 후보', fresh.length);
+console.log('요약 방식:', mode, '| 피드', sources.filter((s) => s.ok).length + '/' + sources.length, '성공 | 후보', fresh.length, '| 원문 요약 문구', filled + '/' + need.length, '| 설명 없는 기사', top.filter((x) => !x.desc).length + '/' + top.length);
 for (const s of sources.filter((s) => !s.ok)) console.log('  실패:', s.name, s.error);

@@ -1,10 +1,82 @@
 {
-  "version": "v0.3",
-  "updated": "2026-11-20",
+  "version": "v0.4",
+  "updated": "2026-11-27",
+  "note": "온-이음의 판본·방·로드맵은 이 파일 하나에서 읽습니다(메인 index.html과 기획 대시보드 dashboard.html).",
+  "house": {
+    "metaphor": "3층 집 · 아이소메트릭 단면도",
+    "floors": [
+      "1층 · 하루의 시작과 가족",
+      "2층 · 배움과 일",
+      "3층 · 다락"
+    ],
+    "rooms": [
+      {
+        "id": "study",
+        "name": "서재",
+        "floor": "3층",
+        "sub": "작품·독서·포트폴리오"
+      },
+      {
+        "id": "pool",
+        "name": "루프탑 수영장",
+        "floor": "3층",
+        "sub": "집중 타이머"
+      },
+      {
+        "id": "deck",
+        "name": "캠핑 데크",
+        "floor": "3층",
+        "sub": "저녁 회고"
+      },
+      {
+        "id": "class",
+        "name": "교실",
+        "floor": "2층",
+        "sub": "성취기준·학습지·수능작전"
+      },
+      {
+        "id": "escape",
+        "name": "방탈출",
+        "floor": "2층",
+        "sub": "국어 게임·수학 게임·수업용 내보내기"
+      },
+      {
+        "id": "work",
+        "name": "작업실",
+        "floor": "2층",
+        "sub": "코딩·메인비주얼·영문"
+      },
+      {
+        "id": "news",
+        "name": "뉴스 라운지",
+        "floor": "1층",
+        "sub": "오늘의 뉴스 10 · 08:20"
+      },
+      {
+        "id": "living",
+        "name": "거실 · 응접실",
+        "floor": "1층",
+        "sub": "수납장으로 방 호출"
+      },
+      {
+        "id": "jf",
+        "name": "가족방",
+        "floor": "1층",
+        "sub": "시간표·가족앨범·관심사 방"
+      },
+      {
+        "id": "yard",
+        "name": "앞마당",
+        "floor": "앞마당",
+        "sub": "주간 회고 · 산책 모드"
+      }
+    ]
+  },
   "briefing": {
     "time": "08:20",
     "days": "매일",
     "fields": [
+      "AI 출시",
       "AI",
       "IT",
       "EDU",
@@ -21,7 +93,7 @@
         {
           "name": "오늘의 뉴스 10 브리핑",
           "status": "done",
-          "note": "매일 08:20 예약 실행 · 휴대폰 알림"
+          "note": "매일 08:20 ntfy 알림 · 주제 이름은 비밀값에만"
         },
         {
           "name": "대시보드 자동 게재",
@@ -29,9 +101,22 @@
           "note": "GitHub Actions 06:07 수집 → data/news/today.json"
         },
         {
+          "name": "언론사 RSS 확대 · 원문 요약 문구(og:description)",
+          "status": "done",
+          "note": "설명문 없는 기사를 줄임"
+        },
+        {
+          "name": "제외 키워드 · 교육 관련성 점수",
+          "status": "done",
+          "note": "IPO·주가 등 제외, 교육 기사 우선"
+        },
+        {
           "name": "기사 → 교실로 보내기",
           "status": "plan"
         }
+      ],
+      "rooms": [
+        "news"
       ]
     },
     {
@@ -51,6 +136,17 @@
           "link": "rooms/classroom.html"
         },
         {
+          "name": "학년군 어휘 규칙 · [초안] 표시",
+          "status": "done",
+          "note": "1~2학년은 쉬운 우리말, 교사 확정 전 [초안]",
+          "link": "rooms/classroom.html"
+        },
+        {
+          "name": "단원 찾기 · 성취기준 MCP 서버",
+          "status": "done",
+          "link": "rooms/classroom.html?find=광합성"
+        },
+        {
           "name": "2027 수능 국어 사물함 · 풀이 · 채점",
           "status": "done",
           "note": "평가원 정답표(홀수·짝수형) 반영",
@@ -67,9 +163,14 @@
           "status": "plan"
         },
         {
-          "name": "국어랑 게임 · 초등수학게임 방탈출",
-          "status": "plan"
+          "name": "방탈출 (국어·수학 예시 방, 학생용 링크)",
+          "status": "done",
+          "link": "rooms/escape.html"
         }
+      ],
+      "rooms": [
+        "class",
+        "escape"
       ]
     },
     {
@@ -101,6 +202,9 @@
           "name": "보고서 영문 변환 · 설명글 요약",
           "status": "plan"
         }
+      ],
+      "rooms": [
+        "work"
       ]
     },
     {
@@ -123,11 +227,16 @@
           "name": "세계지도 여행 코스",
           "status": "plan"
         }
+      ],
+      "rooms": [
+        "study",
+        "pool",
+        "deck"
       ]
     },
     {
       "id": "jf",
-      "name": "with JF",
+      "name": "가족방",
       "floor": "1층",
       "tone": "garden",
       "features": [
@@ -140,9 +249,15 @@
           "status": "plan"
         },
         {
-          "name": "1·2·3번방 관심사 놀이",
-          "status": "plan"
+          "name": "관심사 놀이 방",
+          "status": "plan",
+          "note": "공개 저장소에는 예시 데이터만"
         }
+      ],
+      "rooms": [
+        "living",
+        "jf",
+        "yard"
       ]
     }
   ],
@@ -154,27 +269,36 @@
     },
     {
       "week": "v0.3",
-      "title": "우주선 집 · 대시보드 · 코딩방 · 교실 · 사물함 · 포트폴리오",
-      "status": "doing"
+      "title": "대시보드 · 코딩방 · 교실 · 사물함 · 포트폴리오",
+      "status": "done"
+    },
+    {
+      "week": "v0.4",
+      "title": "3층 집 단면도 · 뉴스 실제 수집 · 단원 찾기 MCP · 방탈출",
+      "status": "done"
     },
     {
       "week": "1주",
-      "title": "앱 뼈대(Next.js) · 저장 창구 · 오늘 화면",
+      "title": "거실과 수납장이 열린다",
+      "detail": "앱 뼈대(Next.js) · 저장 창구 · 오늘 화면",
       "status": "plan"
     },
     {
       "week": "2주",
-      "title": "AI 관문 · 승인함 · 뉴스 자동 게재",
-      "status": "plan"
+      "title": "뉴스 라운지와 08:20 알림",
+      "detail": "AI 관문 · 승인함 · 외부 연동",
+      "status": "doing"
     },
     {
       "week": "3주",
-      "title": "AI 가상 팀 · 지식 노트",
-      "status": "plan"
+      "title": "교실·작업실에서 지시가 문서로",
+      "detail": "AI 가상 팀 · 지식 노트 · 성취기준 MCP",
+      "status": "doing"
     },
     {
       "week": "4주",
-      "title": "Supabase 실시간 · 휴대폰 앱",
+      "title": "휴대폰에서도 같은 집",
+      "detail": "상시 서버 · Supabase 실시간 · 배포",
       "status": "plan"
     }
   ],
@@ -186,6 +310,8 @@
     "보내기·삭제·게시는 승인 후에만",
     "학생·아이의 이름과 사진은 AI 입력에서 제외",
     "KDI CSS·수능 지문 전문·사내 CMS 자료는 공개 저장소에 올리지 않음",
-    "비밀값은 .env.local과 호스팅 환경변수에만"
+    "비밀값은 .env.local과 호스팅 환경변수에만",
+    "공개 저장소의 가족 정보는 예시 데이터만",
+    "알림 주제·토큰은 GitHub 비밀값에만"
   ]
 }

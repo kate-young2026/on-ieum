@@ -1,27 +1,144 @@
 {
-  "note": "뉴스 라운지가 매일 06시에 읽는 공개 RSS 목록. cat: AI · IT · EDU · 정책 · 출시(AI 업계 공식 발표). 실패한 피드는 건너뛰고 today.json의 sources에 기록됩니다.",
+  "note": "뉴스 라운지가 매일 06시에 읽는 공개 RSS 목록. cat: AI · IT · EDU · 정책 · 출시(AI 업계 공식 발표). 설명문이 있는 언론사 RSS를 우선하고, 구글 뉴스처럼 설명문이 없는 기사는 원문 페이지의 요약 문구(og:description)를 읽어 채웁니다. 실패한 피드는 건너뛰고 today.json의 sources에 기록됩니다.",
   "ntfy": {
     "server": "https://ntfy.sh",
-    "topic": "on-ieum-news-915c3aa849",
-    "click": "https://kate-young2026.github.io/on-ieum/#news"
+    "click": "https://kate-young2026.github.io/on-ieum/#news",
+    "note": "알림 주제 이름은 공개 저장소에 적지 않습니다. GitHub 저장소 Settings → Secrets → Actions의 NTFY_TOPIC(필수)과 NTFY_TOKEN(선택)에만 넣으세요."
   },
-  "quota": { "출시": 3, "정책": 2, "EDU": 2, "AI": 2, "IT": 1 },
+  "quota": {
+    "출시": 3,
+    "정책": 2,
+    "EDU": 2,
+    "AI": 2,
+    "IT": 1
+  },
+  "exclude": [],
+  "excludeNote": "여기에 적은 낱말이 제목(또는 설명 앞부분)에 있으면 뉴스에서 뺍니다. 기본 제외어(IPO·상장·주가·증권·권력지도·CISO·실적·부고 등)는 scripts/news/lib.mjs의 EXCLUDE에 있습니다.",
+  "eduKeywords": [],
+  "eduKeywordsNote": "교육 관련성 점수를 올릴 낱말을 덧붙입니다. 기본 목록은 scripts/news/lib.mjs의 EDU_KW.",
   "feeds": [
-    { "name": "OpenAI", "cat": "출시", "url": "https://openai.com/news/rss.xml" },
-    { "name": "Anthropic", "cat": "출시", "type": "html", "url": "https://www.anthropic.com/news", "base": "https://www.anthropic.com", "path": "^/(news/|research/|claude-)" },
-    { "name": "Google DeepMind", "cat": "출시", "url": "https://deepmind.google/blog/rss.xml" },
-    { "name": "Google AI", "cat": "출시", "url": "https://blog.google/technology/ai/rss/" },
-    { "name": "Hugging Face", "cat": "출시", "url": "https://huggingface.co/blog/feed.xml" },
-    { "name": "NVIDIA", "cat": "출시", "url": "https://blogs.nvidia.com/feed/" },
-    { "name": "구글 뉴스 · AI 모델 출시", "cat": "출시", "url": "https://news.google.com/rss/search?q=(GPT+OR+Claude+OR+Gemini+OR+Llama+OR+%ED%95%98%EC%9D%B4%ED%8D%BC%ED%81%B4%EB%A1%9C%EB%B0%94+OR+%EC%97%91%EC%82%AC%EC%9B%90)+(%EC%B6%9C%EC%8B%9C+OR+%EA%B3%B5%EA%B0%9C)+when:2d&hl=ko&gl=KR&ceid=KR:ko" },
-    { "name": "AI타임스", "cat": "AI", "url": "https://www.aitimes.com/rss/allArticle.xml" },
-    { "name": "구글 뉴스 · 생성형 AI", "cat": "AI", "url": "https://news.google.com/rss/search?q=%EC%83%9D%EC%84%B1%ED%98%95+AI+when:1d&hl=ko&gl=KR&ceid=KR:ko" },
-    { "name": "ZDNet Korea", "cat": "IT", "url": "https://feeds.feedburner.com/zdkorea" },
-    { "name": "전자신문", "cat": "IT", "url": "https://rss.etnews.com/Section901.xml" },
-    { "name": "블로터", "cat": "IT", "url": "https://www.bloter.net/rss/allArticle.xml" },
-    { "name": "에듀프레스", "cat": "EDU", "url": "https://www.edupress.kr/rss/allArticle.xml" },
-    { "name": "교육플러스", "cat": "EDU", "url": "https://www.edpl.co.kr/rss/allArticle.xml" },
-    { "name": "구글 뉴스 · 에듀테크", "cat": "EDU", "url": "https://news.google.com/rss/search?q=(%EC%97%90%EB%93%80%ED%85%8C%ED%81%AC+OR+AI+%EA%B5%90%EC%9C%A1+OR+%EB%94%94%EC%A7%80%ED%84%B8+%EA%B5%90%EA%B3%BC%EC%84%9C)+when:1d&hl=ko&gl=KR&ceid=KR:ko" },
-    { "name": "구글 뉴스 · 교육부", "cat": "정책", "url": "https://news.google.com/rss/search?q=(%EA%B5%90%EC%9C%A1%EB%B6%80+OR+%EA%B5%AD%EA%B0%80%EA%B5%90%EC%9C%A1%EC%9C%84%EC%9B%90%ED%9A%8C+OR+%EA%B3%A0%EA%B5%90%ED%95%99%EC%A0%90%EC%A0%9C+OR+%EB%8C%80%EC%9E%85)+when:1d&hl=ko&gl=KR&ceid=KR:ko" }
+    {
+      "name": "OpenAI",
+      "cat": "출시",
+      "url": "https://openai.com/news/rss.xml"
+    },
+    {
+      "name": "Anthropic",
+      "cat": "출시",
+      "type": "html",
+      "url": "https://www.anthropic.com/news",
+      "base": "https://www.anthropic.com",
+      "path": "^/(news/|research/|claude-)"
+    },
+    {
+      "name": "Google DeepMind",
+      "cat": "출시",
+      "url": "https://deepmind.google/blog/rss.xml"
+    },
+    {
+      "name": "Google AI",
+      "cat": "출시",
+      "url": "https://blog.google/technology/ai/rss/"
+    },
+    {
+      "name": "Hugging Face",
+      "cat": "출시",
+      "url": "https://huggingface.co/blog/feed.xml"
+    },
+    {
+      "name": "NVIDIA",
+      "cat": "출시",
+      "url": "https://blogs.nvidia.com/feed/"
+    },
+    {
+      "name": "구글 뉴스 · AI 모델 출시",
+      "cat": "출시",
+      "url": "https://news.google.com/rss/search?q=(GPT+OR+Claude+OR+Gemini+OR+Llama+OR+%ED%95%98%EC%9D%B4%ED%8D%BC%ED%81%B4%EB%A1%9C%EB%B0%94+OR+%EC%97%91%EC%82%AC%EC%9B%90)+(%EC%B6%9C%EC%8B%9C+OR+%EA%B3%B5%EA%B0%9C)+when:2d&hl=ko&gl=KR&ceid=KR:ko"
+    },
+    {
+      "name": "AI타임스",
+      "cat": "AI",
+      "url": "https://www.aitimes.com/rss/allArticle.xml"
+    },
+    {
+      "name": "인공지능신문",
+      "cat": "AI",
+      "url": "https://www.aitimes.kr/rss/allArticle.xml"
+    },
+    {
+      "name": "TechCrunch AI",
+      "cat": "AI",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/"
+    },
+    {
+      "name": "구글 뉴스 · 생성형 AI",
+      "cat": "AI",
+      "url": "https://news.google.com/rss/search?q=%EC%83%9D%EC%84%B1%ED%98%95+AI+when:1d&hl=ko&gl=KR&ceid=KR:ko"
+    },
+    {
+      "name": "ZDNet Korea",
+      "cat": "IT",
+      "url": "https://feeds.feedburner.com/zdkorea"
+    },
+    {
+      "name": "전자신문",
+      "cat": "IT",
+      "url": "https://rss.etnews.com/Section901.xml"
+    },
+    {
+      "name": "블로터",
+      "cat": "IT",
+      "url": "https://www.bloter.net/rss/allArticle.xml"
+    },
+    {
+      "name": "디지털투데이",
+      "cat": "IT",
+      "url": "https://www.digitaltoday.co.kr/rss/allArticle.xml"
+    },
+    {
+      "name": "에듀프레스",
+      "cat": "EDU",
+      "url": "https://www.edupress.kr/rss/allArticle.xml"
+    },
+    {
+      "name": "교육플러스",
+      "cat": "EDU",
+      "url": "https://www.edpl.co.kr/rss/allArticle.xml"
+    },
+    {
+      "name": "에듀인뉴스",
+      "cat": "EDU",
+      "url": "https://www.eduinnews.co.kr/rss/allArticle.xml"
+    },
+    {
+      "name": "구글 뉴스 · 에듀테크",
+      "cat": "EDU",
+      "url": "https://news.google.com/rss/search?q=(%EC%97%90%EB%93%80%ED%85%8C%ED%81%AC+OR+AI+%EA%B5%90%EC%9C%A1+OR+%EB%94%94%EC%A7%80%ED%84%B8+%EA%B5%90%EA%B3%BC%EC%84%9C)+when:1d&hl=ko&gl=KR&ceid=KR:ko"
+    },
+    {
+      "name": "한국교육신문",
+      "cat": "정책",
+      "url": "https://www.hangyo.com/rss/allArticle.xml"
+    },
+    {
+      "name": "교육언론창",
+      "cat": "정책",
+      "url": "https://www.goeonair.com/rss/allArticle.xml"
+    },
+    {
+      "name": "베리타스알파",
+      "cat": "정책",
+      "url": "https://www.veritas-a.com/rss/allArticle.xml"
+    },
+    {
+      "name": "정책브리핑 · 교육부",
+      "cat": "정책",
+      "url": "https://www.korea.kr/rss/dept_moe.xml"
+    },
+    {
+      "name": "구글 뉴스 · 교육부",
+      "cat": "정책",
+      "url": "https://news.google.com/rss/search?q=(%EA%B5%90%EC%9C%A1%EB%B6%80+OR+%EA%B5%AD%EA%B0%80%EA%B5%90%EC%9C%A1%EC%9C%84%EC%9B%90%ED%9A%8C+OR+%EA%B3%A0%EA%B5%90%ED%95%99%EC%A0%90%EC%A0%9C+OR+%EB%8C%80%EC%9E%85)+when:1d&hl=ko&gl=KR&ceid=KR:ko"
+    }
   ]
 }

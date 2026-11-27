@@ -20,4 +20,25 @@ for (const k of ['sheet', 'activity', 'game', 'project']) {
   ok(h.includes('[4국03-01]') && h.includes('학습목표') && !/undefined/.test(h), k + ' 초안');
 }
 ok(C.aiPrompt('sheet', s, ['목표']).includes('[확인 필요]'), 'AI 프롬프트');
+// 학년군별 어휘 규칙과 [초안] 표시
+const k2 = kor.standards.find((x) => x.code === '[2국01-01]');
+ok(C.bandOf(k2) === 'e12' && C.bandOf(s) === 'e34', '학년군 판별');
+const o2 = C.objectives(k2).join(' ');
+ok(!/핵심 조건|자기 말로|담화|파악|적용/.test(o2), '1~2학년 학습목표에 어려운 말 없음: ' + o2);
+const q2 = C.questions(k2);
+ok(q2.length >= 3 && new Set(q2).size === q2.length, '평가 질문이 서로 다름');
+ok(!q2.some((q) => /담화|파악|핵심 조건|상호작용/.test(q)), '1~2학년 평가 질문에 어려운 말 없음');
+ok(!C.tasks(k2).some((t) => /학년군에 맞는|핵심 단서/.test(t)), '1~2학년 활동 문장은 템플릿 원문이 아님');
+const d2 = C.draft('sheet', k2, C.objectives(k2));
+ok(d2.includes('[초안]') && d2.includes('초등 1~2학년'), '초안 표시');
+ok(!C.draft('sheet', k2, C.objectives(k2), true).includes('[초안]'), '확정하면 [초안] 표시 없음');
+ok(C.aiPrompt('sheet', k2, ['목표']).includes('[초안]') && C.aiPrompt('sheet', k2, ['목표']).includes('1~2학년'), 'AI 프롬프트에 어휘 규칙·[초안]');
+// 모든 초등 성취기준에서 오류 없이 만들어지는지
+for (const f of fs.readdirSync('data/standards/elem')) {
+  for (const st of JSON.parse(fs.readFileSync('data/standards/elem/' + f, 'utf8')).standards) {
+    const q = C.questions(st);
+    assert.ok(q.length && new Set(q).size === q.length && !q.some((x) => /undefined/.test(x)), st.code);
+  }
+}
+n++;
 console.log('classroom tests passed:', n);
