@@ -25,7 +25,8 @@ const body = {
   message: news.headline + '\n' + top,
   tags: ['newspaper'],
   click: cfg.ntfy.click,
-  actions: [{ action: 'view', label: '뉴스 라운지 열기', url: cfg.ntfy.click }]
+  // 알림 버튼: 음성으로 듣기(휴대폰에서 바로 읽어 줌) · 뉴스 라운지 열기
+  actions: [cfg.ntfy.listen && { action: 'view', label: '🔊 음성으로 듣기', url: cfg.ntfy.listen }, { action: 'view', label: '뉴스 라운지 열기', url: cfg.ntfy.click }].filter(Boolean)
 };
 const at = at0820();
 if (mode === '0820' && at - Date.now() / 1000 > 30) body.delay = String(at);

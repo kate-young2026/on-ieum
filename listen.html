@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>뉴스 듣기 · 온-이음</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='7' cy='16' r='5' fill='%23B5531F'/%3E%3Ccircle cx='25' cy='16' r='5' fill='%2347704F'/%3E%3Cpath d='M12 16h8' stroke='%23B5531F' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 "Noto Sans KR",system-ui,sans-serif;word-break:keep-all;overflow-wrap:anywhere}
+  .wrap{max-width:640px;margin:0 auto;padding:16px 16px 140px}
+  .top{display:flex;align-items:center;gap:8px}
+  .top a.home{font:700 20px var(--font-display);color:var(--ink);text-decoration:none}
+  .top .sp{flex:1}
+  .top a.btn-l,.top button{min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper-raised);color:var(--ink);font:500 14px "Noto Sans KR",sans-serif;display:inline-flex;align-items:center;text-decoration:none;cursor:pointer}
+  h1{font:700 28px/1.2 var(--font-display);margin:18px 0 4px}
+  .date{color:var(--ink-muted);margin:0 0 4px}
+  .head{margin:0 0 14px;color:var(--ink-muted);font-size:14px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+  .chips button{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--paper-raised);color:var(--ink-muted);font:500 14px "Noto Sans KR",sans-serif;cursor:pointer}
+  .chips button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  ol.list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  ol.list li button{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+  ol.list li button:focus-visible{outline:3px solid var(--pool);outline-offset:2px}
+  ol.list li.on button{border-color:var(--ember);box-shadow:inset 4px 0 0 var(--ember);background:var(--ember-soft)}
+  ol.list .k{font:500 12px "JetBrains Mono",monospace;color:var(--ember)}
+  ol.list b{display:block;font-size:16px;line-height:1.45;margin:2px 0}
+  ol.list p{margin:0;color:var(--ink-muted);font-size:14px}
+  ol.list a{font-size:13px;color:var(--pool)}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:color-mix(in srgb,var(--paper-raised) 94%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+  .bar .in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:8px}
+  .bar button,.bar select{min-height:52px;min-width:52px;border-radius:16px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:700 15px "Noto Sans KR",sans-serif;cursor:pointer}
+  .bar .play{flex:1;background:var(--ember);border-color:var(--ember);color:var(--on-accent);font-size:17px}
+  .bar select{padding:0 8px;font-weight:500}
+  .now{max-width:640px;margin:0 auto 6px;font-size:13px;color:var(--ink-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .warn{background:var(--ember-soft);border-radius:12px;padding:10px 12px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="home" href="index.html#news">온-이음</a><span class="sp"></span><a class="btn-l" href="index.html#news">뉴스 라운지</a><button data-theme-toggle aria-label="낮밤 전환">낮/밤</button></div>
+  <h1>뉴스 듣기</h1>
+  <p class="date" id="date">오늘의 뉴스를 불러오는 중…</p>
+  <p class="head" id="head"></p>
+  <p class="warn" id="warn" hidden></p>
+  <div class="chips" id="chips" role="group" aria-label="분야 골라 듣기"></div>
+  <ol class="list" id="list"></ol>
+  <p class="head" style="margin-top:16px">기사를 누르면 그 기사부터 읽어요. 음성은 휴대폰·PC에 들어 있는 한국어 음성으로 읽고, 어디에도 보내지 않아요.</p>
+</div>
+<div class="bar"><p class="now" id="now" aria-live="polite">▶를 누르면 오늘의 뉴스를 읽어 드려요.</p>
+  <div class="in">
+    <button id="prev" aria-label="이전 기사">⏮</button>
+    <button class="play" id="play">▶ 듣기</button>
+    <button id="next" aria-label="다음 기사">⏭</button>
+    <select id="rate" aria-label="읽는 빠르기"><option value="0.9">느리게</option><option value="1" selected>보통</option><option value="1.2">빠르게</option><option value="1.4">아주 빠르게</option></select>
+  </div>
+</div>
+<script src="js/common.js"></script>
+<script src="js/news-voice.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]; }); }
+  var V = window.NewsVoice, news = null, cat = 'all', seq = [];
+  var player = new V.Player({ onChange: function (state, seg) {
+    $('play').textContent = state === 'playing' ? '❚❚ 잠깐 멈춤' : state === 'paused' ? '▶ 이어 듣기' : '▶ 듣기';
+    document.querySelectorAll('#list li').forEach(function (li) { li.classList.toggle('on', state !== 'idle' && seg && +li.dataset.i === seg.i); });
+    var on = document.querySelector('#list li.on'); if (on && state === 'playing') on.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    $('now').textContent = state === 'idle' ? '▶를 누르면 오늘의 뉴스를 읽어 드려요.' : (state === 'paused' ? '멈춤 · ' : '읽는 중 · ') + (seg && seg.i >= 0 ? news.items[seg.i].title : '인사말');
+  }, onBlocked: function () { $('now').textContent = '휴대폰이 자동 재생을 막았어요. ▶ 듣기를 눌러 주세요.'; } });
+  try { var r = localStorage.getItem('onieum-voice-rate'); if (r) { $('rate').value = r; player.rate = +r; } } catch (e) {}
+  if (!V.Player.supported()) { $('warn').hidden = false; $('warn').textContent = '이 브라우저는 음성 읽기를 지원하지 않아요. 크롬·사파리·엣지에서 열어 주세요.'; }
+  var CH = [['all', '전체'], ['출시', 'AI 출시'], ['AI', 'AI'], ['IT', 'IT'], ['EDU', '교육'], ['정책', '교육정책']];
+  function render() {
+    var has = {}; news.items.forEach(function (n) { has[n.cat] = 1; });
+    $('chips').innerHTML = CH.filter(function (c) { return c[0] === 'all' || has[c[0]]; }).map(function (c) { return '<button data-c="' + c[0] + '" aria-pressed="' + (c[0] === cat) + '">' + c[1] + '</button>'; }).join('');
+    seq = V.script(news, cat); player.load(seq);
+    $('list').innerHTML = news.items.map(function (n, i) {
+      if (cat !== 'all' && n.cat !== cat) return '';
+      var u = /^https?:\/\//.test(n.link || '') ? n.link : '';
+      return '<li data-i="' + i + '"><button data-i="' + i + '"><span class="k">' + esc(V.CAT[n.cat] || n.cat) + ' · ' + esc(n.source || '') + '</span><b>' + esc(n.title) + '</b><p>' + esc((n.lines || [])[0] || '') + '</p></button>' + (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">원문 보기 ↗</a>' : '') + '</li>';
+    }).join('');
+  }
+  $('chips').addEventListener('click', function (e) { var b = e.target.closest('[data-c]'); if (!b) return; cat = b.dataset.c; render(); });
+  $('list').addEventListener('click', function (e) { var b = e.target.closest('button[data-i]'); if (!b) return; var k = seq.findIndex(function (s) { return s.i === +b.dataset.i; }); if (k >= 0) player.play(k); });
+  $('play').addEventListener('click', function () { if (!news) return; if (player.state === 'playing') player.pause(); else player.play(); });
+  $('prev').addEventListener('click', function () { player.prev(); });
+  $('next').addEventListener('click', function () { player.next(); });
+  $('rate').addEventListener('change', function () { player.setRate(+this.value); try { localStorage.setItem('onieum-voice-rate', this.value); } catch (e) {} });
+  if (window.speechSynthesis) speechSynthesis.onvoiceschanged = function () {};
+  fetch('data/news/today.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : Promise.reject(); }).then(function (d) {
+    if (!d.items || !d.items.length) throw 0;
+    news = d;
+    var dt = new Date(d.date + 'T08:20:00+09:00');
+    $('date').textContent = dt.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'long', timeZone: 'Asia/Seoul' });
+    $('head').textContent = d.headline;
+    var c = new URLSearchParams(location.search).get('cat'); if (c && CH.some(function (x) { return x[0] === c; })) cat = c;
+    render();
+    // 알림에서 바로 들어온 경우(?play=1): 브라우저가 허락하면 바로 읽고, 막히면 ▶ 버튼을 누르면 된다
+    if (/[?&]play=1/.test(location.search) && V.Player.supported()) { try { player.play(0); } catch (e) {} }
+  }).catch(function () { $('date').textContent = '아직 오늘의 뉴스가 없어요.'; });
+  window.addEventListener('pagehide', function () { player.stop(); });
+})();
+</script>
+</body>
+</html>

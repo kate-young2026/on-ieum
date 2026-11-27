@@ -51,3 +51,19 @@ import('../scripts/news/lib.mjs').then((L) => {
   ok(feeds.feeds.filter((f) => !/news\.google\.com/.test(f.url)).length >= 15, '언론사·공식 RSS가 대부분');
   console.log('news tests passed:', n);
 });
+// 음성 듣기 대본
+{
+  const V = require('../js/news-voice.js');
+  const news = { date: '2026-11-27', items: [
+    { cat: '출시', title: '오픈AI, GPT-6.2 출시', source: '지디넷코리아', lines: ['[교육플러스=지성배 기자] 오픈AI가 새 모델을 냈다.', '사용량 계산 오류를 바로잡으면서 이용자가 쓸 수 있는…'] },
+    { cat: 'EDU', title: '교실 AI 튜터 확산', source: '에듀프레스', lines: ['요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요.'] }] };
+  const s = V.script(news);
+  assert.ok(s.length === 4 && s[0].text.startsWith('11월 27일') && s[3].i === -1, '대본: 인사·기사 2·마무리');
+  assert.ok(s[1].text.startsWith('첫 번째, AI 출시 소식.') && !s[1].text.includes('기자') && !s[1].text.includes('…'), '대본: 기자명·말줄임 정리 ' + s[1].text);
+  assert.ok(!s[2].text.includes('설명문이 없는'), '대본: 안내 문구는 읽지 않음');
+  assert.ok(V.script(news, 'EDU').length === 3, '대본: 분야만 골라 듣기');
+  assert.ok(V.chunks('가. '.repeat(100)).every((c) => c.length <= 170), '대본: 문장 단위로 나눔');
+  const fs = require('fs');
+  assert.ok(/listen\.html/.test(JSON.parse(fs.readFileSync('data/news/feeds.json', 'utf8')).ntfy.listen), '알림에 음성 듣기 주소');
+  console.log('news voice tests passed: 6');
+}
