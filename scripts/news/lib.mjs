@@ -70,7 +70,7 @@ export const NOT_RELEASE = /(benchmark|벤치마크|dashboard|대시보드|leade
 export function isRelease(title) { return RELEASE_VERB.test(title) && MODEL_WORD.test(title) && !NOT_RELEASE.test(title); }
 
 // 교사에게 필요 없는 기사(모든 분야 공통 제외). feeds.json의 exclude로 덧붙일 수 있다.
-export const EXCLUDE = ['IPO', '상장', '공모주', '주가', '증권', '몸값', '주관사', '권력지도', 'CISO', '주주', '배당', '영업이익', '매출액', '실적 발표', '인수합병', 'M&A', '부고', '인사]', '코인', '비트코인', '가상자산', '연예', '골프'];
+export const EXCLUDE = ['IPO', '상장', '공모주', '주가', '증권', '몸값', '주관사', '권력지도', 'CISO', '주주', '배당', '영업이익', '매출액', '실적 발표', '인수합병', 'M&A', '부고', '인사]', '코인', '비트코인', 'BTC', '바이낸스', '가상자산', '암호화폐', '연예', '골프'];
 // 교육 관련성: 제목·설명에 이 낱말이 많을수록 점수가 오른다. feeds.json의 eduKeywords로 덧붙일 수 있다.
 export const EDU_KW = ['교육', '학교', '교사', '교원', '학생', '수업', '교실', '학습', '교과', '교육과정', '에듀', '입시', '수능', '대입', '고교학점제', '늘봄', '디지털교과서', 'AI 교과서', 'AIDT', '리터러시', '청소년', '어린이', '아동', '학부모', '대학', '튜터', 'education', 'school', 'teacher', 'student', 'classroom', 'e-learning', 'tutor'];
 function kwList(base, extra) { return base.concat(Array.isArray(extra) ? extra : []).filter(Boolean); }
