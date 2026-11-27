@@ -48,6 +48,6 @@ import('../scripts/news/lib.mjs').then((L) => {
   const feeds = JSON.parse(fs.readFileSync('data/news/feeds.json', 'utf8'));
   ok(!feeds.ntfy.topic, 'feeds.json에 ntfy 주제 없음');
   for (const f of ['index.html', 'README.md', 'v03.html', 'dashboard.html']) ok(!/on-ieum-news-[0-9a-f]{6,}/.test(fs.readFileSync(f, 'utf8')), f + '에 주제 이름 없음');
-  ok(feeds.feeds.filter((f) => !/news\.google\.com/.test(f.url)).length >= 18, '언론사·공식 RSS가 대부분');
+  ok(feeds.feeds.filter((f) => !/news\.google\.com/.test(f.url)).length >= 15, '언론사·공식 RSS가 대부분');
   console.log('news tests passed:', n);
 });

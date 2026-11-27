@@ -121,21 +121,6 @@
       "url": "https://www.hangyo.com/rss/allArticle.xml"
     },
     {
-      "name": "교육언론창",
-      "cat": "정책",
-      "url": "https://www.goeonair.com/rss/allArticle.xml"
-    },
-    {
-      "name": "베리타스알파",
-      "cat": "정책",
-      "url": "https://www.veritas-a.com/rss/allArticle.xml"
-    },
-    {
-      "name": "정책브리핑 · 교육부",
-      "cat": "정책",
-      "url": "https://www.korea.kr/rss/dept_moe.xml"
-    },
-    {
       "name": "구글 뉴스 · 교육부",
       "cat": "정책",
       "url": "https://news.google.com/rss/search?q=(%EA%B5%90%EC%9C%A1%EB%B6%80+OR+%EA%B5%AD%EA%B0%80%EA%B5%90%EC%9C%A1%EC%9C%84%EC%9B%90%ED%9A%8C+OR+%EA%B3%A0%EA%B5%90%ED%95%99%EC%A0%90%EC%A0%9C+OR+%EB%8C%80%EC%9E%85)+when:1d&hl=ko&gl=KR&ceid=KR:ko"
