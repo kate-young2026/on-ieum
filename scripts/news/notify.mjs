@@ -5,13 +5,16 @@
 // NTFY_TOPIC이 없으면 알림을 보내지 않는다.
 import fs from 'node:fs';
 import path from 'node:path';
-import { at0820, CAT_LABEL } from './lib.mjs';
+import { notifyPlan, CAT_LABEL } from './lib.mjs';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../..');
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/news/feeds.json'), 'utf8'));
 const news = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/news/today.json'), 'utf8'));
 const mode = process.env.NOTIFY || '0820';
-if (mode === 'none') { console.log('알림 건너뜀'); process.exit(0); }
+const STATE = path.join(ROOT, 'data/news/notified.json');
+let state = null; try { state = JSON.parse(fs.readFileSync(STATE, 'utf8')); } catch (e) {}
+const plan = notifyPlan(mode, state);
+if (!plan.send) { console.log(plan.why); process.exit(0); }
 if (!news.items.length) { console.log('보낼 기사가 없어 알림을 건너뜀'); process.exit(0); }
 
 const topic = (process.env.NTFY_TOPIC || '').trim();
@@ -28,8 +31,7 @@ const body = {
   // 알림 버튼: 음성으로 듣기(휴대폰에서 바로 읽어 줌) · 뉴스 라운지 열기
   actions: [cfg.ntfy.listen && { action: 'view', label: '🔊 음성으로 듣기', url: cfg.ntfy.listen }, { action: 'view', label: '뉴스 라운지 열기', url: cfg.ntfy.click }].filter(Boolean)
 };
-const at = at0820();
-if (mode === '0820' && at - Date.now() / 1000 > 30) body.delay = String(at);
+if (plan.delay) body.delay = String(plan.delay);
 
 const headers = { 'content-type': 'application/json' };
 if (token) headers.authorization = 'Bearer ' + token;
@@ -37,3 +39,4 @@ const r = await fetch(server, { method: 'POST', headers, body: JSON.stringify(bo
 const text = await r.text();
 if (!r.ok) { console.error('ntfy 실패', r.status, text.slice(0, 200)); process.exit(1); }
 console.log(body.delay ? '08:20 KST 예약 완료' : '바로 보냄', '→ 주제 (비밀값)', token ? '+ 접근 토큰' : '');
+if (plan.mark) fs.writeFileSync(STATE, JSON.stringify({ date: plan.date, at: body.delay ? '08:20 예약' : '바로 보냄', sentAt: new Date().toISOString() }, null, 1) + '\n');

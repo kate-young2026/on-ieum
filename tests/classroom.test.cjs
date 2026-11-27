@@ -33,6 +33,13 @@ const d2 = C.draft('sheet', k2, C.objectives(k2));
 ok(d2.includes('[초안]') && d2.includes('초등 1~2학년'), '초안 표시');
 ok(!C.draft('sheet', k2, C.objectives(k2), true).includes('[초안]'), '확정하면 [초안] 표시 없음');
 ok(C.aiPrompt('sheet', k2, ['목표']).includes('[초안]') && C.aiPrompt('sheet', k2, ['목표']).includes('1~2학년'), 'AI 프롬프트에 어휘 규칙·[초안]');
+// 뉴스 라운지 → 교실로 보내기
+const art = C.decodeNews(JSON.stringify({ t: '교육부, <AI> 디지털교과서 점검', l: 'javascript:alert(1)', s: '예시', x: ['한 줄', '두 줄', '세 줄', '네 줄'] }));
+ok(art && art.x.length === 3 && art.l === 'javascript:alert(1)', '기사 주소 값 읽기(요약 3줄까지)');
+const ns = C.newsSection(art, 'e12');
+ok(ns.includes('&lt;AI&gt;') && !ns.includes('javascript:') && ns.includes('새로 알게 된 것 하나'), '기사 읽기 자료: 이스케이프 · 안전하지 않은 링크 빼기 · 학년군 질문');
+ok(C.decodeNews('{bad') === null && C.decodeNews('{"x":1}') === null, '잘못된 기사 값은 무시');
+ok(C.draft('sheet', k2, C.objectives(k2), false, ns).includes('읽기 자료 · 오늘의 기사'), '학습지에 기사 넣기');
 // 모든 초등 성취기준에서 오류 없이 만들어지는지
 for (const f of fs.readdirSync('data/standards/elem')) {
   for (const st of JSON.parse(fs.readFileSync('data/standards/elem/' + f, 'utf8')).standards) {

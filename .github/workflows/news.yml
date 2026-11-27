@@ -1,11 +1,13 @@
 name: 뉴스 라운지
 
-# 매일 06:07 KST(21:07 UTC)에 수집해 data/news/today.json을 갱신하고,
-# 휴대폰 알림은 ntfy 예약 전달로 정확히 08:20 KST에 도착하게 한다.
-# (GitHub 예약 실행은 몇십 분 늦을 수 있어서 알림 시각은 ntfy가 맞춘다.)
+# 매일 새벽 여러 번(00:07 · 02:07 · 04:07 · 06:07 · 07:37 KST) 수집해 data/news/today.json을 갱신하고,
+# 휴대폰 알림은 그날 처음 돈 실행이 ntfy 예약 전달로 걸어 두어 정확히 08:20 KST에 도착하게 한다.
+# GitHub 예약 실행은 몇 시간씩 늦기도 해서(2026-11-26·27 모두 06:07 예약이 12:30쯤 실행) 여러 번 걸어 두고,
+# 하루 한 번만 보내도록 data/news/notified.json에 오늘 예약했는지 적는다. 나중 실행은 뉴스만 새로 고친다.
 on:
   schedule:
-    - cron: '7 21 * * *'
+    - cron: '7 15,17,19,21 * * *'
+    - cron: '37 22 * * *'
   # 피드 목록이나 수집 코드가 바뀌면 바로 한 번 다시 수집한다(알림은 보내지 않음)
   push:
     branches: [main]
@@ -46,8 +48,14 @@ jobs:
         if: env.ANTHROPIC_API_KEY != ''
         run: npm install --no-save --no-package-lock --prefix scripts/news @anthropic-ai/sdk
       - name: 수집 · 분류 · 상위 10 · 3줄 요약
+        id: collect
         run: node scripts/news/collect.mjs
+      - name: 알림 (ntfy, 하루 한 번 08:20 예약)
+        run: node scripts/news/notify.mjs
+        env:
+          NOTIFY: ${{ github.event_name == 'schedule' && '0820' || github.event_name == 'push' && 'none' || inputs.notify }}
       - name: 저장소에 반영 (GitHub Pages가 다시 배포됨)
+        if: always() && steps.collect.outcome == 'success'
         run: |
           git config user.name "on-ieum-news-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -55,7 +63,3 @@ jobs:
           if git diff --cached --quiet; then echo "바뀐 것 없음"; exit 0; fi
           git commit -m "뉴스 라운지: $(date -u -d '+9 hours' +%Y-%m-%d) 오늘의 뉴스"
           for i in 1 2 3; do git pull --rebase -q origin main && git push && break; sleep 5; done
-      - name: 알림 (ntfy)
-        run: node scripts/news/notify.mjs
-        env:
-          NOTIFY: ${{ github.event_name == 'schedule' && '0820' || github.event_name == 'push' && 'none' || inputs.notify }}

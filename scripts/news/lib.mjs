@@ -173,6 +173,16 @@ export function extractLines(item) {
 export function kstDate(d = new Date()) { return new Date(d.getTime() + 9 * 36e5).toISOString().slice(0, 10); }
 // 오늘(KST) 08:20의 유닉스 시각(초)
 export function at0820(d = new Date()) { return Math.floor(Date.parse(kstDate(d) + 'T08:20:00+09:00') / 1000); }
+// 예약 실행이 하루에 여러 번 돌아도 08:20 알림은 하루 한 번만: data/news/notified.json의 date가 오늘(KST)이면 건너뛴다.
+// mode 0820만 기록하고, 손으로 보낸 now 알림은 다음 날 08:20 예약을 막지 않는다.
+export function notifyPlan(mode, state, now = new Date()) {
+  if (mode === 'none') return { send: false, why: '알림 건너뜀' };
+  if (mode === 'now') return { send: true, delay: null, mark: false };
+  const today = kstDate(now);
+  if (state && state.date === today) return { send: false, why: '오늘 08:20 알림은 이미 예약됨 (' + (state.at || '') + ')' };
+  const at = at0820(now);
+  return { send: true, delay: at - now.getTime() / 1000 > 30 ? at : null, mark: true, date: today };
+}
 
 export const CAT_LABEL = { 출시: 'AI 출시', AI: 'AI', IT: 'IT', EDU: 'EDU', 정책: '교육정책' };
 export function headline(items) {

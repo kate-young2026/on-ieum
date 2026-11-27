@@ -180,7 +180,29 @@
     return { total: list.length, units: list.slice(0, limit) };
   }
 
-  var API = { unitKey: unitKey, unitName: unitName, toRecords: toRecords, fromIndex: fromIndex, gradeNum: gradeNum, gbHas: gbHas, levelOf: levelOf, scoreRec: scoreRec, searchStandards: searchStandards, findUnits: findUnits, LEVEL_KO: LEVEL_KO };
+  // 기사 → 교실: 기사 제목·요약에서 성취기준과 잘 맞는 낱말 후보를 고른다(제목 낱말 우선).
+  // 너무 흔한 낱말(맞는 성취기준 200개 넘게)과 뉴스 상투어는 뺀다. AI는 성취기준 문장에 쓰인 '인공지능'으로 바꿔 찾는다.
+  var NEWS_STOP = '출시 공개 발표 지원 운영 개최 추진 확대 강화 시작 도입 기자 오늘 올해 내년 대상 맞춤형 관련 위해 위한 통해 대한 이번 최근 새로운 기준 당시 수정 오류 안정적 학년도 교육청 정부 기고 칼럼 사설 단독 속보 현장 방안 이하 다음 함께 모습 이어 직접 기존 대표 계획 아니라 있는지 있는 없는 했다 한다 밝혔다 말했다 지난 오는 등을 등의 것으 만나 정해 이라더니 마음대로'.split(' ');
+  var NEWS_SYN = { ai: '인공지능', 에이아이: '인공지능', 생성형: '인공지능', 챗봇: '인공지능', 코딩: '프로그래밍', 기후: '기후 변화', 탄소: '탄소', 선거: '선거' };
+  function newsKeywords(recs, title, body, n) {
+    n = n || 6;
+    var seen = {}, out = [];
+    [[title, 1], [body, 0]].forEach(function (src) {
+      (String(src[0] || '').match(/[가-힣]{2,}|[A-Za-z]{2,}/g) || []).forEach(function (w, pos) {
+        var t = stripParticle(w.toLowerCase());
+        t = NEWS_SYN[t] || t;
+        if (t.length < 2 || seen[t] || NEWS_STOP.indexOf(t) >= 0) return;
+        seen[t] = 1;
+        var r = searchStandards(recs, { query: t, limit: 1 });
+        if (!r.total || r.total > 200) return;
+        out.push({ word: t, count: r.total, score: r.results[0].score, title: src[1], pos: pos });
+      });
+    });
+    out.sort(function (a, b) { return b.title - a.title || (b.count >= 3) - (a.count >= 3) || b.score - a.score || a.pos - b.pos; });
+    return out.slice(0, n);
+  }
+
+  var API = { unitKey: unitKey, unitName: unitName, toRecords: toRecords, fromIndex: fromIndex, gradeNum: gradeNum, gbHas: gbHas, levelOf: levelOf, scoreRec: scoreRec, searchStandards: searchStandards, findUnits: findUnits, newsKeywords: newsKeywords, LEVEL_KO: LEVEL_KO };
   if (typeof module !== 'undefined' && module.exports) module.exports = API;
   else root.OnStdSearch = API;
 })(typeof window !== 'undefined' ? window : this);
