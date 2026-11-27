@@ -1,115 +1,118 @@
 {
  "date": "2026-11-27",
- "generatedAt": "2026-11-27T03:36:41.300Z",
+ "generatedAt": "2026-11-27T12:29:52.135Z",
  "summary": "extract",
- "headline": "오늘 뉴스 10개가 도착했어요. AI 출시 2 · AI 2 · IT 2 · EDU 2 · 교육정책 2",
+ "headline": "오늘 뉴스 10개가 도착했어요. AI 출시 3 · AI 2 · IT 1 · EDU 2 · 교육정책 2",
  "items": [
   {
    "cat": "출시",
-   "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
-   "link": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
-   "source": "Hugging Face",
-   "published": "2026-11-26T11:37:17.000Z",
+   "title": "구글, 출시 48일 만에 제미나이 4 아르곤 모델 지원 중단... 네온 부상 (BTC, Google, Gemini, AI)",
+   "link": "https://www.minsimnews.com/news/articleView.html?idxno=104424",
+   "source": "민심뉴스",
+   "published": "2026-11-27T06:29:54.000Z",
    "lines": [
-    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+    "서비스명 모델명 출시일 제거 예정일 상세 정보 BTC (Binance Spot) 바이낸스에서 BT"
    ]
   },
   {
    "cat": "출시",
-   "title": "Claude가 Troy Hunt의 이메일을 검토한 결과, 침해 사실 공개 과정에서 반복적인 지연과 법무팀 개입이 드러났다",
-   "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPZmFLb3ZqUDJmWWlRWjUwdVZ2cWc4eXluN2F2OHhVUU0xQzJwQWo3ZjY0UW1WeG5jQkFiM0dBTnlIay1MYk8wcHdGMm04eHIyejlmXzRtbDRaNmJTYkgzUnFoWW1ITVJScjdheFFMd2M2MXVpeUUwME15SExIX0J3YjA3XzZPMXFoVmVWbHNCNA?oc=5",
-   "source": "Mezha.net",
-   "published": "2026-11-26T13:43:00.000Z",
+   "title": "오픈AI, GPT-6.2 출시 당시계산 오류 수정",
+   "link": "https://zdnet.co.kr/view/?no=20261127142417",
+   "source": "지디넷코리아",
+   "published": "2026-11-27T05:24:17.000Z",
    "lines": [
-    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+    "오픈AI가 GPT-6.2 출시 때 생긴 사용량 계산 오류를 바로잡으면서 챗GPT와 코덱스 이용자가 GPT-6.2 아스트라(Astra)와 솔(Sol)의 사용량 한…",
+    "오픈AI의 티보 소티오(Tibo Sottiaux)는 현지 시각 11월 25일 X에 이 내용을 공개했다..."
+   ]
+  },
+  {
+   "cat": "출시",
+   "title": "챗GPT, 브랜드 노출 지표 공개… AI 검색 마케팅의 새로운 기준은",
+   "link": "https://www.koreayouthdaily.com/news/601375",
+   "source": "대한청년일보",
+   "published": "2026-11-26T01:58:00.000Z",
+   "lines": [
+    "오픈AI ‘Businesses in ChatGPT’ 베타 공개… 데이터 기반 GEO·AEO 전략 중요성 확대 생성형 AI를 활용한 정보 탐색이 확대되면서 AI …"
    ]
   },
   {
    "cat": "정책",
-   "title": "수능 부정행위 474건, 1년 새 195건 급증…중대 위반 땐 응시 제한 10년 추진",
-   "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9kdEdCaTBlRzY5LW4tUjVPYTJSZlZsU2d5VWNScEtKN090ZGl4RGljX1ZveHhsSExTd1ZGWXRlTXMzTzJpU1duU1BxaTFrZE5sZk9mck9jNmlzWVFUX2hucTRGTFhFN3BtcVBSdw?oc=5",
-   "source": "뉴시안",
-   "published": "2026-11-27T03:27:24.000Z",
+   "title": "호남대학교 앵커사업단 '함께늘봄 강사 실전강의' 운영.. 생성형 AI/교육용 로봇 실습으로 예비 강사 역량 강화",
+   "link": "https://www.veritas-a.com/news/articleView.html?idxno=639867",
+   "source": "베리타스알파",
+   "published": "2026-11-27T17:03:05.000Z",
    "lines": [
-    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+    "[베리타스알파=김하연 기자] 호남대학교 앵커사업단(단장 정제평)이 늘봄교육 강사의 실무 역량을 높이기 위한 '함께늘봄 강사 실전강의'를 시작했다.",
+    "25일 하나은행 광산지점 2층 하나EZ라운지에서 첫 교육을 열었다.이번 강의는 함께늘봄 프로그램에 참여 중인 현장 강사의 전문성을 키우고, 늘봄교육에 관심 있는…",
+    "교육은 25일을 시작으로 12월 16일과 30일, 2027년 1월 6일까지 모두 4회 진행된다."
    ]
   },
   {
    "cat": "정책",
-   "title": "수능 부정행위 신고·제보 306건…교육부, “확인되면 최소 1억 포상”",
-   "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBmUUYxZzdIMS1sVnFNWnk4V0t2cVNDcFA5dllTYlpSR21iTFJNU3NUajk5UGFldjZYQmkzMGNXdmpSQjNleC1HU3VTdEk0cDYycElqVXBmWVd3a2xUNTl4MjJGenNkWnpHbHJEOTBmdw?oc=5",
-   "source": "서울신문",
-   "published": "2026-11-27T03:27:08.000Z",
+   "title": "건양사이버대학교 다문화한국어학과, 대전출입국/외국인사무소 현장투어로 한국어교원 실무 점검",
+   "link": "https://www.veritas-a.com/news/articleView.html?idxno=639849",
+   "source": "베리타스알파",
+   "published": "2026-11-27T16:19:28.000Z",
    "lines": [
-    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+    "[베리타스알파=김하연 기자] 건양사이버대학교 다문화한국어학과 재학생들이 25일 대전출입국/외국인사무소에서 열린 '2026년 하반기 출입국 현장투어'에 참가했다.",
+    "학생들은 이민행정이 이뤄지는 현장을 부서별로 돌아보며 한국어교원이 알아야 할 제도와 실무를 점검했다.국내 체류 외국인이 늘면서 이주민의 초기 정착과 언어 교육을…",
+    "법무부 외국인정책 시행계획 자료 기준으로 체류 외국인은 약 278만명, 전체 인구의 5.4% 수준이다."
    ]
   },
   {
    "cat": "EDU",
-   "title": "타이닌: 학교 교육 시스템을 통해 과학 기술 혁신에 대한 열망을 육성합니다.",
-   "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdzVsd1AydkxoQ3doOFZoQmhGc3Y5RHBTMTl4X3ZiSWdvMll1LWlOUEg2QnhqdjFrdExXQ0xCX1N1eTZTQU5pSFNwVDllaEVyN3N4RHZDYVFxdmtidExlNGRfUlhwb09LVVdfcXJSTXh3M0xwODJSSWRuaWwtMGY0MmxrWF9pMHBqcnJZSVhTTWpTcWhVX2F1WThWYng?oc=5",
-   "source": "Vietnam.vn",
-   "published": "2026-11-27T02:51:20.000Z",
+   "title": "서울초등교장협, 정근식 교육감 만나 현안 정책 협의",
+   "link": "https://www.edupress.kr/news/articleView.html?idxno=30686",
+   "source": "에듀프레스",
+   "published": "2026-11-27T17:06:02.000Z",
    "lines": [
-    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+    "에듀프레스 장재훈 기자 = 서울초등교장협의회(이하 서초협)는 26일 서울시교육청 교육감실에서 정근식 교육감을 만나 정책간담회를 개최했다.이날 간담회에서는 교육청…"
    ]
   },
   {
    "cat": "EDU",
-   "title": "김문수 의원, ‘교과서 오류 수정’ 법에 명시 추진",
-   "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE96TEl5WnFEY2JYU2ZId3YtRmYzcjl2ZWU0YmFTNkVGcVZlZXhIV1hST2NXc0NKd05ubFcwTlc2VklOS1BDZTZPMjdqSUlFOW9zdEc4STNfclduU3pETndZRmk2eUstVk0?oc=5",
-   "source": "경기매일",
-   "published": "2026-11-27T02:47:38.000Z",
+   "title": "수능 문제지 '공공기록물'이라더니…폐기는 교육부 마음대로?",
+   "link": "https://www.edpl.co.kr/news/articleView.html?idxno=22189",
+   "source": "교육플러스",
+   "published": "2026-11-27T15:23:57.000Z",
    "lines": [
-    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+    "[교육플러스=지성배 기자] 교육부가 대학수학능력시험(수능) 문제지는 ‘공공기록물’이라고 규정해 놓고도, 보존 기한과 폐기 방법, 기산일 등을 임의로 정해 운영한…",
+    "기산점 역시 다음 연도의 1월 1일이 되어야"
    ]
   },
   {
    "cat": "AI",
-   "title": "[AI리더의 서가] 토큰을 지배하는 기업이 시장을 지배한다",
-   "link": "https://www.aitimes.com/news/articleView.html?idxno=217624",
-   "source": "AI타임스",
-   "published": "2026-11-27T09:00:00.000Z",
+   "title": "NIA, AI 안전성·이용자 권리 보장과 AI 격차 해소 위한 법제도 개선 모색",
+   "link": "https://www.aitimes.kr/news/articleView.html?idxno=42926",
+   "source": "인공지능신문",
+   "published": "2026-11-27T17:07:14.000Z",
    "lines": [
-    "토큰을 지배하는 기업이 시장을 지배한다가회광 | 씽크스마트2026년 9월 30일추천이유저자는 AI 비용을 줄이는 것이 아니라 토큰 생산성을 높이는 것이 핵심이라…",
-    "경영자가 토큰을 매출과 비용처럼 읽고 관리하여 AI를 진정한 경쟁력으로 전환할 수 있도록 돕습니다.상세보기 영풍문고 쇼핑몰 검색창에 'AI 비용', 'AI RO…",
-    "AI를 쓸지 말지 고민하던 단계에서, 이미 쓰고 있는 AI가 제값을 하는지"
+    "한국지능정보사회진흥원(NIA, 원장 김형철)이 인공지능(AI)의 안전성 확보와 이용자 권리 보호, AI 격차 해소를 위한 법제도 개선 방향을 모색한다.",
+    "NIA는 27일 한양대학교 백남학술정보관에서 한양대 법학연구소, 한국인공지능법학회와 공동으로 ‘함께 누리는 AI와 법제도’를 주제로 공개세미나를 개최했다.사법부…",
+    "유재연 국가AI전략위원회 사회분과위원장은 포용"
    ]
   },
   {
    "cat": "AI",
-   "title": "미 정보당국 \"중국, 젠슨 황 사건 배후 조종 증거 없어\"…간첩 의혹 판단은 엇갈려",
-   "link": "https://www.aitimes.com/news/articleView.html?idxno=217839",
-   "source": "AI타임스",
-   "published": "2026-11-27T08:01:21.000Z",
+   "title": "퀀텀에이아이·스퀘어원, 음성 AI 기술협력 MOU…AICC ‘순이’ 음성 합성 고도화",
+   "link": "https://www.aitimes.kr/news/articleView.html?idxno=42925",
+   "source": "인공지능신문",
+   "published": "2026-11-27T16:34:22.000Z",
    "lines": [
-    "미국 정보당국이 젠슨 황 엔비디아 CEO의 혼외 관계를 중국 정보기관이 배후에서 조종했다는 증거를 확보하지 못했다고 의회에 보고했다.",
-    "그러나 상대 여성인 앨리스 황의 중국 정보기관 연계 의혹을 놓고는 미국 정보당국자들의 판단이 엇갈리는 것으로 알려졌다.월스트리트저널(WSJ)은 25일(현지시간)…",
-    "젠슨 황이 CEO로 복귀한 지 하루만으로, CIA와 FBI, 국가정보국장실(ODNI), 국가안보국(NSA) 관계자들이 참석"
+    "퀀텀에이아이(대표 최성집)가 포항공과대학교(POSTECH) 연구실 창업 음성 인공지능(AI) 스타트업 스퀘어원(대표 서영주)과 ‘음성 AI 기술협력 및 AI 컨…",
+    "이를 통해 기존 오픈모델 기반으로 운영하던 텍스트 음성 변환(TTS) 기술을 ‘카멜레온’ 기반의 고도화된 음성 합성 체계로 전환할 계획이다.스퀘어원의 ‘카멜레온…"
    ]
   },
   {
    "cat": "IT",
-   "title": "[범한메카텍 IPO] '파두'의 NH, '정정요구 2번'의 유진이 몸값 매겼다",
-   "link": "https://www.bloter.net/news/articleView.html?idxno=679781",
-   "source": "블로터",
-   "published": "2026-11-27T09:33:44.000Z",
+   "title": "교육부 “스마트안경 탐지 기술 상용화 단계…내년 수능 대비”",
+   "link": "https://www.etnews.com/20261127000325",
+   "source": "전자신문",
+   "published": "2026-11-27T07:59:08.000Z",
    "lines": [
-    "범한메카텍의 몸값을 매긴 두 공동 대표주관사의 최근 성적표가 좋지 않다.",
-    "NH투자증권은 4년 전 범한그룹의 또 다른 계열사 범한퓨얼셀을 상장시켰다.",
-    "주가가 공모가를 한참 밑도는 범한퓨얼셀은 모회사 범한산업에 430억원을 빌려준 상태다."
-   ]
-  },
-  {
-   "cat": "IT",
-   "title": "[한국의 CISO-권력지도] 삼성물산 강현구 상무, CISO·CPO '1인 2역' 총괄…권력지수는 7점",
-   "link": "https://www.bloter.net/news/articleView.html?idxno=679797",
-   "source": "블로터",
-   "published": "2026-11-27T09:31:03.000Z",
-   "lines": [
-    "강현구 삼성물산 경영기획실 정보보호팀장 상무는 정보보호최고책임자(CISO)와 개인정보보호책임자(CPO)를 함께 맡고 있다.",
-    "건설·상사·패션·리조트 등 4개 부문의 보안과 개인정보를 모두 책임진다.",
-    "래미안 홈IoT부터 온라인 쇼핑몰, 에버랜드 예매 서비스까지 고객 정보가 오가는 접점이 넓은 만큼 인증과 사고 대응에도 공을 들인다.26일 가 삼성그룹 주요 4…"
+    "정부가 대학수학능력시험(수능) 부정행위 방지를 위한 스마트안경 탐지 기술 개발을 마치고 상용화를 추진한다.",
+    "인터넷 연결 없이 기기 자체에서 인공지능(AI)을 구동하는 온디바이스 AI에 대한 탐지 기술도 개발할 방침이다.",
+    "최은옥 교육부 장관 직무대행은 27일 국회 교육위원회 전체회의에서 “스마트안경을 탐지하는 기술은 개발됐고 상용화하는 단계에 들어가 있다”며 “내년 수능을 염두에…"
    ]
   }
  ],
@@ -142,7 +145,7 @@
    "name": "Hugging Face",
    "cat": "출시",
    "ok": true,
-   "n": 918
+   "n": 919
   },
   {
    "name": "NVIDIA",
@@ -154,13 +157,25 @@
    "name": "구글 뉴스 · AI 모델 출시",
    "cat": "출시",
    "ok": true,
-   "n": 29
+   "n": 27
   },
   {
    "name": "AI타임스",
    "cat": "AI",
    "ok": true,
    "n": 50
+  },
+  {
+   "name": "인공지능신문",
+   "cat": "AI",
+   "ok": true,
+   "n": 50
+  },
+  {
+   "name": "TechCrunch AI",
+   "cat": "AI",
+   "ok": true,
+   "n": 20
   },
   {
    "name": "구글 뉴스 · 생성형 AI",
@@ -187,6 +202,12 @@
    "n": 50
   },
   {
+   "name": "디지털투데이",
+   "cat": "IT",
+   "ok": true,
+   "n": 50
+  },
+  {
    "name": "에듀프레스",
    "cat": "EDU",
    "ok": true,
@@ -199,10 +220,40 @@
    "n": 50
   },
   {
+   "name": "에듀인뉴스",
+   "cat": "EDU",
+   "ok": true,
+   "n": 50
+  },
+  {
    "name": "구글 뉴스 · 에듀테크",
    "cat": "EDU",
    "ok": true,
-   "n": 21
+   "n": 19
+  },
+  {
+   "name": "한국교육신문",
+   "cat": "정책",
+   "ok": true,
+   "n": 0
+  },
+  {
+   "name": "교육언론창",
+   "cat": "정책",
+   "ok": false,
+   "error": "fetch failed"
+  },
+  {
+   "name": "베리타스알파",
+   "cat": "정책",
+   "ok": true,
+   "n": 50
+  },
+  {
+   "name": "정책브리핑 · 교육부",
+   "cat": "정책",
+   "ok": false,
+   "error": "HTTP 404"
   },
   {
    "name": "구글 뉴스 · 교육부",
@@ -210,5 +261,6 @@
    "ok": true,
    "n": 100
   }
- ]
+ ],
+ "described": 10
 }
