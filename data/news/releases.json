@@ -1,6 +1,16 @@
 {
  "items": [
   {
+   "date": "2026-11-27",
+   "title": "Claude가 Troy Hunt의 이메일을 검토한 결과, 침해 사실 공개 과정에서 반복적인 지연과 법무팀 개입이 드러났다",
+   "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPZmFLb3ZqUDJmWWlRWjUwdVZ2cWc4eXluN2F2OHhVUU0xQzJwQWo3ZjY0UW1WeG5jQkFiM0dBTnlIay1MYk8wcHdGMm04eHIyejlmXzRtbDRaNmJTYkgzUnFoWW1ITVJScjdheFFMd2M2MXVpeUUwME15SExIX0J3YjA3XzZPMXFoVmVWbHNCNA?oc=5",
+   "source": "Mezha.net",
+   "published": "2026-11-26T13:43:00.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+   ]
+  },
+  {
    "date": "2026-11-26",
    "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
    "link": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
@@ -29,6 +39,46 @@
    "published": null,
    "lines": [
     "Claude Opus 5.5 leads in agentic coding and knowledge work, and costs 40% less to run tha…"
+   ]
+  },
+  {
+   "date": "2026-11-27",
+   "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+   "link": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
+   "source": "Hugging Face",
+   "published": "2026-11-26T11:37:17.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+   ]
+  },
+  {
+   "date": "2026-11-26",
+   "title": "챗GPT, 브랜드 노출 지표 공개… AI 검색 마케팅의 새로운 기준은",
+   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5qVDFad2lWay1oSnM3U1NhN1dCN2RvbVhOSy1FRksyMm9WSmhheGFGdDNsT2YybGkwcl9ndmdJa1BSU0pCTkxYaWdIUTRUUURkekJN?oc=5",
+   "source": "유스연합",
+   "published": "2026-11-26T01:58:00.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+   ]
+  },
+  {
+   "date": "2026-11-26",
+   "title": "[더뉴론] 딥마인드는 일관성 있는 AI 답변 테스트를 시작. Anthropic과 OpenAI 직원들은 공개되지 않은 모델이 안전한지 의문을 제기. OpenAI의 GPT-6.2는 실험실에서 검증된 단백질 결합체를 설계했다. Claude 아티팩트는 이제 데스크톱 앱으로 설치된다. GPT-6.2 Ast",
+   "link": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE5BQXFQdVpUUnQzcU04SUFsT25yM2llVEl1TmR0cWdzZ3loZk5lLTJhZFRuSFloQXZ1V19Wei1PR1Q?oc=5",
+   "source": "AI넷",
+   "published": "2026-11-25T23:54:00.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+   ]
+  },
+  {
+   "date": "2026-11-26",
+   "title": "Anthropic, Claude의 도움을 받아 Messages API를 Rust로 마이그레이션한 과정 공개",
+   "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNdklpY3F2YnIzbUVuLXd2ZzlkMDhTdXFhWjV0Ry1iby1keEdoV0EtSWZLcXhLa2JYTVBEMFNrNFExbnV1Y2pKSmNZZUJWd2Foc1RGdXBzU2RoOV96SXF1Nk1wNmhCOVRQSmRRNnRrTS00WWRDa09PTnFzeVN6MS13MVFxTk1Cc0IxNVZWU28wVzRoSlk?oc=5",
+   "source": "Unite.AI",
+   "published": "2026-11-25T17:19:06.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
    ]
   },
   {
@@ -82,5 +132,5 @@
    ]
   }
  ],
- "updated": "2026-11-26"
+ "updated": "2026-11-27"
 }
