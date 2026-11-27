@@ -42,7 +42,7 @@
 | [`/rooms/escape.html`](https://kate-young2026.github.io/on-ieum/rooms/escape.html) | 방탈출: 문제를 풀어야 열리는 문. 예시 방 3개(국어 「잠긴 이야기 도서관」, 수학 「곱셈 금고를 열어라」·「분수 실험실 탈출」 — 수학은 도전할 때마다 새 문제), 방 꾸미기(성취기준 검색·AI 문제 만들기), 학생용 링크·HTML 파일·교사용 정답지로 내보내기. 교실에서 성취기준을 고르고 '방탈출로'를 누르면 그 성취기준으로 새 방(`?std=6수01-08`) |
 | [`/rooms/locker.html`](https://kate-young2026.github.io/on-ieum/rooms/locker.html) | 교실 사물함: 2027 수능 국어 45문항 사물함 · OMR 풀이·채점 · 정답 사물함 · 성취기준 매칭 |
 | [`/rooms/portfolio.html`](https://kate-young2026.github.io/on-ieum/rooms/portfolio.html) | 서재 포트폴리오: 2025년 8월 이후 메인비주얼 작업 카드 |
-| [`/rooms/album.html`](https://kate-young2026.github.io/on-ieum/rooms/album.html) | 가족방 앨범북 (비밀번호 잠금): ① 사진 DB에 사진 등록(찍은 날짜 자동) → ② 고른 사진만으로 앨범 만들기(성장앨범·가족앨범·여행·기념일·학교생활, 제목·날짜·내용, 표지·순서) → ③ 책처럼 넘겨 보기·21cm 정사각 인쇄/PDF. **사진은 저장소에 올리지 않고 그 기기 브라우저(IndexedDB)에만 저장**하며, 다른 기기로는 백업 파일로 옮깁니다. 비밀번호는 화면을 가리는 용도일 뿐 공개 저장소를 지키는 장치가 아니므로 가족 사진을 저장소에 커밋하지 않습니다 |
+| [`/rooms/album.html`](https://kate-young2026.github.io/on-ieum/rooms/album.html) | 가족방 앨범북 (비밀번호 잠금): ① 사진 DB에 사진 등록(찍은 날짜 자동) → ② 고른 사진만으로 앨범 만들기(성장앨범·가족앨범·여행·기념일·학교생활, 제목·날짜·내용, 표지·순서) → ③ 책처럼 넘겨 보기·21cm 정사각 인쇄/PDF. **디자인 템플릿 5종**(클래식·매거진·폴라로이드 콜라주·촘촘한 그리드·성장 타임라인)을 사진 장수에 맞춰 추천하고, 그림으로 만든 예시 사진 20·30·50·100장으로 **디자인 샘플 5권**을 넘겨 볼 수 있습니다. **사진은 저장소에 올리지 않고 그 기기 브라우저(IndexedDB)에만 저장**하며, 다른 기기로는 백업 파일로 옮깁니다. 비밀번호는 화면을 가리는 용도일 뿐 공개 저장소를 지키는 장치가 아니므로 가족 사진을 저장소에 커밋하지 않습니다 |
 
 ### 뉴스 라운지 (실제 동작)
 - `.github/workflows/news.yml`이 매일 새벽(00:07~07:37 KST, 아래 예약 실행 참고) `scripts/news/collect.mjs`를 돌려 공개 RSS 21곳(`data/news/feeds.json`: OpenAI·Anthropic·Google DeepMind·Google AI·Hugging Face·NVIDIA 공식 발표, AI타임스·인공지능신문·TechCrunch·ZDNet·전자신문·블로터·디지털투데이, 에듀프레스·교육플러스·에듀인뉴스, 한국교육신문, 구글 뉴스 검색 4개)을 읽습니다. 설명문이 있는 언론사 RSS가 먼저입니다.

@@ -49,4 +49,27 @@ ok(!/^\d{8}_\d{6}/m.test(fs.readdirSync('.', { recursive: true }).map(String).fi
 const html = fs.readFileSync('rooms/album.html', 'utf8');
 ok(/id="gate"/.test(html) && /<div class="r-app" id="albumApp" hidden>/.test(html), '잠금 화면이 먼저, 앨범은 숨김');
 ok(/indexedDB\.open\('onieum-album'/.test(js) && !/fetch\(/.test(js), '사진은 브라우저 IndexedDB에만, 서버로 보내지 않음');
+
+// 디자인 템플릿 5종: 어떤 장수든 모든 사진이 순서대로, 쪽당 장수는 템플릿 한도 안
+const CSS = fs.readFileSync('css/album.css', 'utf8');
+ok(A.TEMPLATES.length === 5, '템플릿 5종');
+for (const t of A.TEMPLATES) {
+  for (const len of [1, 2, 5, 9, 20, 30, 50, 100, 101]) {
+    const ph = Array.from({ length: len }, (_, i) => ({ id: 'p' + i, w: i % 5 === 1 ? 1600 : 900, h: 1200, date: '2025-' + String(1 + Math.floor(i * 12 / len)).padStart(2, '0') + '-05' }));
+    const pages = A.paginate(ph, t.id), flat = pages.flatMap((p) => p.photos.map((x) => x.id));
+    ok(flat.join() === ph.map((x) => x.id).join(), t.id + ' ' + len + '장 모두 순서대로');
+    ok(pages.every((p) => p.photos.length >= 1 && p.photos.length <= t.max), t.id + ' ' + len + '장 쪽당 1~' + t.max);
+    ok(pages.every((p) => p.layout === 'one' || p.layout === 'one-wide' || CSS.includes('.lay-' + p.layout + ' ') || CSS.includes('.lay-' + p.layout + '{') || CSS.includes('.lay-' + p.layout + ',')), t.id + ' 틀마다 CSS 있음');
+    if (len >= 50 && t.id !== 'timeline') ok(pages.length < len, t.id + ' ' + len + '장은 쪽 수가 사진보다 적음');
+  }
+}
+// 타임라인은 달이 바뀌면 새 쪽에서 시작하고 첫 쪽에 달 이름
+const tl = A.paginate([{ id: 1, date: '2025-01-03', w: 1, h: 1 }, { id: 2, date: '2025-01-09', w: 1, h: 1 }, { id: 3, date: '2025-02-01', w: 1, h: 1 }], 'timeline');
+ok(tl.length === 2 && tl[0].chapter === '2025-01' && tl[1].chapter === '2025-02' && tl[0].photos.length === 2, '타임라인 달마다 장');
+// 장수에 맞는 추천
+ok(A.recommendTemplate(20, 'family') === 'classic' && A.recommendTemplate(30, 'trip') === 'magazine' && A.recommendTemplate(50, 'family') === 'collage' && A.recommendTemplate(100, 'family') === 'grid' && A.recommendTemplate(30, 'growth') === 'timeline', '장수별 추천');
+// 샘플 5권은 20·30·50·100장을 모두 쓰고, 템플릿이 다 다름
+ok(A.SAMPLES.length === 5 && new Set(A.SAMPLES.map((x) => x.template)).size === 5, '샘플 5권, 템플릿 모두 다름');
+ok([20, 30, 50, 100].every((n) => A.SAMPLES.some((x) => x.n === n)), '샘플 장수 20·30·50·100');
+ok(A.bookPages({ photoIds: ['a'], template: 'grid' }, { a: { id: 'a', w: 1, h: 1 } })[2].layout === 'grid-1', '앨범의 템플릿을 따름');
 console.log('album tests passed:', n);
