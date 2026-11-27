@@ -54,7 +54,7 @@
       <div class="card-s"><h3>지키는 것</h3><ul id="rules" style="margin:0;padding-left:18px;font-size:14px"></ul></div>
     </div>
   </div>
-  <p class="note-s" style="margin-top:18px">모든 숫자는 data/plan.json에서 계산해요. 계획이 바뀌면 그 파일만 고치면 돼요.</p>
+  <p class="note-s" style="margin-top:18px">판본·방·로드맵·숫자는 모두 data/plan.json 하나에서 읽어요. 메인 화면도 같은 파일을 읽으니 계획이 바뀌면 그 파일만 고치면 돼요.</p>
 </div>
 <script src="js/common.js"></script>
 <script>
@@ -68,14 +68,16 @@
     var pct = Math.round(c.done / feats.length * 100);
     document.getElementById('ver').textContent = p.version + ' · ' + p.updated;
     document.getElementById('kpis').innerHTML =
-      '<div class="kpi"><span>공간</span><b>' + p.spaces.length + '</b><span>방 9 · 3층 우주선 집</span></div>' +
+      '<div class="kpi"><span>공간</span><b>' + p.spaces.length + '</b><span>방 ' + p.house.rooms.length + ' · ' + esc(p.house.metaphor) + '</span></div>' +
       '<div class="kpi"><span>기능 완료</span><b>' + c.done + ' / ' + feats.length + '</b><div class="bar"><i style="width:' + (c.done / feats.length * 100) + '%;background:var(--garden)"></i><i style="width:' + (c.doing / feats.length * 100) + '%;background:var(--ember)"></i></div><span>완료 ' + c.done + ' · 진행 ' + c.doing + ' · 예정 ' + c.plan + '</span></div>' +
       '<div class="kpi"><span>로드맵</span><b>' + Math.round(rmDone / rm.length * 100) + '%</b><span>' + rm.length + '단계 중 ' + rm.filter(function (r) { return r.status === 'done'; }).length + '단계 완료</span></div>' +
       '<div class="kpi"><span>뉴스 브리핑</span><b>' + esc(p.briefing.time) + '</b><span>' + esc(p.briefing.days) + ' · ' + esc(p.briefing.fields.join(' · ')) + '</span></div>' +
       '<div class="kpi"><span>확인 필요</span><b>' + p.checks.length + '</b><span>사람이 직접 확인할 일</span></div>';
     document.getElementById('spaces').innerHTML = p.spaces.map(function (s) {
       var d = s.features.filter(function (f) { return f.status === 'done'; }).length;
-      return '<section class="sp-card" style="border-top-color:var(--' + s.tone + ')"><h2>' + esc(s.name) + '<small class="note-s">' + esc(s.floor) + ' · ' + d + '/' + s.features.length + '</small></h2><ul>' +
+      var rn = (s.rooms || []).map(function (id) { var r = p.house.rooms.filter(function (x) { return x.id === id; })[0]; return r ? r.name : id; });
+      return '<section class="sp-card" style="border-top-color:var(--' + s.tone + ')"><h2>' + esc(s.name) + '<small class="note-s">' + esc(s.floor) + ' · ' + d + '/' + s.features.length + '</small></h2>' +
+        (rn.length ? '<p class="note-s" style="margin:2px 0 0">방: ' + esc(rn.join(' · ')) + '</p>' : '') + '<ul>' +
         s.features.map(function (f) {
           var name = f.link ? '<a href="' + esc(f.link) + '">' + esc(f.name) + '</a>' : esc(f.name);
           return '<li><span class="st ' + f.status + '">' + LABEL[f.status] + '</span><span>' + name + '</span>' + (f.note ? '<small>' + esc(f.note) + '</small>' : '') + '</li>';

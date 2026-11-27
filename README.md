@@ -21,7 +21,7 @@
 
 - **3층 · 다락** 서재(작품·독서·여행 지도) · 루프탑 수영장 · 캠핑 데크
 - **2층** 교실(성취기준 MCP 연계) · 방탈출 · 작업실
-- **1층** 거실·응접실(수납장 런처) · 뉴스 라운지 · with JF · 앞마당
+- **1층** 거실·응접실(수납장 런처) · 뉴스 라운지 · 가족방(공개판은 예시 데이터) · 앞마당
 
 ## 디자인 원칙
 
@@ -44,10 +44,10 @@
 | [`/rooms/portfolio.html`](https://kate-young2026.github.io/on-ieum/rooms/portfolio.html) | 서재 포트폴리오: 2025년 8월 이후 메인비주얼 작업 카드 |
 
 ### 뉴스 라운지 (실제 동작)
-- `.github/workflows/news.yml`이 매일 06:07 KST에 `scripts/news/collect.mjs`를 돌려 공개 RSS 16곳(`data/news/feeds.json`: OpenAI·Anthropic·Google DeepMind·Google AI·Hugging Face·NVIDIA 공식 발표, AI타임스·ZDNet·전자신문·블로터, 에듀프레스·교육플러스, 구글 뉴스 검색)을 읽습니다.
-- 분류(AI 출시 · AI · IT · EDU · 교육정책) → 중복 제거 → 분야별 몫으로 상위 10 → 3줄 요약 → `data/news/today.json`, `archive/날짜.json`, AI 모델 출시 기록 `releases.json`(최근 20건). 원문은 저장하지 않습니다.
-- 3줄 요약: 저장소 비밀값 `ANTHROPIC_API_KEY`가 있으면 Claude가, 없으면 기사 설명문 앞 세 문장으로 씁니다.
-- 알림: [ntfy](https://ntfy.sh) 예약 전달로 **08:20 KST**에 도착. 앱에서 주제 `on-ieum-news-915c3aa849`를 구독하세요. 주제를 비공개로 바꾸려면 비밀값 `NTFY_TOPIC`을 넣고 그 주제를 구독합니다.
+- `.github/workflows/news.yml`이 매일 06:07 KST에 `scripts/news/collect.mjs`를 돌려 공개 RSS 24곳(`data/news/feeds.json`: OpenAI·Anthropic·Google DeepMind·Google AI·Hugging Face·NVIDIA 공식 발표, AI타임스·인공지능신문·TechCrunch·ZDNet·전자신문·블로터·디지털투데이, 에듀프레스·교육플러스·에듀인뉴스, 한국교육신문·교육언론창·베리타스알파·정책브리핑, 구글 뉴스 검색 4개)을 읽습니다. 설명문이 있는 언론사 RSS가 먼저입니다.
+- 제외 키워드(IPO·상장·주가·권력지도·CISO·실적 등, `feeds.json`의 `exclude`로 추가) → 분류(AI 출시 · AI · IT · EDU · 교육정책; 벤치마크·대시보드·보안 사고 기사는 '출시'에서 제외) → **교육 관련성 점수**(교육·학교·교사·수업 등 낱말, AI·IT 칸에서 크게 반영) → 중복 제거 → 설명문이 없는 후보는 원문 페이지의 요약 문구(`og:description`)를 읽어 채움(구글 뉴스 링크는 실제 기사 주소로 바꿔서) → 분야별 몫으로 상위 10 → 3줄 요약 → `data/news/today.json`, `archive/날짜.json`, AI 모델 출시 기록 `releases.json`(최근 20건). 원문 본문은 저장하지 않습니다.
+- 3줄 요약: 저장소 비밀값 `ANTHROPIC_API_KEY`가 있으면 Claude가, 없으면 설명문(또는 원문 요약 문구) 앞 세 문장으로 씁니다.
+- 알림: [ntfy](https://ntfy.sh) 예약 전달로 **08:20 KST**에 도착. ntfy 공개 주제는 이름만 알면 누구나 구독·발송할 수 있어서 **주제 이름을 공개 저장소·페이지에 적지 않습니다.** 저장소 Settings → Secrets and variables → Actions에 `NTFY_TOPIC`(추측할 수 없는 긴 이름, 필수)을 넣고 ntfy 앱에서 그 주제를 구독하세요. ntfy 계정의 예약 주제를 쓰면 `NTFY_TOKEN`(접근 토큰)도 넣으면 됩니다. `NTFY_TOPIC`이 없으면 알림은 보내지 않습니다. (예전에 공개됐던 주제는 저장소 기록에 남아 있으니 구독을 끊으세요.)
 - 바로 돌려 보기: Actions → 뉴스 라운지 → Run workflow (알림 now/0820/none).
 
 ### 쓰는 법 요약

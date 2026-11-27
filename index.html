@@ -119,7 +119,7 @@ h1{font-size:clamp(34px,5vw,48px)}h2{font-size:clamp(26px,3.4vw,32px)}h3{font-si
 footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px}
 footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
 @media(max-width:900px){.hero{grid-template-columns:minmax(0,1fr)}.panel{position:static}.news{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:600px){nav{display:none}.mean,.gates{grid-template-columns:minmax(0,1fr)}.road{grid-template-columns:minmax(0,1fr)}.road>div{border-right:0;border-bottom:1px solid var(--line)}}
+@media(max-width:600px){.mean,.gates{grid-template-columns:minmax(0,1fr)}.road{grid-template-columns:minmax(0,1fr)}.road>div{border-right:0;border-bottom:1px solid var(--line)}}
 /* isometric hero */
 .plan{background:linear-gradient(var(--sky),var(--paper) 75%);border:1px solid var(--line);border-radius:24px;padding:12px 12px 16px;box-shadow:var(--shadow);overflow:hidden}
 .plan svg{display:block;width:100%;height:auto;max-height:min(82vh,820px);margin:0 auto}
@@ -182,6 +182,18 @@ footer .in{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;al
 .cabinet button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
 .cabinet button.on{background:var(--ember-s);color:var(--ink);font-weight:700}
 body{padding-bottom:84px}
+/* 휴대폰: 상단 메뉴를 '메뉴' 버튼으로 접고 펼친다 */
+.menu-btn{display:none;align-items:center;gap:6px;min-height:44px;padding:0 14px;border:1px solid var(--line);background:var(--raised);color:var(--ink);border-radius:12px;font:500 14px var(--sans);cursor:pointer;margin-left:auto}
+.menu-btn .ic{width:16px;height:2px;background:currentColor;border-radius:1px;position:relative}
+.menu-btn .ic::before,.menu-btn .ic::after{content:"";position:absolute;left:0;width:16px;height:2px;background:currentColor;border-radius:1px}
+.menu-btn .ic::before{top:-5px}.menu-btn .ic::after{top:5px}
+.menu-btn[aria-expanded=true] .ic{background:transparent}.menu-btn[aria-expanded=true] .ic::before{top:0;transform:rotate(45deg)}.menu-btn[aria-expanded=true] .ic::after{top:0;transform:rotate(-45deg)}
+@media(max-width:600px){
+ .menu-btn{display:inline-flex}
+ header nav.main-nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:2px;margin:0;padding:8px max(5vw,16px) 14px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:var(--shadow)}
+ header nav.main-nav.open{display:flex}
+ header nav.main-nav a{font-size:16px;color:var(--ink);padding:12px;min-height:44px}
+}
 @media(max-width:600px){.also,.two{grid-template-columns:minmax(0,1fr)}.cabinet{gap:0;padding:4px}.cabinet button{padding:6px 8px;font-size:12px;gap:4px}}
 </style>
 </head>
@@ -189,14 +201,15 @@ body{padding-bottom:84px}
 <a class="skip" href="#house">본문으로</a>
 <header><div class="bar">
 <a class="logo" href="#top" aria-label="온-이음 처음으로">온<i></i>이음</a>
-<nav aria-label="주요"><a href="#meaning">이름의 뜻</a><a href="#house">집 둘러보기</a><a href="dashboard.html">대시보드</a><a href="#news">뉴스 라운지</a><a href="#plan">계획</a></nav>
+<button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav"><span class="ic" aria-hidden="true"></span>메뉴</button>
+<nav class="main-nav" id="mainNav" aria-label="주요"><a href="#meaning">이름의 뜻</a><a href="#house">집 둘러보기</a><a href="dashboard.html">대시보드</a><a href="#news">뉴스 라운지</a><a href="#plan">계획</a></nav>
 <button class="theme" id="theme" aria-label="낮밤 전환">낮</button>
 </div></header>
 
 <main id="top">
 <section class="band" id="house"><div class="in hero">
 <div class="hero-head">
-<div><span class="tag">개인 AI 워크스페이스 · v0.4</span>
+<div><span class="tag" id="verTag">개인 AI 워크스페이스 · v0.4</span>
 <h1 class="logo-big" aria-label="온-이음">온<i aria-hidden="true"></i>이음</h1>
 <p class="roman">On-ieum</p>
 <p class="tagline">온기를 잇고, 온 사람을 잇는 집</p>
@@ -233,7 +246,7 @@ body{padding-bottom:84px}
 <div>
 <div aria-label="휴대폰 알림 미리보기"><p class="clock">08:20</p><p class="date" id="newsDate">오늘</p>
 <div class="noti"><b>온-이음 · 뉴스 라운지</b><span id="newsHead">오늘의 뉴스를 불러오는 중…</span></div>
-<div class="noti dim"><b>알림 받기</b><span>휴대폰·PC에 <a href="https://ntfy.sh/" target="_blank" rel="noopener">ntfy</a> 앱을 설치하고 주제 <code id="ntfyTopic">on-ieum-news-915c3aa849</code>를 구독하세요. 매일 08:20에 도착해요.</span></div></div>
+<div class="noti dim"><b>알림 받기</b><span>매일 08:20에 <a href="https://ntfy.sh/" target="_blank" rel="noopener">ntfy</a> 앱으로 도착해요. 알림 주제 이름은 가짜 알림을 막으려고 공개하지 않고, 저장소 비밀값에만 둡니다.</span></div></div>
 <h3 style="margin:24px 0 12px">최근 AI 모델 출시</h3>
 <div id="releases" class="rel"></div>
 <h3 style="margin:24px 0 12px">요약 흐름</h3>
@@ -270,7 +283,7 @@ body{padding-bottom:84px}
 </main>
 
 <footer class="band"><div class="in">
-<span><b style="font-family:var(--disp);color:var(--ink)">온-이음</b> 온기를 잇고, 온 사람을 잇는 집 · v0.4 · 2026. 11.</span>
+<span><b style="font-family:var(--disp);color:var(--ink)">온-이음</b> 온기를 잇고, 온 사람을 잇는 집 · <span id="verFoot">v0.4 · 2026-11-27</span></span>
 <span>설계 참고: 「개인 AI 워크스페이스 구축 가이드」(2026). 화면의 데이터는 모두 예시입니다. · <a href="v03.html">v0.3 화면</a> · <a href="https://github.com/kate-young2026/on-ieum">GitHub</a></span>
 </div></footer>
 
@@ -318,13 +331,13 @@ const rooms=[
  links:[['class','기사 → 읽기 자료'],['work','보고서 인용'],['study','스크랩 보관']],go:[['뉴스 라운지로','#news']]},
 {id:'living',n:'거실 · 응접실',c:'oak',f:0,i:1,s:'수납장으로 방 호출',
  desc:'집의 중심. 수납장 서랍을 누르면 필요한 공간만 불러옵니다. 오늘 할 일과 승인함이 여기 모입니다.',
- items:[['오늘 카드','처리할 일 · 승인 대기 · 마감 임박을 숫자로','3 · 2 · 1'],['승인함','보내기·삭제·게시는 여기서 승인해야 실행','B 2건'],['가족 메모판','아이들이 남긴 오늘의 한 줄','새 글 1'],['수납장','뉴스 · 교육 · 업무 · 서재 · JF 바로 호출','']],
- peek:['오늘의 한 줄','"엄마 오늘 마라탕 2단계 먹어도 돼요?" — 1번방'],ai:['집','집사','오늘 꼭 할 일 3개를 골라 두었어요.'],
+ items:[['오늘 카드','처리할 일 · 승인 대기 · 마감 임박을 숫자로','3 · 2 · 1'],['승인함','보내기·삭제·게시는 여기서 승인해야 실행','B 2건'],['가족 메모판','가족이 남긴 오늘의 한 줄 (공개 화면은 예시)','새 글 1'],['수납장','뉴스 · 교육 · 업무 · 서재 · 가족 바로 호출','']],
+ peek:['오늘의 한 줄','(예시) "오늘 저녁은 뭐 먹어요?" — 관심사 방 A'],ai:['집','집사','오늘 꼭 할 일 3개를 골라 두었어요.'],
  links:[['news','아침 브리핑'],['jf','가족 메모'],['deck','하루 마무리']],go:[['기획 대시보드','dashboard.html']]},
-{id:'jf',n:'with JF',c:'garden',f:0,i:2,s:'시간표·가족앨범·1·2·3번방',
- desc:'가족이 함께 쓰는 방. 시간표와 앨범, 그리고 아이들의 관심사 방 세 개가 있습니다.',
- items:[['시간표 생성','학교·학원·가족 일정 → 주간 시간표, 빈 시간 찾기',''],['가족앨범','월별 사진 → 레이아웃 자동 → 앨범북 PDF','11월'],['1번방 · 마라탕 연구소','재료 분류(과학) · 1인분 가격(수학) · 나만의 레시피 책',''],['2번방 · 수과학 아틀리에','실험 기록장 + 대칭·테셀레이션 그림',''],['3번방 · 카드 배틀','카드 능력치로 덧셈·곱셈 배틀, 받아쓰기, 카드북 만들기','미션 1']],
- peek:['오늘의 미션','곱셈 카드 5장을 모으면 카드북 한 쪽이 열려요.'],ai:['J','놀이 친구','아이 이름과 사진은 AI에 보내지 않아요.'],
+{id:'jf',n:'가족방',c:'garden',f:0,i:2,s:'시간표·가족앨범·관심사 방',
+ desc:'가족이 함께 쓰는 방. 시간표와 앨범, 그리고 관심사 놀이 방이 있습니다. 공개 화면의 방 이름과 미션은 모두 예시예요.',
+ items:[['시간표 생성','학교·학원·가족 일정 → 주간 시간표, 빈 시간 찾기',''],['가족앨범','월별 사진 → 레이아웃 자동 → 앨범북 PDF','11월'],['관심사 방 A (예시) · 공룡 탐험대','공룡 크기 비교(수학) · 화석 분류(과학) · 나만의 도감',''],['관심사 방 B (예시) · 우주 관측소','달 모양 기록장 + 별자리 그리기',''],['관심사 방 C (예시) · 동물 카드','카드로 덧셈 놀이, 받아쓰기, 카드북 만들기','미션 1']],
+ peek:['오늘의 미션 (예시)','동물 카드 5장을 모으면 카드북 한 쪽이 열려요.'],ai:['놀','놀이 친구','아이 이름과 사진은 AI에 보내지 않아요.'],
  links:[['escape','수학 게임'],['study','앨범 · 카드북'],['living','메모판']]},
 {id:'yard',n:'앞마당',c:'garden',f:-1,i:0,s:'주간 회고 · 산책 모드',
  desc:'한 주를 닫는 마당. 주간 회고와 산책 모드가 있는 곳입니다.',
@@ -333,7 +346,7 @@ const rooms=[
  links:[['deck','하루 회고 모음'],['jf','가족 산책']]}];
 rooms.forEach(r=>{r.fl=r.f<0?'앞마당':FL[r.f];r.to=r.links.map(l=>l[0])});
 const cab=document.getElementById('cabinet');
-cab.innerHTML=[['news','뉴스'],['class','교육'],['work','업무'],['study','서재'],['jf','JF']].map(([id,t])=>`<button data-go="${id}" style="--c:var(${C[rooms.find(r=>r.id===id).c][0]})"><i></i>${t}</button>`).join('');
+cab.innerHTML=[['news','뉴스'],['class','교육'],['work','업무'],['study','서재'],['jf','가족']].map(([id,t])=>`<button data-go="${id}" style="--c:var(${C[rooms.find(r=>r.id===id).c][0]})"><i></i>${t}</button>`).join('');
 cab.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(!b)return;pick(b.dataset.go);document.querySelector('.plan').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})});
 const svg=document.getElementById('svg'),panel=document.getElementById('panel'),jump=document.getElementById('jump');
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -443,12 +456,29 @@ fetch('data/news/today.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.r
  document.getElementById('newsDate').textContent=dt.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'long',timeZone:'Asia/Seoul'});
  document.getElementById('newsHead').textContent=d.headline;
  const ok=(d.sources||[]).filter(x=>x.ok).length;
- document.getElementById('newsNote').textContent=`${when(d.generatedAt)} 수집 · 공개 RSS ${ok}/${(d.sources||[]).length}곳 · 요약: ${d.summary==='claude'?'Claude가 쓴 3줄':'기사 설명문 앞 문장(Claude 키를 넣으면 AI 요약)'} · 원문은 저장하지 않고 제목·링크·요약만 보여 줍니다.`;
+ document.getElementById('newsNote').textContent=`${when(d.generatedAt)} 수집 · 공개 RSS ${ok}/${(d.sources||[]).length}곳 · 요약: ${d.summary==='claude'?'Claude가 쓴 3줄':'기사 설명문·원문 요약 문구 앞 문장(Claude 키를 넣으면 AI 요약)'} · 원문은 저장하지 않고 제목·링크·요약만 보여 줍니다.`;
 }).catch(()=>{document.getElementById('newsHead').textContent='아직 오늘의 수집 전이에요. 아래는 예시입니다.'});
 fetch('data/news/releases.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(renderRel).catch(()=>renderRel(null));
-document.getElementById('pipe').innerHTML=[['06:07','RSS 수집','공개 RSS 16곳 · AI 연구소 공식 블로그 포함'],['분류','규칙 분류','AI 출시 · AI · IT · EDU · 교육정책, 중복 제거'],['상위 10','상위 10','분야별 몫 + 최신순, 숫자는 코드가'],['요약','3줄 요약','Claude는 문장만 (키 없으면 앞 문장)'],['08:20','알림','ntfy 예약 전달 → 휴대폰·PC']].map(([t,a,b])=>`<li><span class="t">${t}</span><div><b>${a}</b><br><span style="color:var(--muted);font-size:14px">${b}</span></div></li>`).join('');
-document.getElementById('road').innerHTML=[['1주','거실과 수납장이 열린다','뼈대 · 저장 창구 · 오늘 화면'],['2주','뉴스 라운지와 08:20 알림','AI 관문 · 승인함 · 외부 연동'],['3주','교실·작업실에서 지시가 문서로','AI 가상 팀 · 지식 노트 · 성취기준 MCP'],['4주','휴대폰에서도 같은 집','상시 서버 · Supabase 실시간 · 배포']].map(([w,t,s])=>`<div><span class="w">${w}</span><h3 style="margin-top:4px">${t}</h3><p class="s2">${s}</p></div>`).join('');
+document.getElementById('pipe').innerHTML=[['06:07','RSS 수집','언론사·공식 RSS 20곳 + 구글 뉴스 4곳'],['분류','규칙 분류','제외 키워드 · 교육 관련성 점수 · 중복 제거'],['보완','요약 문구','설명문이 없으면 원문 og:description'],['상위 10','상위 10','분야별 몫 + 최신순, 숫자는 코드가'],['요약','3줄 요약','Claude는 문장만 (키 없으면 앞 문장)'],['08:20','알림','ntfy 예약 전달 → 휴대폰·PC']].map(([t,a,b])=>`<li><span class="t">${t}</span><div><b>${a}</b><br><span style="color:var(--muted);font-size:14px">${b}</span></div></li>`).join('');
+const ROAD=[{week:'1주',title:'거실과 수납장이 열린다',detail:'뼈대 · 저장 창구 · 오늘 화면'},{week:'2주',title:'뉴스 라운지와 08:20 알림',detail:'AI 관문 · 승인함 · 외부 연동'},{week:'3주',title:'교실·작업실에서 지시가 문서로',detail:'AI 가상 팀 · 지식 노트 · 성취기준 MCP'},{week:'4주',title:'휴대폰에서도 같은 집',detail:'상시 서버 · Supabase 실시간 · 배포'}];
+const ST={done:['완료',100],doing:['진행',50],plan:['예정',0]};
+const renderRoad=rm=>{document.getElementById('road').innerHTML=rm.filter(r=>/주$/.test(r.week)).map(r=>{const st=ST[r.status];return `<div><span class="w">${esc(r.week)}${st?' · '+st[0]:''}</span><h3 style="margin-top:4px">${esc(r.title)}</h3><p class="s2">${esc(r.detail||'')}</p>${st?`<div class="bar2"><i style="width:${st[1]}%"></i></div>`:''}</div>`}).join('')};
+renderRoad(ROAD);
+/* 판본·방 이름·로드맵은 data/plan.json 하나에서 읽는다(기획 대시보드와 같은 파일) */
+fetch('data/plan.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject()).then(p=>{
+ document.getElementById('verTag').textContent='개인 AI 워크스페이스 · '+p.version;
+ document.getElementById('verFoot').textContent=p.version+' · '+p.updated;
+ (p.house&&p.house.rooms||[]).forEach(x=>{const r=rooms.find(q=>q.id===x.id);if(r){r.n=x.name;r.s=x.sub||r.s}});
+ if(p.roadmap)renderRoad(p.roadmap);
+ draw();
+}).catch(()=>{});
 document.getElementById('legend').innerHTML=[['oak','3층 · 다락'],['pool','2층 · 배움'],['lock','2층 · 일'],['ember','1층 · 하루의 시작'],['garden','가족 · 앞마당']].map(([c,t])=>`<span style="--c:var(--${c})"><i></i>${t}</span>`).join('');
+const menuBtn=document.getElementById('menuBtn'),mainNav=document.getElementById('mainNav');
+const setMenu=o=>{mainNav.classList.toggle('open',o);menuBtn.setAttribute('aria-expanded',String(o))};
+menuBtn.addEventListener('click',()=>setMenu(menuBtn.getAttribute('aria-expanded')!=='true'));
+mainNav.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menuBtn.getAttribute('aria-expanded')==='true'){setMenu(false);menuBtn.focus()}});
+document.addEventListener('click',e=>{if(!e.target.closest('header'))setMenu(false)});
 const tb=document.getElementById('theme'),root=document.documentElement;
 const isDark=()=>root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
 try{const t=localStorage.getItem('onieum-theme');if(t)root.dataset.theme=t}catch(e){}

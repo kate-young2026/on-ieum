@@ -63,12 +63,32 @@ export function parseHtmlList(html, feed, max = 8) {
 }
 
 const RELEASE_VERB = /(출시|공개|선보|발표|업데이트|launch|introduc|releas|announc|now available|rolling out|available in|debut|unveil)/i;
-const MODEL_WORD = /(GPT|Claude|Gemini|Gemma|Llama|Grok|Mistral|DeepSeek|Qwen|Sora|Veo|Imagen|Codex|Phi-?\d|Nemotron|o\d\b|모델|model|에이전트|agent|하이퍼클로바|HyperCLOVA|엑사원|EXAONE|버전|version|\d+\.\d+)/i;
-export function isRelease(title) { return RELEASE_VERB.test(title) && MODEL_WORD.test(title); }
+// 모델 이름은 제품명으로만 본다(llama.cpp 같은 도구 이름, 일반 숫자·'버전'은 제외)
+const MODEL_WORD = /(GPT|Claude|Gemini|Gemma|Llama(?!\.cpp)|Grok|Mistral|DeepSeek|Qwen|Sora|Veo|Imagen|Codex|Phi-?\d|Nemotron|\bo\d\b|모델|\bmodels?\b|하이퍼클로바|HyperCLOVA|엑사원|EXAONE)/i;
+// '출시'로 보면 안 되는 글: 벤치마크·대시보드·튜토리얼, 보안 사고·소송, 투자·주가 등
+export const NOT_RELEASE = /(benchmark|벤치마크|dashboard|대시보드|leaderboard|리더보드|tutorial|튜토리얼|how to|guide to|cookbook|webinar|웨비나|case stud|사례|dataset|데이터셋|침해|유출|해킹|이메일|소송|법무|규제|보안 취약|취약점|주가|상장|IPO|투자|실적|인수)/i;
+export function isRelease(title) { return RELEASE_VERB.test(title) && MODEL_WORD.test(title) && !NOT_RELEASE.test(title); }
+
+// 교사에게 필요 없는 기사(모든 분야 공통 제외). feeds.json의 exclude로 덧붙일 수 있다.
+export const EXCLUDE = ['IPO', '상장', '공모주', '주가', '증권', '몸값', '주관사', '권력지도', 'CISO', '주주', '배당', '영업이익', '매출액', '실적 발표', '인수합병', 'M&A', '부고', '인사]', '코인', '비트코인', '가상자산', '연예', '골프'];
+// 교육 관련성: 제목·설명에 이 낱말이 많을수록 점수가 오른다. feeds.json의 eduKeywords로 덧붙일 수 있다.
+export const EDU_KW = ['교육', '학교', '교사', '교원', '학생', '수업', '교실', '학습', '교과', '교육과정', '에듀', '입시', '수능', '대입', '고교학점제', '늘봄', '디지털교과서', 'AI 교과서', 'AIDT', '리터러시', '청소년', '어린이', '아동', '학부모', '대학', '튜터', 'education', 'school', 'teacher', 'student', 'classroom', 'e-learning', 'tutor'];
+function kwList(base, extra) { return base.concat(Array.isArray(extra) ? extra : []).filter(Boolean); }
+export function isExcluded(item, extra) {
+  const t = item.title + ' ' + (item.desc || '').slice(0, 200);
+  return kwList(EXCLUDE, extra).some((k) => t.toLowerCase().includes(String(k).toLowerCase()));
+}
+// 0~3: 제목에 있으면 2점, 설명에만 있으면 1점(최대 3)
+export function eduRelevance(item, extra) {
+  const ti = item.title.toLowerCase(), de = (item.desc || '').toLowerCase();
+  let r = 0;
+  for (const k of kwList(EDU_KW, extra)) { const w = String(k).toLowerCase(); if (ti.includes(w)) r += 2; else if (de.includes(w)) r += 1; if (r >= 3) return 3; }
+  return r;
+}
 
 export function classify(item) {
   if (item.feedCat === '출시') return isRelease(item.title) ? '출시' : 'AI';
-  if ((item.feedCat === 'AI' || item.feedCat === 'IT') && isRelease(item.title) && /(GPT|Claude|Gemini|Llama|Grok|DeepSeek|Qwen|하이퍼클로바|엑사원|EXAONE|Mistral)/i.test(item.title)) return '출시';
+  if ((item.feedCat === 'AI' || item.feedCat === 'IT') && isRelease(item.title) && /(GPT|Claude|Gemini|Llama(?!\.cpp)|Grok|DeepSeek|Qwen|하이퍼클로바|엑사원|EXAONE|Mistral)/i.test(item.title)) return '출시';
   return item.feedCat;
 }
 
@@ -97,6 +117,10 @@ export function score(item, now) {
   if (/^(OpenAI|Anthropic|Google DeepMind|Google AI|Hugging Face|Microsoft AI|NVIDIA|정책브리핑)/.test(item.feed)) s += 6;
   if (POLICY_KW.test(item.title)) s += 4;
   if (/[가-힣]/.test(item.title)) s += 2;
+  // 교육 관련성: AI·IT 칸은 교육과 닿은 기사를 크게 올린다(최대 +15), 나머지 칸도 조금(+6)
+  const rel = item.rel != null ? item.rel : eduRelevance(item);
+  s += rel * (item.cat === 'AI' || item.cat === 'IT' ? 5 : 2);
+  if (item.desc) s += 3; // 요약할 설명문이 있는 기사를 조금 앞으로
   return s;
 }
 
@@ -116,6 +140,27 @@ export function selectTop(items, quota, n = 10) {
 }
 
 // 키가 없을 때 쓰는 추출식 3줄 요약: 설명문의 앞 문장 세 개(각 90자 이내).
+// 기사 페이지의 요약 문구(og:description → twitter:description → description)를 읽는다.
+export function metaDescription(html, title = '') {
+  const head = String(html || '').slice(0, 200000);
+  const metas = [...head.matchAll(/<meta\b[^>]*>/gi)].map((m) => m[0]);
+  const attr = (tag, a) => { const m = tag.match(new RegExp(a + '\\s*=\\s*("([^"]*)"|\'([^\']*)\')', 'i')); return m ? (m[2] != null ? m[2] : m[3]) : ''; };
+  for (const key of ['og:description', 'twitter:description', 'description']) {
+    const tag = metas.find((t) => (attr(t, 'property') || attr(t, 'name')).toLowerCase() === key);
+    const v = tag ? strip(attr(tag, 'content')) : '';
+    if (v.length < 25) continue;
+    if (/Google 뉴스|Google News|Comprehensive up-to-date news coverage/i.test(v)) continue;
+    if (title && normTitle(v) === normTitle(title)) continue;
+    return v;
+  }
+  return '';
+}
+// 구글 뉴스 RSS 링크(news.google.com/rss/articles/<id>)에서 기사 id를 꺼낸다
+export function googleNewsId(link) {
+  const m = String(link || '').match(/^https:\/\/news\.google\.com\/(?:rss\/)?articles\/([^?#/]+)/);
+  return m ? m[1] : '';
+}
+
 export function extractLines(item) {
   const text = (item.desc || '').replace(/\s+/g, ' ').trim();
   const sents = text.split(/(?<=[^A-Z.][.!?。])\s+/).map((s) => s.trim()).filter((s) => s.length > 8 && !normTitle(item.title).startsWith(normTitle(s).slice(0, 20)));

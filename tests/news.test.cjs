@@ -27,5 +27,27 @@ import('../scripts/news/lib.mjs').then((L) => {
   ok(top.length === 10 && top.filter((x) => x.cat === '출시').length === 3, '분야별 몫');
   ok(new Date(L.at0820(new Date('2026-11-25T21:10:00Z')) * 1000).toISOString() === '2026-11-25T23:20:00.000Z', '08:20 KST 예약 시각');
   ok(L.headline([{ cat: '출시' }, { cat: '정책' }]).includes('AI 출시 1 · 교육정책 1'), '알림 한 줄');
+  // 교수님 피드백: 분류·제외 키워드·교육 관련성·원문 요약 문구
+  ok(!L.isRelease('Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon'), 'llama.cpp 벤치마크는 출시가 아님');
+  ok(!L.isRelease('Claude가 Troy Hunt의 이메일을 검토한 결과, 침해 사실 공개 과정에서 반복적인 지연과 법무팀 개입이 드러났다'), '보안 사고 기사는 출시가 아님');
+  ok(L.classify({ feedCat: '출시', title: 'Introducing the llama.cpp benchmark dashboard' }) === 'AI', '출시 피드의 비출시 글은 AI');
+  ok(L.isExcluded({ title: "[범한메카텍 IPO] '파두'의 NH, '정정요구 2번'의 유진이 몸값 매겼다" }), 'IPO 기사 제외');
+  ok(L.isExcluded({ title: '[한국의 CISO-권력지도] 삼성물산 강현구 상무' }), 'CISO 권력지도 기사 제외');
+  ok(L.isExcluded({ title: '새 학기 급식 메뉴' }, ['급식']), 'feeds.json exclude 추가어');
+  ok(!L.isExcluded({ title: '교육부, AI 디지털교과서 현장 점검' }), '교육 기사는 남김');
+  ok(L.eduRelevance({ title: '교실 속 생성형 AI 튜터, 교사 연수 확대' }) === 3 && L.eduRelevance({ title: '반도체 수출 증가' }) === 0, '교육 관련성 점수');
+  const now2 = Date.now();
+  const a = { cat: 'IT', feed: 'x', title: '학교 현장 AI 교사 연수', published: new Date(now2).toISOString() };
+  const b = { cat: 'IT', feed: 'x', title: '반도체 장비 수주 확대', published: new Date(now2).toISOString() };
+  ok(L.score(a, now2) > L.score(b, now2) + 10, 'IT 칸에서 교육 관련 기사가 앞섬');
+  ok(L.metaDescription('<meta property="og:description" content="교육부가 25일 고교학점제 지원을 확대한다고 밝혔다.">', '다른 제목') === '교육부가 25일 고교학점제 지원을 확대한다고 밝혔다.', 'og:description 읽기');
+  ok(L.metaDescription('<meta content="Comprehensive up-to-date news coverage, aggregated from sources all over the world by Google News." property="og:description">') === '', '구글 뉴스 기본 문구는 버림');
+  ok(L.googleNewsId('https://news.google.com/rss/articles/CBMiAbc?oc=5') === 'CBMiAbc', '구글 뉴스 기사 id');
+  // 알림 주제는 공개 저장소에 적지 않는다
+  const fs = require('fs');
+  const feeds = JSON.parse(fs.readFileSync('data/news/feeds.json', 'utf8'));
+  ok(!feeds.ntfy.topic, 'feeds.json에 ntfy 주제 없음');
+  for (const f of ['index.html', 'README.md', 'v03.html', 'dashboard.html']) ok(!/on-ieum-news-[0-9a-f]{6,}/.test(fs.readFileSync(f, 'utf8')), f + '에 주제 이름 없음');
+  ok(feeds.feeds.filter((f) => !/news\.google\.com/.test(f.url)).length >= 18, '언론사·공식 RSS가 대부분');
   console.log('news tests passed:', n);
 });

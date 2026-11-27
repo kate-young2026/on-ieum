@@ -80,7 +80,8 @@
     <header><b>수업 설계</b><a class="btn-s" id="toEscape" href="escape.html" title="이 성취기준으로 방탈출 게임 만들기" style="text-decoration:none">방탈출로</a><button class="btn-s" id="aiCopy" title="성취기준·지표가 담긴 프롬프트 복사">AI에게 맡기기</button></header>
     <div class="r-body" style="display:flex;flex-direction:column;gap:10px">
       <label class="field" style="margin:0"><span>학습목표 (한 줄에 하나, 고쳐 쓰면 바로 반영)</span><textarea id="objText"></textarea></label>
-      <div class="tabs"><button class="btn-s" id="objReset">목표 다시 제안</button></div>
+      <div class="tabs" style="align-items:center"><span class="chip-s ember" id="objState">[초안]</span><button class="btn-s" id="objReset">목표 다시 제안</button><label class="note-s" style="display:inline-flex;gap:6px;align-items:center;margin:0;cursor:pointer"><input type="checkbox" id="objFinal"> 선생님이 확인했어요(확정)</label></div>
+      <p class="note-s" style="margin:0">자동 문장은 학년군 어휘 규칙(1~2학년은 쉬운 우리말)으로 만든 <b>[초안]</b>이에요. 고쳐 쓴 뒤 '확정'에 체크하면 학습지에서 [초안] 표시가 사라져요.</p>
       <div class="tabs" role="group" aria-label="설계할 것">
         <button class="btn-s on" data-kind="sheet">학습지</button><button class="btn-s" data-kind="activity">활동지</button><button class="btn-s" data-kind="game">게임</button><button class="btn-s" data-kind="project">토의·프로젝트</button>
       </div>
