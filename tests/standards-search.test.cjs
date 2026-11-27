@@ -46,4 +46,7 @@ ok(out[1].result.tools.map((t) => t.name).join() === 'find_unit,search_standards
 ok(out[2].result.structuredContent.units[0].codePrefix === '4수01', 'MCP find_unit');
 ok(out[3].result.structuredContent.evidence.length > 0 && out[3].result.content[0].text.includes('[4국03-01]'), 'MCP get_standard');
 ok(out[4].error.code === -32601, 'MCP 없는 메서드');
+// 기사 → 교실: 낱말 후보
+const kw = S.newsKeywords(R, '교실 속 생성형 AI, 광합성 실험 수업', '');
+ok(kw.some((k) => k.word === '인공지능') && kw.some((k) => k.word === '광합성') && kw.every((k) => k.count > 0 && k.count <= 200), '기사 제목에서 단원 낱말 후보');
 console.log('standards-search tests passed:', n);

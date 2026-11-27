@@ -27,6 +27,9 @@
   .r-items li.u-sep{border-top:1px solid var(--line);margin:6px 4px 0}
   .u-mark{color:var(--ember);font-weight:700;margin-right:3px}
   .u-card button.chip-s{margin-top:6px}
+  #newsCard h3{font-size:14px;line-height:1.5;margin:6px 0 2px}
+  #newsCard h3 a{color:var(--ink)}
+  #newsKw .chip-s{cursor:pointer;margin:0 4px 4px 0}
 </style>
 </head>
 <body class="room-page">
@@ -58,6 +61,7 @@
     <ul class="r-items" id="stdList"></ul>
     </div>
     <div id="unitPane" class="pane" hidden>
+      <section class="card-s" id="newsCard" hidden style="margin:0 14px 10px"></section>
       <form id="unitForm" role="search" style="margin:0">
         <input class="r-search" id="unitQ" type="search" placeholder="단원·주제어·코드 (예: 광합성, 4과01)" aria-label="단원 찾기" autocomplete="off">
         <div class="uf-row">

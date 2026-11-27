@@ -120,8 +120,26 @@
       '<section><h2>성취기준</h2><p class="std">' + esc(std.code) + ' ' + esc(std.text) + '</p></section>' +
       '<section><h2>학습목표</h2><ol>' + objs.map(function (o) { return '<li>' + esc(o) + '</li>'; }).join('') + '</ol></section>';
   }
-  function draft(kind, std, objs, final) {
-    var ev = tasks(std), ap = questions(std), b = head(std, kind, objs, final);
+  // 뉴스 라운지 '교실로 보내기'로 온 기사(a = {t 제목, l 링크, s 출처, d 날짜, x 요약 줄})를 읽기 자료 + 생각 질문으로
+  var NEWS_Q = {
+    e12: ['기사에서 새로 알게 된 것 하나를 써 보세요.', '이 일이 우리 반과 어떤 관계가 있을까요?', '내가 기자라면 무엇을 더 물어보고 싶나요?'],
+    e34: ['기사에서 새로 알게 된 것 두 가지를 써 보세요.', '이 일이 우리 학교와 어떤 관계가 있을까요?', '내가 기자라면 무엇을 더 물어보고 싶나요?'],
+    e56: ['기사의 중요한 사실을 한 문장으로 정리해 보세요.', '이 소식이 우리 생활에 어떤 변화를 가져올지 까닭을 들어 예상해 보세요.', '기사에 나오지 않은 사람들의 생각은 어떨지 써 보세요.'],
+    sec: ['기사의 핵심 사실을 한 문장으로 요약해 보세요.', '이 소식이 학교와 교실에 가져올 변화를 근거를 들어 예측해 보세요.', '기사에 드러난 관점과 빠진 관점을 찾아 비판적으로 평가해 보세요.']
+  };
+  function newsSection(a, band) {
+    if (!a || !a.t) return '';
+    var link = /^https?:\/\//.test(a.l || '') ? a.l : '', line = '<div class="ans"></div>';
+    return '<section class="news-src"><h2>읽기 자료 · 오늘의 기사</h2><p class="std"><b>' + esc(a.t) + '</b><br><span class="mut">' + esc([a.s, a.d].filter(Boolean).join(' · ')) + (link ? ' · ' + esc(link) : '') + '</span></p>' +
+      ((a.x || []).length ? '<ul>' + a.x.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul>' : '') +
+      '<p class="mut">요약은 기사 설명문 앞부분이에요. 수업 전에 원문과 맞는지 확인해 주세요.</p>' +
+      '<h2>기사로 생각하기</h2><ol>' + (NEWS_Q[band] || NEWS_Q.sec).map(function (q) { return '<li>' + esc(q) + line + '</li>'; }).join('') + '</ol></section>';
+  }
+  function decodeNews(v) {
+    try { var a = JSON.parse(v); if (!a || typeof a.t !== 'string') return null; return { t: a.t.slice(0, 200), l: String(a.l || '').slice(0, 500), s: String(a.s || '').slice(0, 60), d: String(a.d || '').slice(0, 20), x: (Array.isArray(a.x) ? a.x : []).slice(0, 3).map(function (l) { return String(l).slice(0, 300); }) }; } catch (e) { return null; }
+  }
+  function draft(kind, std, objs, final, extra) {
+    var ev = tasks(std), ap = questions(std), b = head(std, kind, objs, final) + (extra || '');
     var line = '<div class="ans"></div>';
     if (kind === 'sheet') {
       b += '<section><h2>1. 생각 열기</h2><p>' + esc(OPEN[bandOf(std)]) + '</p>' + line + '</section>';
@@ -173,7 +191,7 @@
       '\n조건: 맨 위에 [초안]이라고 표시할 것(교사가 확정하기 전), 학생 실명·개인정보를 넣지 말 것, 성취기준 코드는 위 코드만 쓸 것, 확인하지 못한 사실은 [확인 필요]로 표시할 것.';
   }
 
-  var API = { toCan: toCan, bandOf: bandOf, simplify: simplify, objectives: objectives, questions: questions, tasks: tasks, indicators: indicators, draft: draft, aiPrompt: aiPrompt, DOC_CSS: DOC_CSS };
+  var API = { toCan: toCan, bandOf: bandOf, simplify: simplify, objectives: objectives, questions: questions, tasks: tasks, indicators: indicators, draft: draft, aiPrompt: aiPrompt, newsSection: newsSection, decodeNews: decodeNews, DOC_CSS: DOC_CSS };
   if (typeof module !== 'undefined' && module.exports) { module.exports = API; return; }
   root.OnClass = API;
   if (typeof document === 'undefined' || !document.getElementById('classApp')) return;
@@ -182,6 +200,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var BASE = '../data/standards/';
   var idx = null, codes = null, course = null, std = null, level = 'elem', kind = 'sheet', gbFilter = '';
+  var article = decodeNews(new URLSearchParams(location.search).get('news') || '');
   var cache = {};
   function toast(m) { var t = $('toast'); t.textContent = m; t.classList.add('show'); setTimeout(function () { t.classList.remove('show'); }, 1600); }
   function getJSON(u) { if (cache[u]) return Promise.resolve(cache[u]); return fetch(u).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) { cache[u] = d; return d; }); }
@@ -252,7 +271,7 @@
   function buildDraft() {
     if (!std) return;
     var objs = $('objText').value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean);
-    var html = '<!doctype html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;700&display=swap"><style>' + DOC_CSS + '</style></head><body><main contenteditable="true">' + draft(kind, std, objs, final) + '</main></body></html>';
+    var html = '<!doctype html><html lang="ko"><head><meta charset="utf-8"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=Noto+Sans+KR:wght@400;700&display=swap"><style>' + DOC_CSS + '</style></head><body><main contenteditable="true">' + draft(kind, std, objs, final, article && $('newsUse') && $('newsUse').checked ? newsSection(article, bandOf(std)) : '') + '</main></body></html>';
     $('draft').srcdoc = html;
   }
   function jump(code) {
@@ -329,7 +348,7 @@
     loadRecs().then(function () {
       unitRes = SS.findUnits(recs, o); unitRes.q = o.query;
       renderUnits();
-      try { history.replaceState(null, '', '?find=' + encodeURIComponent(o.query || o.subject) + location.hash); } catch (e) {}
+      try { var sp = new URLSearchParams(location.search); sp.set('find', o.query || o.subject); history.replaceState(null, '', '?' + sp.toString() + location.hash); } catch (e) {}
     }).catch(function () { $('unitInfo').textContent = '색인(search.json)을 불러오지 못했어요.'; });
   }
   function renderUnits() {
@@ -380,6 +399,27 @@
   });
   gradeOptions();
 
+  // ---- 뉴스 라운지에서 온 기사 ----
+  function showArticle(find) {
+    var box = $('newsCard'), link = /^https?:\/\//.test(article.l) ? article.l : '';
+    box.hidden = false;
+    box.innerHTML = '<span class="chip-s ember">뉴스 라운지에서 온 기사</span><h3>' + (link ? '<a href="' + esc(link) + '" target="_blank" rel="noopener">' + esc(article.t) + '</a>' : esc(article.t)) + '</h3>' +
+      '<p class="note-s" style="margin:0 0 6px">' + esc([article.s, article.d].filter(Boolean).join(' · ')) + '</p>' +
+      '<p class="note-s" style="margin:0 0 4px">맞는 단원 낱말 <span id="newsKwInfo">찾는 중…</span></p><div id="newsKw"></div>' +
+      '<label class="note-s" style="display:flex;gap:6px;align-items:center;margin:6px 0 0;cursor:pointer"><input type="checkbox" id="newsUse" checked> 학습지에 읽기 자료로 넣기</label>' +
+      '<p class="note-s" style="margin:4px 0 0">단원에서 성취기준을 고르면 학습지에 이 기사와 생각 질문이 함께 들어가요.</p>';
+    setMode('unit');
+    loadRecs().then(function () {
+      var kw = SS.newsKeywords(recs, article.t, article.x.join(' '));
+      $('newsKwInfo').textContent = kw.length ? '(누르면 다시 찾아요)' : '— 못 찾았어요. 위 칸에 직접 넣어 보세요.';
+      $('newsKw').innerHTML = kw.map(function (k) { return '<button class="chip-s oak" type="button" data-kw="' + esc(k.word) + '">' + esc(k.word) + ' <small>' + k.count + '</small></button>'; }).join('');
+      var first = find || (kw[0] && kw[0].word);
+      if (first) { $('unitQ').value = first; runUnit(); }
+    });
+  }
+  $('newsCard').addEventListener('click', function (e) { var b = e.target.closest('[data-kw]'); if (b) { $('unitQ').value = b.dataset.kw; runUnit(); } });
+  $('newsCard').addEventListener('change', function (e) { if (e.target.id === 'newsUse') buildDraft(); });
+
   Promise.all([getJSON(BASE + 'index.json'), getJSON(BASE + 'codes.json')]).then(function (r) {
     idx = r[0]; codes = r[1];
     $('totalInfo').textContent = '초등 ' + idx.total.elem + ' · 중등 ' + idx.total.sec + '개 성취기준';
@@ -387,6 +427,7 @@
     if (h && codes[h] != null) { var c = idx.courses[codes[h]]; level = c.level; document.querySelectorAll('[data-level]').forEach(function (b) { b.classList.toggle('on', b.dataset.level === level); }); renderCoursesOnly(); $('courseSel').value = codes[h]; openCourse(codes[h], h); }
     else renderCourses();
     var find = new URLSearchParams(location.search).get('find');
-    if (find) { $('unitQ').value = find; setMode('unit'); }
+    if (article) showArticle(find);
+    else if (find) { $('unitQ').value = find; setMode('unit'); }
   }).catch(function () { $('stdBody').innerHTML = '<div class="card-s">성취기준 데이터를 불러오지 못했어요. 웹 서버(또는 GitHub Pages)에서 열어 주세요.</div>'; });
 })(typeof window !== 'undefined' ? window : this);

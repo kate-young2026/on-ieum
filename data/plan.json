@@ -93,12 +93,12 @@
         {
           "name": "오늘의 뉴스 10 브리핑",
           "status": "done",
-          "note": "매일 08:20 ntfy 알림 · 주제 이름은 비밀값에만"
+          "note": "매일 08:20 ntfy 알림(하루 한 번) · 주제 이름은 비밀값에만"
         },
         {
           "name": "대시보드 자동 게재",
           "status": "done",
-          "note": "GitHub Actions 06:07 수집 → data/news/today.json"
+          "note": "GitHub Actions 새벽 5회 수집(지연 대비) → data/news/today.json"
         },
         {
           "name": "언론사 RSS 확대 · 원문 요약 문구(og:description)",
@@ -112,7 +112,9 @@
         },
         {
           "name": "기사 → 교실로 보내기",
-          "status": "plan"
+          "status": "done",
+          "note": "기사 낱말로 단원 찾기 → 학습지에 읽기 자료·생각 질문",
+          "link": "index.html#news"
         }
       ],
       "rooms": [

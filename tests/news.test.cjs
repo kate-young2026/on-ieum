@@ -27,6 +27,15 @@ import('../scripts/news/lib.mjs').then((L) => {
   ok(top.length === 10 && top.filter((x) => x.cat === '출시').length === 3, '분야별 몫');
   ok(new Date(L.at0820(new Date('2026-11-25T21:10:00Z')) * 1000).toISOString() === '2026-11-25T23:20:00.000Z', '08:20 KST 예약 시각');
   ok(L.headline([{ cat: '출시' }, { cat: '정책' }]).includes('AI 출시 1 · 교육정책 1'), '알림 한 줄');
+  // 하루 여러 번 예약 실행해도 08:20 알림은 하루 한 번
+  const t0 = new Date('2026-11-27T15:20:00Z'); // 11/28 00:20 KST
+  const p0 = L.notifyPlan('0820', { date: '2026-11-27' }, t0);
+  ok(p0.send && p0.mark && p0.date === '2026-11-28' && new Date(p0.delay * 1000).toISOString() === '2026-11-27T23:20:00.000Z', '그날 첫 실행은 08:20 예약');
+  ok(!L.notifyPlan('0820', { date: '2026-11-28' }, t0).send, '이미 예약한 날은 건너뜀');
+  const late = L.notifyPlan('0820', null, new Date('2026-11-28T03:30:00Z'));
+  ok(late.send && late.delay === null && late.mark, '08:20이 지나 돌면 바로 보내고 기록');
+  ok(L.notifyPlan('now', { date: '2026-11-28' }, t0).send && !L.notifyPlan('now', null, t0).mark, '손으로 보내는 now는 기록하지 않음');
+  ok(!L.notifyPlan('none', null, t0).send, 'none은 보내지 않음');
   // 교수님 피드백: 분류·제외 키워드·교육 관련성·원문 요약 문구
   ok(!L.isRelease('Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon'), 'llama.cpp 벤치마크는 출시가 아님');
   ok(!L.isRelease('Claude가 Troy Hunt의 이메일을 검토한 결과, 침해 사실 공개 과정에서 반복적인 지연과 법무팀 개입이 드러났다'), '보안 사고 기사는 출시가 아님');
