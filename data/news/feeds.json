@@ -3,6 +3,7 @@
   "ntfy": {
     "server": "https://ntfy.sh",
     "click": "https://kate-young2026.github.io/on-ieum/#news",
+    "listen": "https://kate-young2026.github.io/on-ieum/listen.html?play=1",
     "note": "알림 주제 이름은 공개 저장소에 적지 않습니다. GitHub 저장소 Settings → Secrets → Actions의 NTFY_TOPIC(필수)과 NTFY_TOKEN(선택)에만 넣으세요."
   },
   "quota": {

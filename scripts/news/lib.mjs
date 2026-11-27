@@ -164,7 +164,8 @@ export function googleNewsId(link) {
 export function extractLines(item) {
   const text = (item.desc || '').replace(/\s+/g, ' ').trim();
   const sents = text.split(/(?<=[^A-Z.][.!?。])\s+/).map((s) => s.trim()).filter((s) => s.length > 8 && !normTitle(item.title).startsWith(normTitle(s).slice(0, 20)));
-  const lines = sents.slice(0, 3).map((s) => (s.length > 90 ? s.slice(0, 89) + '…' : s));
+  // 한 줄은 120자까지, 넘치면 낱말 경계에서 자른다(음성 듣기에서도 덜 어색하게)
+  const lines = sents.slice(0, 3).map((s) => (s.length > 120 ? s.slice(0, 119).replace(/\s+\S*$/, '') + '…' : s));
   if (!lines.length) lines.push('요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요.');
   return lines;
 }
