@@ -1,115 +1,115 @@
 {
- "date": "2026-11-26",
- "generatedAt": "2026-11-26T03:29:38.039Z",
+ "date": "2026-11-27",
+ "generatedAt": "2026-11-27T03:36:41.300Z",
  "summary": "extract",
- "headline": "오늘 뉴스 10개가 도착했어요. AI 출시 3 · AI 2 · IT 1 · EDU 2 · 교육정책 2",
+ "headline": "오늘 뉴스 10개가 도착했어요. AI 출시 2 · AI 2 · IT 2 · EDU 2 · 교육정책 2",
  "items": [
   {
    "cat": "출시",
-   "title": "챗GPT, 브랜드 노출 지표 공개… AI 검색 마케팅의 새로운 기준은",
-   "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5qVDFad2lWay1oSnM3U1NhN1dCN2RvbVhOSy1FRksyMm9WSmhheGFGdDNsT2YybGkwcl9ndmdJa1BSU0pCTkxYaWdIUTRUUURkekJN?oc=5",
-   "source": "유스연합",
-   "published": "2026-11-26T01:58:00.000Z",
+   "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+   "link": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
+   "source": "Hugging Face",
+   "published": "2026-11-26T11:37:17.000Z",
    "lines": [
     "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
    ]
   },
   {
    "cat": "출시",
-   "title": "[더뉴론] 딥마인드는 일관성 있는 AI 답변 테스트를 시작. Anthropic과 OpenAI 직원들은 공개되지 않은 모델이 안전한지 의문을 제기. OpenAI의 GPT-6.2는 실험실에서 검증된 단백질 결합체를 설계했다. Claude 아티팩트는 이제 데스크톱 앱으로 설치된다. GPT-6.2 Ast",
-   "link": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE5BQXFQdVpUUnQzcU04SUFsT25yM2llVEl1TmR0cWdzZ3loZk5lLTJhZFRuSFloQXZ1V19Wei1PR1Q?oc=5",
-   "source": "AI넷",
-   "published": "2026-11-25T23:54:00.000Z",
-   "lines": [
-    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
-   ]
-  },
-  {
-   "cat": "출시",
-   "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
-   "link": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
-   "source": "Anthropic",
-   "published": null,
-   "lines": [
-    "Our most capable models for daunting technical work, Claude Fable 5.2 and Claude Mythos 5…"
-   ]
-  },
-  {
-   "cat": "정책",
-   "title": "수능 시험지 보관기간 1년→5년 연장…부정행위 사후 조사 강화",
-   "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE43MmI1RExDUmxIX1hvTWxwa2R5MW1zNkJuUmtMdmZFRTlESHh5Yi1lbmtnVmJPZEZEcWNKY0FWTzl3eGYyTHJNa3FickZQektxQlQtTzdlcDZORDR3cmR5aUZsWVpSWE1GbkxVXw?oc=5",
-   "source": "포커스경제",
-   "published": "2026-11-26T03:22:30.000Z",
+   "title": "Claude가 Troy Hunt의 이메일을 검토한 결과, 침해 사실 공개 과정에서 반복적인 지연과 법무팀 개입이 드러났다",
+   "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPZmFLb3ZqUDJmWWlRWjUwdVZ2cWc4eXluN2F2OHhVUU0xQzJwQWo3ZjY0UW1WeG5jQkFiM0dBTnlIay1MYk8wcHdGMm04eHIyejlmXzRtbDRaNmJTYkgzUnFoWW1ITVJScjdheFFMd2M2MXVpeUUwME15SExIX0J3YjA3XzZPMXFoVmVWbHNCNA?oc=5",
+   "source": "Mezha.net",
+   "published": "2026-11-26T13:43:00.000Z",
    "lines": [
     "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
    ]
   },
   {
    "cat": "정책",
-   "title": "강남서초교육지원청, 고교학점제 막막함은 덜고 자신감은 채운다... 공교육이 여는 진로‧진학 길잡이",
-   "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE00REpwdi1OckUxYzV3SWt5LS1wT2pkYWVSbmNpanVnTXBndGdtM1B5d205WjVXMnZoVFNQU3ZGakxIeG9lR2luSG9ZVEx2bXh0TDY4T1JESGtEUDNOWU0ya2RmeFh3eXYwQUQwTDNCMA?oc=5",
-   "source": "의정신문 서울시티",
-   "published": "2026-11-26T03:20:56.000Z",
+   "title": "수능 부정행위 474건, 1년 새 195건 급증…중대 위반 땐 응시 제한 10년 추진",
+   "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9kdEdCaTBlRzY5LW4tUjVPYTJSZlZsU2d5VWNScEtKN090ZGl4RGljX1ZveHhsSExTd1ZGWXRlTXMzTzJpU1duU1BxaTFrZE5sZk9mck9jNmlzWVFUX2hucTRGTFhFN3BtcVBSdw?oc=5",
+   "source": "뉴시안",
+   "published": "2026-11-27T03:27:24.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+   ]
+  },
+  {
+   "cat": "정책",
+   "title": "수능 부정행위 신고·제보 306건…교육부, “확인되면 최소 1억 포상”",
+   "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBmUUYxZzdIMS1sVnFNWnk4V0t2cVNDcFA5dllTYlpSR21iTFJNU3NUajk5UGFldjZYQmkzMGNXdmpSQjNleC1HU3VTdEk0cDYycElqVXBmWVd3a2xUNTl4MjJGenNkWnpHbHJEOTBmdw?oc=5",
+   "source": "서울신문",
+   "published": "2026-11-27T03:27:08.000Z",
    "lines": [
     "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
    ]
   },
   {
    "cat": "EDU",
-   "title": "[문택주 칼럼] 교사들이 원하는 연수는 어디에 있는가?",
-   "link": "https://www.edupress.kr/news/articleView.html?idxno=30679",
-   "source": "에듀프레스",
-   "published": "2026-11-26T08:03:32.000Z",
+   "title": "타이닌: 학교 교육 시스템을 통해 과학 기술 혁신에 대한 열망을 육성합니다.",
+   "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdzVsd1AydkxoQ3doOFZoQmhGc3Y5RHBTMTl4X3ZiSWdvMll1LWlOUEg2QnhqdjFrdExXQ0xCX1N1eTZTQU5pSFNwVDllaEVyN3N4RHZDYVFxdmtidExlNGRfUlhwb09LVVdfcXJSTXh3M0xwODJSSWRuaWwtMGY0MmxrWF9pMHBqcnJZSVhTTWpTcWhVX2F1WThWYng?oc=5",
+   "source": "Vietnam.vn",
+   "published": "2026-11-27T02:51:20.000Z",
    "lines": [
-    "“선생님, 그런데 왜 이렇게 좋은 연수를 무료로 하세요?” 최근 샘동네에서 무료 교원연수를 진행하면서 가장 많이 듣는 질문 중 하나다.",
-    "교육청과 교육연수원에서도 수많은 연수가 운영되고 있고, 민간에서도 다양한 유료 연수가 개설되고 있다.",
-    "그런데 나는 왜 굳이 시간을 들여 무료 연수를 진행하는 것일까?이 질문에 대한 나의 답은 단순하다."
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
    ]
   },
   {
    "cat": "EDU",
-   "title": "[쏙쏙뉴스] 56년 만에 초등교과서 한자표기? 국민 55% \"사교육 늘어나\"",
-   "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE40YVpHNEdlRmZYeWxJZWtkMml4eHVBNkV4dklDR0xxbXh4VFZfeVpfa1lkajlwTW54RXJpSHJTczZGaDBMVjZPS180OUhBS182VWZlbEQzR2lTc2xvSHp2eFZsZmVFbkRWYXM1MlNKS3plY2tldE5IVA?oc=5",
-   "source": "OhmyNews",
-   "published": "2026-11-26T02:30:45.000Z",
+   "title": "김문수 의원, ‘교과서 오류 수정’ 법에 명시 추진",
+   "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE96TEl5WnFEY2JYU2ZId3YtRmYzcjl2ZWU0YmFTNkVGcVZlZXhIV1hST2NXc0NKd05ubFcwTlc2VklOS1BDZTZPMjdqSUlFOW9zdEc4STNfclduU3pETndZRmk2eUstVk0?oc=5",
+   "source": "경기매일",
+   "published": "2026-11-27T02:47:38.000Z",
    "lines": [
     "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
    ]
   },
   {
    "cat": "AI",
-   "title": "[AI리더의 서가] 불가능을 예측하라",
-   "link": "https://www.aitimes.com/news/articleView.html?idxno=217622",
+   "title": "[AI리더의 서가] 토큰을 지배하는 기업이 시장을 지배한다",
+   "link": "https://www.aitimes.com/news/articleView.html?idxno=217624",
    "source": "AI타임스",
-   "published": "2026-11-26T09:00:00.000Z",
+   "published": "2026-11-27T09:00:00.000Z",
    "lines": [
-    "불가능을 예측하라정두희 | 청림출판2026년 9월 9일추천이유저자는 미래의 불확실성을 예측 AI 시스템으로 분석하여 기업의 경쟁력을 강화하는 방법을 제시합니다.",
-    "데이터 기반의 정량적 분석으로 의사결정 속도를 높이고 시장 변화에 선제적으로 대응할 수 있는 실무 전략을 제공합니다.상세보기 올해는 생성 AI 활용서와 함께 수…",
-    "내년 생산량과 발주 규모를 정하는 S&OP 회의가 몰리는 때다."
+    "토큰을 지배하는 기업이 시장을 지배한다가회광 | 씽크스마트2026년 9월 30일추천이유저자는 AI 비용을 줄이는 것이 아니라 토큰 생산성을 높이는 것이 핵심이라…",
+    "경영자가 토큰을 매출과 비용처럼 읽고 관리하여 AI를 진정한 경쟁력으로 전환할 수 있도록 돕습니다.상세보기 영풍문고 쇼핑몰 검색창에 'AI 비용', 'AI RO…",
+    "AI를 쓸지 말지 고민하던 단계에서, 이미 쓰고 있는 AI가 제값을 하는지"
    ]
   },
   {
    "cat": "AI",
-   "title": "[11월25일] \"AI의 의식, 문제는 만드는 법도 막는 법도 모른다는 것\"",
-   "link": "https://www.aitimes.com/news/articleView.html?idxno=217759",
+   "title": "미 정보당국 \"중국, 젠슨 황 사건 배후 조종 증거 없어\"…간첩 의혹 판단은 엇갈려",
+   "link": "https://www.aitimes.com/news/articleView.html?idxno=217839",
    "source": "AI타임스",
-   "published": "2026-11-26T07:00:00.000Z",
+   "published": "2026-11-27T08:01:21.000Z",
    "lines": [
-    "2022년 6월 구글의 한 엔지니어가 AI 모델 '람다(LaMDA)'에 의식이 있다고 주장해 화제가 된 적이 있습니다.",
-    "당시에는 AI의 뛰어난 언어 능력을 의식으로 착각한 해프닝으로 받아들여졌지만, 이제 AI 의식은 주요 AI 기업들의 연구 대상이자 논쟁거리가 됐습니다.대표적인 …",
-    "AI가 의식을 갖거나 고통을 느낄 가능성을 열어두고 모델 복지에 관한 연구를 진행 중이며, 실제 모델 훈련과 운영에도 이를 반영하고 있습니다."
+    "미국 정보당국이 젠슨 황 엔비디아 CEO의 혼외 관계를 중국 정보기관이 배후에서 조종했다는 증거를 확보하지 못했다고 의회에 보고했다.",
+    "그러나 상대 여성인 앨리스 황의 중국 정보기관 연계 의혹을 놓고는 미국 정보당국자들의 판단이 엇갈리는 것으로 알려졌다.월스트리트저널(WSJ)은 25일(현지시간)…",
+    "젠슨 황이 CEO로 복귀한 지 하루만으로, CIA와 FBI, 국가정보국장실(ODNI), 국가안보국(NSA) 관계자들이 참석"
    ]
   },
   {
    "cat": "IT",
-   "title": "최태원이 내민 9440억 화해 카드… 노소영이 지키려는 것은",
-   "link": "https://www.bloter.net/news/articleView.html?idxno=679733",
+   "title": "[범한메카텍 IPO] '파두'의 NH, '정정요구 2번'의 유진이 몸값 매겼다",
+   "link": "https://www.bloter.net/news/articleView.html?idxno=679781",
    "source": "블로터",
-   "published": "2026-11-26T09:27:53.000Z",
+   "published": "2026-11-27T09:33:44.000Z",
    "lines": [
-    "최태원 SK그룹 회장이 이혼 재산 분할금 9440억원을 전액 현금으로 지급하겠다고 했지만 노소영 아트센터 나비 관장 측은 이를 거부했다.",
-    "최 회장이 대법원 상고를 취하하는 대신 화해권고라는 방식을 택하면서다.",
-    "지급받는 원금은 같지만 기존 승소 판결의 확정 여부, 향후 법적 청구권, 재산 분할금 지급 시점 등에서 차이가 있다는 것이다."
+    "범한메카텍의 몸값을 매긴 두 공동 대표주관사의 최근 성적표가 좋지 않다.",
+    "NH투자증권은 4년 전 범한그룹의 또 다른 계열사 범한퓨얼셀을 상장시켰다.",
+    "주가가 공모가를 한참 밑도는 범한퓨얼셀은 모회사 범한산업에 430억원을 빌려준 상태다."
+   ]
+  },
+  {
+   "cat": "IT",
+   "title": "[한국의 CISO-권력지도] 삼성물산 강현구 상무, CISO·CPO '1인 2역' 총괄…권력지수는 7점",
+   "link": "https://www.bloter.net/news/articleView.html?idxno=679797",
+   "source": "블로터",
+   "published": "2026-11-27T09:31:03.000Z",
+   "lines": [
+    "강현구 삼성물산 경영기획실 정보보호팀장 상무는 정보보호최고책임자(CISO)와 개인정보보호책임자(CPO)를 함께 맡고 있다.",
+    "건설·상사·패션·리조트 등 4개 부문의 보안과 개인정보를 모두 책임진다.",
+    "래미안 홈IoT부터 온라인 쇼핑몰, 에버랜드 예매 서비스까지 고객 정보가 오가는 접점이 넓은 만큼 인증과 사고 대응에도 공을 들인다.26일 가 삼성그룹 주요 4…"
    ]
   }
  ],
@@ -142,7 +142,7 @@
    "name": "Hugging Face",
    "cat": "출시",
    "ok": true,
-   "n": 917
+   "n": 918
   },
   {
    "name": "NVIDIA",
@@ -154,7 +154,7 @@
    "name": "구글 뉴스 · AI 모델 출시",
    "cat": "출시",
    "ok": true,
-   "n": 16
+   "n": 29
   },
   {
    "name": "AI타임스",
@@ -177,8 +177,8 @@
   {
    "name": "전자신문",
    "cat": "IT",
-   "ok": false,
-   "error": "fetch failed"
+   "ok": true,
+   "n": 30
   },
   {
    "name": "블로터",
@@ -202,7 +202,7 @@
    "name": "구글 뉴스 · 에듀테크",
    "cat": "EDU",
    "ok": true,
-   "n": 20
+   "n": 21
   },
   {
    "name": "구글 뉴스 · 교육부",

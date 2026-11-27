@@ -1,6 +1,16 @@
 {
  "items": [
   {
+   "date": "2026-11-27",
+   "title": "Claude가 Troy Hunt의 이메일을 검토한 결과, 침해 사실 공개 과정에서 반복적인 지연과 법무팀 개입이 드러났다",
+   "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPZmFLb3ZqUDJmWWlRWjUwdVZ2cWc4eXluN2F2OHhVUU0xQzJwQWo3ZjY0UW1WeG5jQkFiM0dBTnlIay1MYk8wcHdGMm04eHIyejlmXzRtbDRaNmJTYkgzUnFoWW1ITVJScjdheFFMd2M2MXVpeUUwME15SExIX0J3YjA3XzZPMXFoVmVWbHNCNA?oc=5",
+   "source": "Mezha.net",
+   "published": "2026-11-26T13:43:00.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
+   ]
+  },
+  {
    "date": "2026-11-26",
    "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2",
    "link": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
@@ -29,6 +39,16 @@
    "published": null,
    "lines": [
     "Claude Opus 5.5 leads in agentic coding and knowledge work, and costs 40% less to run tha…"
+   ]
+  },
+  {
+   "date": "2026-11-27",
+   "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+   "link": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
+   "source": "Hugging Face",
+   "published": "2026-11-26T11:37:17.000Z",
+   "lines": [
+    "요약할 설명문이 없는 기사예요. 제목을 눌러 원문에서 확인하세요."
    ]
   },
   {
@@ -112,5 +132,5 @@
    ]
   }
  ],
- "updated": "2026-11-26"
+ "updated": "2026-11-27"
 }
